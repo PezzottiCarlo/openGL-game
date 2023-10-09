@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1696855247 source:/home/parallels/Desktop/Grafica/Gruppo01/client/main.cpp
+	"engine.h"
+	<iostream>
+
+1696855247 /home/parallels/Desktop/Grafica/Gruppo01/engine/engine.h
+
