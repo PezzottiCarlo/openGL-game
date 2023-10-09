@@ -1,21 +1,21 @@
 /**
- * @file    engine.cpp 
+ * @file    engine.cpp
  * @brief   A simple graphical engine library
  *
- * @author  Jari NÃ¤ser (C) SUPSI [jari.naeser@student.supsi.ch]
+ * @author  Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
 
-//////////////
-// #INCLUDE //
-//////////////
+ //////////////
+ // #INCLUDE //
+ //////////////
 
-   // Library main include:
-   #include "engine.h"
+    // Library main include:
+#include "engine.h"
 
-   // C/C++:
-   #include <iostream>
+// C/C++:
+#include <iostream>
 
 
 
@@ -24,7 +24,7 @@
 ////////////
 
    // Reserved pointer:
-   bool Engine::initFlag = false;
+bool Engine::initFlag = false;
 
 
 
@@ -44,21 +44,21 @@
  */
 int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 {
-	// Check use:
-   switch (reason)
-   {
-         ///////////////////////////
-         case DLL_PROCESS_ATTACH: //
-            break;
+    // Check use:
+    switch (reason)
+    {
+        ///////////////////////////
+    case DLL_PROCESS_ATTACH: //
+        break;
 
 
-         ///////////////////////////
-         case DLL_PROCESS_DETACH: //
-            break;
-   }
+        ///////////////////////////
+    case DLL_PROCESS_DETACH: //
+        break;
+    }
 
-   // Done:
-   return true;
+    // Done:
+    return true;
 }
 #endif
 
@@ -75,16 +75,16 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  */
 bool LIB_API Engine::init()
 {
-   // Prevent double init:
-   if (initFlag)
-   {
-      std::cout << "ERROR: class already initialized" << std::endl;
-      return false;
-   }
+    // Prevent double init:
+    if (initFlag)
+    {
+        std::cout << "ERROR: class already initialized" << std::endl;
+        return false;
+    }
 
-	// Done:
-   initFlag = true;
-	return true;
+    // Done:
+    initFlag = true;
+    return true;
 }
 
 
@@ -95,16 +95,16 @@ bool LIB_API Engine::init()
  */
 bool LIB_API Engine::free()
 {
-   // Really necessary?
-   if (!initFlag)
-   {
-      std::cout << "ERROR: class not initialized" << std::endl;
-      return false;
-   }
+    // Really necessary?
+    if (!initFlag)
+    {
+        std::cout << "ERROR: class not initialized" << std::endl;
+        return false;
+    }
 
-	// Done:
-   initFlag = false;
-	return true;
+    // Done:
+    initFlag = false;
+    return true;
 }
 
 
@@ -115,19 +115,15 @@ bool LIB_API Engine::free()
  */
 bool LIB_API Engine::doNothing()
 {
-   // Probably excessive checking:
-   if (!initFlag)
-   {
-      std::cout << "ERROR: class not initialized" << std::endl;
-      return false;
-   }
+    // Probably excessive checking:
+    if (!initFlag)
+    {
+        std::cout << "ERROR: class not initialized" << std::endl;
+        return false;
+    }
 
-   std::cout << "If you read this, your library is working as expected" << std::endl;
+    std::cout << "If you read this, your library is working as expected" << std::endl;
 
-	// Done:
-	return true;
+    // Done:
+    return true;
 }
-
-
-
-
