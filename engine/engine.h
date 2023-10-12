@@ -17,14 +17,14 @@
 #define LIB_NAME      "Engine Library v0.1a"  ///< Library credits
 #define LIB_VERSION   10                              ///< Library version (divide by 10)
 
-#ifdef _WINDOWS 	
+#ifdef _WINDOWS
    // Export API:
    // Specifies i/o linkage (VC++ spec):
 #ifdef ENGINE_EXPORTS
 #define LIB_API __declspec(dllexport)
 #else
 #define LIB_API __declspec(dllimport)
-#endif      	
+#endif
 #else // Under Linux
 #define LIB_API  // Dummy declaration
 #endif
@@ -42,7 +42,7 @@ class LIB_API Engine
 {
 	//////////
 public: //
-	//////////	   
+	//////////
 
 	   // Init/free:
 	static bool init();
@@ -51,10 +51,13 @@ public: //
 	// Event manager:
 	static bool doNothing();
 
+	//Test GLM
+	static void testGLM();
+
 
 	///////////
 private:	//
-	///////////	   
+	///////////
 
 		// Const/dest (as private to prevent instanciation):
 	Engine() {}

@@ -17,6 +17,9 @@
 // C/C++:
 #include <iostream>
 
+#include "glm.hpp"
+#include "gtx/string_cast.hpp"
+
 
 
 ////////////
@@ -126,4 +129,9 @@ bool LIB_API Engine::doNothing()
 
     // Done:
     return true;
+}
+
+void LIB_API Engine::testGLM(){
+    glm::vec3 vettore(1.0f,0.0f,0.0f);
+    std::cout << glm::to_string(vettore) << std::endl;
 }

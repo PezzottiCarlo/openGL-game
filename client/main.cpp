@@ -16,8 +16,6 @@
 // C/C++:
 #include <iostream>
 
-
-
 //////////
 // MAIN //
 //////////
@@ -38,6 +36,7 @@ int main(int argc, char* argv[])
 	Engine::init();
 	Engine::doNothing();
 	Engine::free();
+	Engine::testGLM();
 
 	// Done:
 	std::cout << "\n[application terminated]" << std::endl;
