@@ -10,11 +10,42 @@
  // #INCLUDE //
  //////////////
 
-	// Library header:
+// Library header:
 #include "engine.h"
 
 // C/C++:
 #include <iostream>
+
+
+///////////////
+// CALLBACKS //
+///////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This callback gets invoked when a special character on the keyboard gets pressed.
+ * @param key pressed keyboard key as integer
+ * @param x mouse x position relative to the window when the key gets pressed
+ * @param y mouse y position relative to the window when the key gets pressed
+ */
+void specialCallback(int key, int x, int y) {
+	std::cout << key << " has been pressed." << std::endl;
+	// TBD
+	Engine::postWindowRedisplay();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This callback gets invoked when a regular character on the keyboard gets pressed.
+ * @param key pressed keyboard character
+ * @param x mouse x position relative to the window when the key gets pressed
+ * @param y mouse y position relative to the window when the key gets pressed
+ */
+void keyboardCallback(unsigned char key, int x, int y) {
+	std::cout << key << " has been pressed." << std::endl;
+	// TBD
+	Engine::postWindowRedisplay();
+}
 
 //////////
 // MAIN //
@@ -28,17 +59,27 @@
  */
 int main(int argc, char* argv[])
 {
-	// Credits:
-	std::cout << "Client application example" << std::endl;
-	std::cout << std::endl;
+	// Setup initial frame properties
+	Engine::setZBufferUsage(true);	// Must be executed before Engine::init
+	Engine::init(argc, argv, "RushHour Game", 640, 480);
+	// Setup callbacks 
+	Engine::setKeyboardCallback(keyboardCallback);
+	Engine::setSpecialCallback(specialCallback);
+	// Set background color
+	Engine::setBackgroundColor(0.2f, 0.2f, 0.7f, 1.0f); 
 
-	// Init and use the lib:
-	Engine::init();
-	Engine::doNothing();
+	// Start engine
+	Engine::start();
+	
+	// Execute application logic
+	while (Engine::isRunning()){
+		// Render stuff…
+		// Engine::renderTriangle();
+		// Update engine 
+		Engine::update();
+	}
+
+	// Free engine
 	Engine::free();
-	Engine::testGLM();
-
-	// Done:
-	std::cout << "\n[application terminated]" << std::endl;
 	return 0;
 }

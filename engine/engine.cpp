@@ -7,27 +7,38 @@
  */
 
 
- //////////////
- // #INCLUDE //
- //////////////
+//////////////
+// #INCLUDE //
+//////////////
 
-    // Library main include:
+// Library main include:
 #include "engine.h"
 
 // C/C++:
 #include <iostream>
 
-#include "glm.hpp"
-#include "gtx/string_cast.hpp"
+// GLM: 
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
+#include <gtx/string_cast.hpp>
 
+// FreeGLUT:   
+#include <GL/freeglut.h>
 
 
 ////////////
 // STATIC //
 ////////////
 
-   // Reserved pointer:
 bool Engine::initFlag = false;
+bool Engine::useZBuffer = false;
+bool Engine::mainLoopRunning = false;
+float Engine::bgR = 0.0f;
+float Engine::bgG = 0.0f;
+float Engine::bgB = 0.0f;
+float Engine::bgA = 0.0f;
+int Engine::windowId = 0;
 
 
 
@@ -74,22 +85,46 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Initialization method. Call this before any other Eureka function.
+ * @param argc argument count 
+ * @param argv array containing arguments
+ * @param title FreeGlut window title
+ * @param width window width
+ * @param height window height
  * @return true on success, false on error
  */
-bool LIB_API Engine::init()
-{
-    // Prevent double init:
-    if (initFlag)
-    {
-        std::cout << "ERROR: class already initialized" << std::endl;
-        return false;
+bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
+    if (!initFlag) {
+        
+        // Init context:
+        if (useZBuffer) {
+            glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+        } else {
+            glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+        }
+        
+        glutInitWindowPosition(100, 100);
+        glutInitWindowSize(width, height);
+
+        // FreeGLUT can parse command-line params, in case:
+        glutInit(&argc, argv);
+
+        // Set some optional flags:
+        glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+
+        // Enable Z buffer if it's required
+        if (useZBuffer) execZBufferSetup();
+        
+        // Create window
+        windowId = glutCreateWindow(title);
+
+        // Set callback functions
+        glutDisplayFunc(displayCallback);
+        glutReshapeFunc(reshapeCallback);
+
+        initFlag = true;
     }
-
-    // Done:
-    initFlag = true;
-    return true;
+    return initFlag;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -98,40 +133,180 @@ bool LIB_API Engine::init()
  */
 bool LIB_API Engine::free()
 {
-    // Really necessary?
-    if (!initFlag)
-    {
-        std::cout << "ERROR: class not initialized" << std::endl;
-        return false;
-    }
-
-    // Done:
-    initFlag = false;
+    // Close open connections or free allocated memory
+    mainLoopRunning = false;
     return true;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Simple, useless method.
- * @return true on success, false on error
+ * This callback is invoked each time the window gets resized (and once also when created).
+ * @param width new window width
+ * @param height new window height
  */
-bool LIB_API Engine::doNothing()
+void LIB_API Engine::reshapeCallback(int width, int height)
 {
-    // Probably excessive checking:
-    if (!initFlag)
-    {
-        std::cout << "ERROR: class not initialized" << std::endl;
-        return false;
-    }
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
 
-    std::cout << "If you read this, your library is working as expected" << std::endl;
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 1.0f, 100.0f);
 
-    // Done:
-    return true;
+    glLoadMatrixf(glm::value_ptr(projection));
+    glMatrixMode(GL_MODELVIEW);
 }
 
-void LIB_API Engine::testGLM(){
-    glm::vec3 vettore(1.0f,0.0f,0.0f);
-    std::cout << glm::to_string(vettore) << std::endl;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This is the main rendering routine automatically invoked by FreeGLUT.
+ */
+void LIB_API Engine::displayCallback()
+{
+    Engine::clearWindow();
+
+    // Enable Z buffer if it's required
+    if (useZBuffer) execZBufferSetup();
+
+    renderTriangle();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This callback connects the given function handler with the glutKeyboardFunc function.
+ * @param func function handler
+ * @param key pressed key character
+ * @param x mouse x position relative to the window when the key gets pressed
+ * @param y mouse y position relative to the window when the key gets pressed
+ */
+void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, int y)) {
+    glutKeyboardFunc(func);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This callback connects the given function handler with the glutSpecialFunc function.
+ * @param func function handler
+ * @param key pressed key integer
+ * @param x mouse x position relative to the window when the key gets pressed
+ * @param y mouse y position relative to the window when the key gets pressed
+ */
+void LIB_API Engine::setSpecialCallback(void (*func)(int key, int x, int y)) {
+    glutSpecialFunc(func);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function renders a simple triangle.
+ */
+void LIB_API Engine::renderTriangle() {
+    // Set a matrix to move our triangle: 
+    glm::mat4 translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -45.0f));
+    glm::mat4 rotationZ = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    // Compute model matrix:
+    glm::mat4 f = translation * rotationZ;
+
+    // Set model matrix as current OpenGL matrix:
+    glLoadMatrixf(glm::value_ptr(f));
+
+    // Pass a triangle (object coordinates: the triangle is centered around the origin):    
+    glBegin(GL_TRIANGLES);
+        glColor3f(1.0f, 1.0f, 0.0f);
+        glVertex3f(-10.0f, -10.0f, 0.0f);
+        glVertex3f(10.0f, -10.0f, 0.0f);
+        glVertex3f(0.0f, 10.0f, 0.0f);
+    glEnd();
+
+    // Swap this context's buffer:
+    glutSwapBuffers();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function sets the frames background color. 
+ * @param r red rgba color component
+ * @param g green rgba color component
+ * @param b blue rgba color component
+ * @param a alpha rgba color component
+ */
+void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {     
+    bgR = r;
+    bgG = g;
+    bgB = b;
+    bgA = a;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function defines if the engine is still running.
+ * @return true on running status, false on stop status
+ */
+bool LIB_API Engine::isRunning() {
+    return mainLoopRunning;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function clears the contents off the frame leaving the background color.
+ */
+void LIB_API Engine::clearWindow() {
+    // RGBA components
+    glClearColor(bgR, bgG, bgB, bgA); 
+    if (useZBuffer) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+    else {
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function swaps the buffers to display.
+ */
+void LIB_API Engine::swapBuffers() {
+    glutSwapBuffers();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function defines if the Z-buffer will be used.
+ * @param status boolean that defines useZBuffer's value
+ */
+void LIB_API Engine::setZBufferUsage(bool status) {
+    useZBuffer = status;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function starts the engine activating the glutMainLoop.
+ */
+void LIB_API Engine::start() {
+    mainLoopRunning = true;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function forces a rendering refresh.
+ */
+void LIB_API Engine::postWindowRedisplay() {
+    // Force rendering refresh
+    glutPostWindowRedisplay(windowId);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function sets up the z-buffer.
+ */
+void LIB_API Engine::execZBufferSetup(){
+    glEnable(GL_DEPTH_TEST);
+    glClearDepth(1.0f);
+    glDepthFunc(GL_LESS);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * This function calls the glutMainLoopEvent (instead of using glutMainLoop that blocks the whole program).
+ */
+void LIB_API Engine::update() {
+    glutMainLoopEvent();
 }
