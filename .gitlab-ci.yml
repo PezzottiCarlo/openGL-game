@@ -14,9 +14,9 @@ dev:
   stage: structure
 
   script:
-    - [ ! -d dependendcies ] || exit 1
-    - [ ! -d engine ] || exit 1
-    - [ ! -d client ] || exit 1
+    - '[ ! -d dependendcies ] || exit 1'
+    - '[ ! -d engine ] || exit 1'
+    - '[ ! -d client ] || exit 1'
 
   only:
     - dev
