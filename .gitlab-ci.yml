@@ -1,0 +1,26 @@
+# build computer graphics project
+
+variables:
+  # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
+
+stages:
+  - structure
+#  - engine
+#  - client
+
+image: gitlab-edu.supsi.ch:5050/dti-isin/labingsw/common:cg
+
+dev:
+  stage: structure
+
+  script:
+    - [ ! -d dependendcies ] || exit 1
+    - [ ! -d engine ] || exit 1
+    - [ ! -d client ] || exit 1
+
+  only:
+    - dev
+
+#  artifacts:
+#    paths:
+#      - client/.../rush-hour.tar.gz
