@@ -14,7 +14,7 @@
 //////////////
 
 #include "object.h"
-#include "engine.h";
+#include "engine.h"
 #include <vector>
 
 
@@ -23,7 +23,7 @@
 /////////////
 
 /**
- * @brief Simple node class example.
+ * @brief Simple node class.
  */
 class LIB_API Node : public Object{
 

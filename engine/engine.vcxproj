@@ -27,14 +27,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="ortographicCamera.h" />
+    <ClInclude Include="perspectiveCamera.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="ortographicCamera.cpp" />
+    <ClCompile Include="perspectiveCamera.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

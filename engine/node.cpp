@@ -1,6 +1,6 @@
 /**
  * @file    node.cpp
- * @brief   A simple graphical engine library
+ * @brief   A simple node class
  *
  * @author  Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
