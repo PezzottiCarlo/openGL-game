@@ -33,12 +33,14 @@ class LIB_API Node : public Object{
 		glm::mat4 matrix;
 		std::vector<Node*> children;	
 		Node* parent;
-		Node(std::string name);
-		~Node();
+		
 
 	//////////
 	public: //
 	//////////
+		// Constructor
+		Node(std::string name);
+		~Node();
 		// Matrix
 		glm::mat4 getMatrix();
 		void setMatrix(glm::mat4);
