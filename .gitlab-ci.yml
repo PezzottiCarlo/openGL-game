@@ -5,12 +5,13 @@ variables:
 
 stages:
   - structure
-#  - engine
-#  - client
+  - engine
+  - client
 
 image: gitlab-edu.supsi.ch:5050/dti-isin/labingsw/common:cg
 
-dev:
+
+structure:
   stage: structure
 
   script:
@@ -21,6 +22,48 @@ dev:
   only:
     - dev
 
-#  artifacts:
-#    paths:
-#      - client/.../rush-hour.tar.gz
+
+engine:
+  stage: engine
+
+  before_script:
+    - 'cd engine'
+
+  script:
+    - 'make clean install'
+
+  after_script:
+    - 'cd ..'
+
+  artifacts:
+    paths:
+      - engine/libengine.so
+
+  only:
+    - dev
+
+
+client:
+  stage: client
+
+  before_script:
+    - 'cd client'
+
+  script:
+    - 'make clean package'
+
+  after_script:
+    - 'cd ..'
+
+  artifacts:
+    paths:
+      - client/rush-hour.tar.gz
+
+  only:
+    - dev
+
+
+
+
+
+
