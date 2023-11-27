@@ -18,33 +18,33 @@ LIBS = -lglut -lGL -lGLU -lfreeimage
 
 
 install: $(TARGET)
-        @echo "all done!"
+	@echo "all done!"
 
 
 $(TARGET): $(MAIN_OBJ_FILES) $(TESTS_RUNNER)
-        # build your .so library here
-        # ...
-        @echo "$(TARGET) build done!"
+	# build your .so library here
+	# ...
+	@echo "$(TARGET) build done!"
 
 
 $(TESTS_RUNNER): $(TEST_OBJ_FILES)
-        # build your test runner executable here
-        # ...
-        @echo "$(TESTS_RUNNER) build done!"
-        # execute your tests here (on test failure, exit with exit code = 1)
-        # ...
-        @echo "tests execution done!"
+	# build your test runner executable here
+	# ...
+	@echo "$(TESTS_RUNNER) build done!"
+	# execute your tests here (on test failure, exit with exit code = 1)
+	# ...
+	@echo "tests execution done!"
 
 
 %.o: %.cpp
-        # compile your sources here
-        # ...
+	# compile your sources here
+	# ...
 
 clean: 
-        @rm -f $(TESTS_RUNNER)
-        @rm -f $(TEST_OBJ_FILES)
-        @rm -f $(TARGET)
-        @rm -f $(MAIN_OBJ_FILES)
+	@rm -f $(TESTS_RUNNER)
+	@rm -f $(TEST_OBJ_FILES)
+	@rm -f $(TARGET)
+	@rm -f $(MAIN_OBJ_FILES)
 
 
 .PHONY: clean install

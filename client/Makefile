@@ -23,41 +23,41 @@ TAR_GZ = tar zcvf
 
 
 package: $(TARGET_ARCHIVE)
-        @echo "all done!"
+	@echo "all done!"
 
 
 $(TARGET_ARCHIVE): $(TARGET)
-        # package your distribution tar gz archive here with the necessary distribution artifacts
-        # ...
-        @echo "$(TARGET) package done!"
+	# package your distribution tar gz archive here with the necessary distribution artifacts
+	# ...
+	@echo "$(TARGET) package done!"
 
 
 $(TARGET): $(MAIN_OBJ_FILES) $(TESTS_RUNNER)
-        # build your client here
-        # ...
-        @echo "$(TARGET) compile done!"
+	# build your client here
+	# ...
+	@echo "$(TARGET) compile done!"
 
 
 $(TESTS_RUNNER): $(TEST_OBJ_FILES)
-        # build your test runner executable here
-        # ...
-        @touch $(TESTS_RUNNER)
-        @echo "$(TESTS_RUNNER) build done!"
-        # execute your tests here (on test failure, exit with exit code = 1)
-        # ...
-        @echo "tests execution done!"
+	# build your test runner executable here
+	# ...
+	@touch $(TESTS_RUNNER)
+	@echo "$(TESTS_RUNNER) build done!"
+	# execute your tests here (on test failure, exit with exit code = 1)
+	# ...
+	@echo "tests execution done!"
 
 
 %.o: %.cpp
-        # compile your sources here
-        # ...
+	# compile your sources here
+	# ...
 
 
 clean:
-        @rm -f $(TESTS_RUNNER)
-        @rm -f $(TEST_OBJ_FILES)
-        @rm -f $(TARGET)
-        @rm -f $(MAIN_OBJ_FILES)
+	@rm -f $(TESTS_RUNNER)
+	@rm -f $(TEST_OBJ_FILES)
+	@rm -f $(TARGET)
+	@rm -f $(MAIN_OBJ_FILES)
 
 
 .PHONY: clean package debug
