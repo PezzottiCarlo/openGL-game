@@ -212,6 +212,11 @@ std::vector<Vertex*> Mesh::getVertices(int lod) {
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     //TO-DO load texture
+    if(material != nullptr)
+        material->render(matrix, ptr);
+    if(texture != nullptr)
+        texture->render(matrix, ptr);
+
     // Set model matrix as current OpenGL matrix:
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
     //Vertex rendering Counter Clock-Wise
