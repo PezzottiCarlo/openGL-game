@@ -35,8 +35,15 @@
 
 //constructor
 Mesh::Mesh(std::string name, Material* material, Texture* texture) : Node(name) {
-	this->material = material;
-	this->texture = texture;
+    //print current name, material and texture
+    if (!(material == NULL && texture == NULL)) {
+        this->material = material;
+        this->texture = texture;
+    }
+    else {
+		this->material = new Material("defaultMaterial");
+        this->texture = new Texture("defaultTexture");
+	}
     this->lod = 0;
 }
 
@@ -182,10 +189,6 @@ void Mesh::loadGeometryFromFile(const std::string& filePath, float scale) {
                         glm::vec3 v2 = positions[vertexIndices[2]];
                         normal = -(glm::normalize(glm::cross(v1 - v0, v2 - v0)));
                     }
-                    // Debug
-                    std::cout << "Vertex: " << glm::to_string(position) << std::endl;
-                    std::cout << "Normal: " << glm::to_string(normal) << std::endl;
-
                     // Assuming addVertex is a method in your Mesh class
                     this->addVertex(new Vertex(position, normal), 0);  // Change the second parameter accordingly (0 is just a placeholder)
                 }
@@ -229,6 +232,7 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
         glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()));
         glVertex3fv(glm::value_ptr(v->getPosition()));
     }
+
     glEnd();
     return true;
 }
