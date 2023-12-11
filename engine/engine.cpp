@@ -115,9 +115,9 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         
         // Init context:
         if (useZBuffer) {
-            glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+            glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
         } else {
-            glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+            glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
         }
         
         glutInitWindowPosition(100, 100);
