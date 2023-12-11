@@ -61,6 +61,8 @@ public:
     glm::vec4 getPosition();
     // Override render method
     virtual bool render(glm::mat4, void*) override;
+    // Test method
+    static int test();
 ///////////
 private: //
 ///////////

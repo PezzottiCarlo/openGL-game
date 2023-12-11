@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-int run_mesh_test() {
+int Mesh::test() {
 
 	Material material("TestMaterial");
 	Texture texture("TestTexture");

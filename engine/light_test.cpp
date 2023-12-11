@@ -1,6 +1,6 @@
 #include "light.h"
 
-int run_light_test() {
+int Light::test() {
 
 	Light light("TestLight");
 

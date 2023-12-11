@@ -110,5 +110,11 @@
     <ClCompile Include="node_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="texture_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

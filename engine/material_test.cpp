@@ -1,6 +1,7 @@
+#pragma once
 #include "material.h"
 
-int run_material_test() {
+int Material::test() {
 
 	Material material("TestMaterial");
 

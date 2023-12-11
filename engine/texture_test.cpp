@@ -1,6 +1,6 @@
 #include "texture.h"
 
-int run_texture_test() {
+int Texture::test() {
 
 	Texture texture("TestTexture");
 

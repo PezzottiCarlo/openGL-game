@@ -48,6 +48,9 @@ public: //
 
     int getHeight();
 
+    // Test method
+    static int test();
+
 ///////////
 private: //
 ///////////

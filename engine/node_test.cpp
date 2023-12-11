@@ -1,6 +1,6 @@
 #include "node.h"
 
-int run_node_test() { 
+int Node::test() { 
 
 	Node node("TestNode");
 	Node child1Node("Child1Node");

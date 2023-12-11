@@ -58,7 +58,9 @@
     <ClCompile Include="ovoReader.cpp" />
     <ClCompile Include="ovoReader.h" />
     <ClCompile Include="perspectiveCamera.cpp" />
+    <ClCompile Include="Tester.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="texture_test.cpp" />
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
