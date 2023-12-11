@@ -72,6 +72,7 @@ private: //
 	// Functions
 	static void displayCallback();
 	static void execZBufferSetup();
+	static void updateFPS(int);
 
 	// Internal vars:
 	static bool initFlag;
