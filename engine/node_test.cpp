@@ -24,6 +24,5 @@ int run_node_test() {
 	child1Node.setParent(&child2Node);
 	assert(child1Node.getParent() == &child2Node);
 
-
 	return 0;
 }

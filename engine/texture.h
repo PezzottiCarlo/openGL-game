@@ -43,6 +43,11 @@ public: //
     void setTextureId(unsigned int id);
 
     virtual bool render(glm::mat4, void*) override;
+
+    int getWidth();
+
+    int getHeight();
+
 ///////////
 private: //
 ///////////
