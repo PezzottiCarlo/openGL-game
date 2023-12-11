@@ -31,10 +31,12 @@ class LIB_API Object{
 	///////////
 		unsigned int id;
 		std::string name;
+		
 
 	//////////
 	public: //
 	//////////
+		static unsigned int idCounter;
 		unsigned int getId();
 		void setId(unsigned int);
 		std::string getName();

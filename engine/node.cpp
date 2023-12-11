@@ -15,8 +15,6 @@
 #include "node.h"
 #include "engine.h"
 #include <iostream>
-#include <random>
-#include <chrono>
 
 ////////////////////////
 // BODY OF CLASS Node //
@@ -28,14 +26,7 @@
  * @param name name of the node object
  */
 Node::Node(std::string name) {
-	// Generate random number
-	auto now = std::chrono::system_clock::now();
-	auto seed = now.time_since_epoch().count();
-	std::mt19937 gen(static_cast<unsigned>(seed));
-	std::uniform_int_distribution<int> distribution(100000, 999999);
-	// Set id
-	setId(distribution(gen));
-	// Set name
+	Object::setId(Object::idCounter++);
 	Object::setName(name);
 }
 
