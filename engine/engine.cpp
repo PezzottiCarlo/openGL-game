@@ -43,11 +43,11 @@ float Engine::bgB = 0.0f;
 float Engine::bgA = 0.0f;
 int Engine::windowId = 0;
 
-glm::mat4 perspective;
-glm::mat4 ortho;
-
 int fps = 0;
 int fpsCounter = 0;
+
+glm::mat4 perspective;
+glm::mat4 ortho;
 
 //////////////
 // DLL MAIN //
