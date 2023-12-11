@@ -11,8 +11,6 @@ DEPENDENCIES_DIR := dependencies
 
 CXX = g++
 CXX_FLAGS = -c -fPIC -std=c++11 -O2
-CXX_FLAGS += -I../$(DEPENDENCIES_DIR)/glm/include
-CXX_FLAGS += -I../$(DEPENDENCIES_DIR)/freeimage/include
 LD_FLAGS = -shared
 LIBS = -lglut -lGL -lGLU -lfreeimage
 
