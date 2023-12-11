@@ -45,9 +45,13 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="light.cpp" />
+    <ClCompile Include="light_test.cpp" />
     <ClCompile Include="material.cpp" />
+    <ClCompile Include="material_test.cpp" />
     <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="mesh_test.cpp" />
     <ClCompile Include="node.cpp" />
+    <ClCompile Include="node_test.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="ortographicCamera.cpp" />
     <ClCompile Include="OvLight.h" />

@@ -1,6 +1,6 @@
 #include "material.h"
 
-int main() {
+int run_material_test() {
 
 	Material material("TestMaterial");
 
