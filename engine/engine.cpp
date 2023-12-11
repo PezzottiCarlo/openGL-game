@@ -103,10 +103,11 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  // FOR TESTING //
  /////////////////
 Material mat("mat");
-Mesh teaPot("teaPot", &mat, NULL);
-Mesh mesh1("mesh", NULL, NULL);
-Mesh mesh2("mesh", NULL, NULL);
-Mesh mesh3("mesh", NULL, NULL);
+Texture tex("tex");
+Mesh teaPot("teaPot", &mat, &tex);
+Mesh mesh1("mesh", NULL, &tex);
+Mesh mesh2("mesh", &mat, &tex);
+Mesh mesh3("mesh", NULL, &tex);
 Light light("light");
 
 bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
@@ -138,13 +139,22 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         glutDisplayFunc(displayCallback);
         glutReshapeFunc(reshapeCallback);
 
+        //Enable Z-Buffer
+        glEnable(GL_DEPTH_TEST);
+        //Enable face culling
+        //glEnable(GL_CULL_FACE);
+        //Enable smooth shading
+        glShadeModel(GL_SMOOTH);
+        //enable texture
+        glEnable(GL_TEXTURE_2D);
+
         initFlag = true;
         mat.setAmbient(glm::vec4(0, 0.5f, 0.1f, 1.0f));
         mat.setDiffuse(glm::vec4(0,1.0f,0,1.0f));
         mat.setSpecular(glm::vec4(0,0,0,1.0f));
         mat.setShininess(10.0f);
+
         teaPot.loadGeometryFromFile("..\\scene\\teapot.obj",.09f);
-        
         mesh1.loadPyramid(5.0f);
         mesh2.loadPyramid(3.0f);
         mesh3.loadPyramid(4.0f);
@@ -152,7 +162,7 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         light.setLightType(Light::DIRECTIONAL);
         light.setColor(1.0f, 1.0f, 1.0f);
         light.setIntensity(1.0f);
-        glm::mat4 lightPosition = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+        glm::mat4 lightPosition = glm::translate(glm::mat4(1.0f), glm::vec3(0,0, 0));
         light.setTransform(lightPosition);
         light.setPosition();
     }
@@ -201,7 +211,7 @@ void LIB_API Engine::displayCallback()
     if (useZBuffer) execZBufferSetup();
 
     if (angle > 360.0f) angle -= 360.0f;
-    angle += 0.05f; // Adjust the rotation speed as needed
+    angle += 0.1f; // Adjust the rotation speed as needed
     
 
     // Set a matrix to move our triangle: 

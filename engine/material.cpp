@@ -4,8 +4,8 @@
 #include <gtc/type_ptr.hpp>
 
 // Constructor
-Material::Material(const std::string name) {
-    Object::setName(name);
+Material::Material(const std::string name){
+	Object::setName(name);
 	diffuseTexturePath = "";
 	shininess = 0.0f;
 	this->setAmbient(glm::vec4(1.0, 1.0f, 1.0f, 1.0f));

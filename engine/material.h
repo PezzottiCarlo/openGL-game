@@ -59,5 +59,4 @@ private: //
     glm::vec4 diffuse;
     glm::vec4 specular;
     float shininess;
-    // Add any other material-related members here
 };

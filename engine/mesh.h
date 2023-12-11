@@ -54,6 +54,11 @@ public:
     std::vector<Vertex*> getVertices(int lod);
     // Set LOD
     virtual bool render(glm::mat4, void*) override;
+    // Get material
+    Material* getMaterial();
+    //Get texture
+    Texture* getTexture();
+
 
     //TESTING METHOD - REMOVE
     void loadPyramid(float size);

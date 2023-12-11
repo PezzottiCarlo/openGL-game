@@ -35,15 +35,9 @@
 
 //constructor
 Mesh::Mesh(std::string name, Material* material, Texture* texture) : Node(name) {
-    //print current name, material and texture
-    if (!(material == NULL && texture == NULL)) {
-        this->material = material;
-        this->texture = texture;
-    }
-    else {
-		this->material = new Material("defaultMaterial");
-        this->texture = new Texture("defaultTexture");
-	}
+    if (material != NULL) this->material = material;
+    else this->material = new Material("defaultMaterial");
+    this->texture = texture;
     this->lod = 0;
 }
 
@@ -52,6 +46,7 @@ Mesh::~Mesh() {
 
 }
 
+//TEST
 void Mesh::loadPyramid(float size) {
     std::vector<Vertex*> vertices = genPyram(size);
     for (Vertex* v : vertices) {
@@ -59,7 +54,7 @@ void Mesh::loadPyramid(float size) {
     }
 }
 
-
+//TEST
 std::vector<Vertex*> Mesh::genPyram(float size) {
     std::vector<Vertex*> vertices;
     // Define the vertices of a pyramid
@@ -214,17 +209,17 @@ std::vector<Vertex*> Mesh::getVertices(int lod) {
 }
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
-    //TO-DO load texture
-    if(material != nullptr)
-        material->render(matrix, ptr);
-    if(texture != nullptr)
-        texture->render(matrix, ptr);
+    
+    if (texture != nullptr) texture->render(matrix, ptr);
+    if (material != nullptr) material->render(matrix, ptr);
+    
 
     // Set model matrix as current OpenGL matrix:
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
     //Vertex rendering Counter Clock-Wise
     glFrontFace(GL_CCW);
     // Triangles rendering
+    //TODO: for make texture working, we need to add texture coordinates to the vertex class
     glBegin(GL_TRIANGLES);
     for (Vertex* v : vertices.at(lod)) {
         glColor3f(1.0f, 0.0f, 0.0f);
@@ -233,6 +228,16 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
         glVertex3fv(glm::value_ptr(v->getPosition()));
     }
 
+    
+
     glEnd();
     return true;
+}
+
+Material* Mesh::getMaterial() {
+	return material;
+}
+
+Texture* Mesh::getTexture() {
+	return texture;
 }
