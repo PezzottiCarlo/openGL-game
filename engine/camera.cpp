@@ -25,5 +25,6 @@
  * @return inversed camera matrix
  */
 glm::mat4 LIB_API Camera::getInverseCameraMat() {
+	// Returns inverse of a node's transform matrix
 	return glm::inverse(getTransform());
 }

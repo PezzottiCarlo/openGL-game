@@ -61,5 +61,8 @@ class LIB_API Node : public Object{
 
 		// Other
 		virtual bool render(glm::mat4, void*) override;
+
+		// Test method
+		static int test();
 };
 

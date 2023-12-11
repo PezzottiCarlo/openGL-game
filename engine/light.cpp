@@ -14,9 +14,17 @@ Light::Light(const std::string& name) : Node(name) {
 Light::~Light() {
 }
 
+float Light::getIntensity() {
+    return intensity;
+}
+
 // Set light intensity
 void LIB_API Light::setIntensity(float intensity) {
     this->intensity = intensity;
+}
+
+float* Light::getColor() {
+    return color;
 }
 
 // Set light color
@@ -24,6 +32,10 @@ void LIB_API Light::setColor(float r, float g, float b) {
     color[0] = r;
     color[1] = g;
     color[2] = b;
+}
+
+Light::LightType Light::getLightType() {
+    return type;
 }
 
 void LIB_API Light::setLightType(Light::LightType type) {
@@ -53,12 +65,12 @@ void Light::setPosition() {
     position = finalPosition;
 }
 
-void Light::setPosition(glm::vec4 pos) {
-    position = pos;
-}
-
 glm::vec4 LIB_API Light::getPosition() {
     return position;
+}
+
+void Light::setPosition(glm::vec4 pos) {
+    position = pos;
 }
 
 // Render the light

@@ -43,10 +43,16 @@ public:
     };
     // Set light properties
     void setIntensity(float intensity);
+    // Get light intensity
+    float getIntensity();
     // Color is a float array with 3 components (RGB) from 0 to 1
     void setColor(float r, float g, float b);
+    // get Color
+    float* getColor();
     // Set light type
     void setLightType(LightType type);
+    // get lightType
+    LightType getLightType();
     // Set light position
     void setPosition();
     // Set light position
@@ -55,6 +61,8 @@ public:
     glm::vec4 getPosition();
     // Override render method
     virtual bool render(glm::mat4, void*) override;
+    // Test method
+    static int test();
 ///////////
 private: //
 ///////////

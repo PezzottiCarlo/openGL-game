@@ -41,6 +41,14 @@ bool LIB_API Texture::loadFromFile(const std::string& filePath) {
     return true;
 }
 
+int Texture::getWidth() {
+    return width;
+}
+
+int Texture::getHeight(){
+    return width;
+}
+
 // Set texture settings
 void LIB_API Texture::setTextureSettings(int width, int height) {
     this->width = width;

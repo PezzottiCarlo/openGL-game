@@ -45,6 +45,7 @@ Node::~Node() {
  * @return true if operation has been completed without any errors.
  */
 bool LIB_API Node::addChild(Node* nodeToAdd) {
+	nodeToAdd->setParent(this);
 	children.push_back(nodeToAdd);
 	return true;
 }
@@ -105,6 +106,7 @@ void LIB_API Node::setParent(Node* newParent) {
  * Render method that renders a given object through its matrix
  * @param mat matrix
  * @param attr additional attributes
+ * @return false value
  */
 bool LIB_API Node::render(glm::mat4 mat, void* attr) {
 	return false;

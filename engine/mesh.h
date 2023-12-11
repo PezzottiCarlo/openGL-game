@@ -64,6 +64,9 @@ public:
     void loadPyramid(float size);
     std::vector<Vertex*> genPyram(float size);
 
+    // Test method
+    static int test();
+
 
 protected:
     // LOD
