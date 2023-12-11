@@ -44,8 +44,6 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="engine.cpp" />
-    <ClCompile Include="FileReader.cpp" />
-    <ClCompile Include="FileReader.h" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />

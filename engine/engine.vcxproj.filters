@@ -92,16 +92,10 @@
     <ClCompile Include="ovoReader.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="ovoReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OvLight.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileReader.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileReader.cpp">
+    <ClCompile Include="ovoReader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

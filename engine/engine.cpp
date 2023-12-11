@@ -43,9 +43,11 @@ float Engine::bgB = 0.0f;
 float Engine::bgA = 0.0f;
 int Engine::windowId = 0;
 
+glm::mat4 perspective;
+glm::mat4 ortho;
 
-
-
+int fps = 0;
+int fpsCounter = 0;
 
 //////////////
 // DLL MAIN //
@@ -148,6 +150,9 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         //enable texture
         glEnable(GL_TEXTURE_2D);
 
+        // Start FPS timer 
+        glutTimerFunc(1000, updateFPS, 0);
+
         initFlag = true;
         mat.setAmbient(glm::vec4(0, 0.5f, 0.1f, 1.0f));
         mat.setDiffuse(glm::vec4(0,1.0f,0,1.0f));
@@ -190,12 +195,9 @@ bool LIB_API Engine::free()
 void LIB_API Engine::reshapeCallback(int width, int height)
 {
     glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 1.0f, 100.0f);
-
-    glLoadMatrixf(glm::value_ptr(projection));
-    glMatrixMode(GL_MODELVIEW);
+    perspective = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 1000.0f);
+    ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1.0f, 1.0f);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,6 +208,14 @@ float angle = 0.0f;
 void LIB_API Engine::displayCallback()
 {
     Engine::clearWindow();
+
+    //////
+    // 3D:
+
+    // Set perpsective matrix:
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixf(glm::value_ptr(perspective));
+    glMatrixMode(GL_MODELVIEW);
 
     // Enable Z buffer if it's required
     if (useZBuffer) execZBufferSetup();
@@ -237,7 +247,30 @@ void LIB_API Engine::displayCallback()
     mesh3.setTransform(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, -11.0f, -30.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)));
     mesh3.render(f, NULL);
 
-    
+    // 2D
+    // Set orthographic projection:
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixf(glm::value_ptr(ortho)); 
+    glMatrixMode(GL_MODELVIEW);
+    glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
+
+    // Write 2D text
+    glDisable(GL_LIGHTING);
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+    char text[64];
+    sprintf_s(text, "Current FPS: %d", fps);
+    //strcpy_s(text, "Current FPS: " + fps);
+
+    glRasterPos2f(1.0f, 8.0f);
+    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
+
+
+    // Re-enable lighting
+    glEnable(GL_LIGHTING);
+
+    // Increment fps
+    fpsCounter++;
 
     // Force rendering refresh
     glutPostWindowRedisplay(windowId);
@@ -364,4 +397,10 @@ void LIB_API Engine::execZBufferSetup(){
  */
 void LIB_API Engine::update() {
     glutMainLoopEvent();
+}
+
+void Engine::updateFPS(int value) {
+    fps = fpsCounter;
+    fpsCounter = 0;
+    glutTimerFunc(1000, updateFPS, 0);
 }

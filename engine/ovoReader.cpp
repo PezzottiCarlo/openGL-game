@@ -13,7 +13,7 @@ OvoReader::~OvoReader() {
 	materials.clear();
 	tempVertices.clear();
 }
-
+/*
 Node* OvoReader::readFile(const char* path) {
 
 	// Open file:
@@ -32,7 +32,8 @@ Node* OvoReader::readFile(const char* path) {
 
 	return root;
 }
-
+*/
+/*
 // Recursive loading function
 Node* OvoReader::recursiveLoad(FILE* dat)
 {
@@ -186,7 +187,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		{
 			/**
 			 * Mesh physics properties.
-			 */
+			 *//*
 			struct PhysProps
 			{
 				// Pay attention to 16 byte alignement (use padding):
@@ -424,4 +425,4 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		return thisLight;
 	}
 	}
-}
+}*/
