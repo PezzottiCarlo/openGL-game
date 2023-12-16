@@ -7,7 +7,9 @@
 
 // Constructor
 Texture::Texture(const std::string& name) : width(0), height(0) {
-    this->loadFromFile("default");
+    Object::setId(Object::getNextId());
+    Object::setName(name);
+    //this->loadFromFile("default");
 }
 
 // Destructor

@@ -39,6 +39,7 @@ public: //
 //////////
     // Constructor with a name, material, and texture
     Mesh(std::string name, Material* material, Texture* texture);
+    Mesh(std::string name, std::shared_ptr<Material> material);
 
     // Destructor
     ~Mesh();

@@ -42,4 +42,5 @@ class LIB_API Object{
 		std::string getName();
 		void setName(std::string);
 		virtual bool render(glm::mat4, void*) = 0;
+		unsigned int getNextId();
 };

@@ -57,3 +57,8 @@ std::string LIB_API Object::getName(){
 void LIB_API Object::setName(std::string newName) {
 	name = newName;
 }
+
+unsigned int LIB_API Object::getNextId() {
+	idCounter++;
+	return idCounter;
+}

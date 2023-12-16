@@ -5,6 +5,10 @@
 #include <string>
 #include <GL/freeglut.h>
 #include <iostream>
+#include "OvLight.h"
+#include "OvObject.h"
+#include <gtc/packing.hpp>
+#include "fakeShadow.h"
 #pragma warning(disable : 4996)
 
 OvoReader::OvoReader() {}
@@ -13,7 +17,7 @@ OvoReader::~OvoReader() {
 	materials.clear();
 	tempVertices.clear();
 }
-/*
+
 Node* OvoReader::readFile(const char* path) {
 
 	// Open file:
@@ -24,7 +28,7 @@ Node* OvoReader::readFile(const char* path) {
 		return nullptr;
 	}
 
-	Material* shadow_material = new Material(Object::getNextId(), "shadow_material", glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), 0.0f);
+	Material* shadow_material = new Material("shadow_material", glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), 0.0f);
 	materials.insert(std::pair<std::string, Material*>(shadow_material->getName(), shadow_material));
 
 	Node* root = recursiveLoad(dat);
@@ -32,8 +36,7 @@ Node* OvoReader::readFile(const char* path) {
 
 	return root;
 }
-*/
-/*
+
 // Recursive loading function
 Node* OvoReader::recursiveLoad(FILE* dat)
 {
@@ -96,12 +99,14 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		std::string textureName_str = std::string(textureName);
 
 		//Save material on data structure
-		Material* material = new Material(Object::getNextId(), materialName_str, glm::vec4(emission, 1.0f), glm::vec4(albedo * 0.2f, 1.0f), glm::vec4(albedo * 0.6f, 1.0f), glm::vec4(albedo * 0.4f, 1.0f), (1 - sqrt(roughness)) * 128);
+		Material* material = new Material(materialName_str, glm::vec4(emission, 1.0f), glm::vec4(albedo * 0.2f, 1.0f), glm::vec4(albedo * 0.6f, 1.0f), glm::vec4(albedo * 0.4f, 1.0f), (1 - sqrt(roughness)) * 128);
 		materials.insert(std::pair<std::string, Material*>(material->getName(), material));
 
-		Texture* texture = new Texture(Object::getNextId(), textureName_str);
-		texture->setTexId(textureName_str);
-		material->setTexture(texture);
+		Texture* texture = new Texture(textureName_str);
+
+		//texture->setTexId(textureName_str);
+
+		material->setTexture(texture); 
 
 		return recursiveLoad(dat);
 	}
@@ -127,7 +132,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 	{
 	case OvObject::Type::O_NODE:
 	{
-		Node* thisNode = new Node(Object::getNextId(), nodeName_str);
+		Node* thisNode = new Node(nodeName_str);
 		thisNode->setTransform(matrix);
 
 		// Go recursive when child nodes are avaialble:
@@ -161,11 +166,11 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		Mesh* thisMesh;
 		if (materialName_str != "[none]") {
 			std::shared_ptr<Material> material(materials.find(materialName_str)->second);
-			thisMesh = new Mesh(Object::getNextId(), nodeName_str, material);
+			thisMesh = new Mesh(nodeName_str, material);
 			thisMesh->setTransform(matrix);
 		}
 		else {
-			thisMesh = new Mesh(Object::getNextId(), nodeName_str, nullptr);
+			thisMesh = new Mesh(nodeName_str, nullptr);
 			thisMesh->setTransform(matrix);
 		}
 
@@ -187,7 +192,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		{
 			/**
 			 * Mesh physics properties.
-			 *//*
+			 */
 			struct PhysProps
 			{
 				// Pay attention to 16 byte alignement (use padding):
@@ -248,7 +253,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 
 
 		std::shared_ptr<Material> smaterial(materials.find("shadow_material")->second);
-		FakeShadow* shadow = new FakeShadow(Object::getNextId(), nodeName_str + "_shadow", smaterial, thisMesh);
+		/*FakeShadow* shadow = new FakeShadow(nodeName_str + "_shadow", smaterial, thisMesh);
 
 
 		// Nr. of LODs:
@@ -423,6 +428,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 			}
 		// Done:
 		return thisLight;
+	}*/
 	}
-	}
-}*/
+}

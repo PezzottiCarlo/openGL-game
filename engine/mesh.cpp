@@ -35,9 +35,13 @@
 
 //constructor
 Mesh::Mesh(std::string name, Material* material, Texture* texture) : Node(name) {
-    if (material != NULL) this->material = material;
-    else this->material = new Material("defaultMaterial");
+    this->material = material != NULL ? material : new Material("defaultMaterial");
     this->texture = texture;
+    this->lod = 0;
+}
+
+Mesh::Mesh(std::string name, std::shared_ptr<Material> material) : Node(name) {
+    this->material = material.get() != NULL ? material.get() : new Material("defaultMaterial");
     this->lod = 0;
 }
 

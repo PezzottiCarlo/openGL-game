@@ -26,7 +26,7 @@
  * @param name name of the node object
  */
 Node::Node(std::string name) {
-	Object::setId(Object::idCounter++);
+	Object::setId(Object::getNextId());
 	Object::setName(name);
 }
 
@@ -162,6 +162,7 @@ glm::mat4 LIB_API Node::getFinalMatrix() const {
 glm::vec3 LIB_API Node::getWorldPosition() const {
 	return glm::vec3(getFinalMatrix()[3]);
 }
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Setter of the world position of the node
@@ -169,4 +170,13 @@ glm::vec3 LIB_API Node::getWorldPosition() const {
  */
 void LIB_API Node::setWorldPosition(glm::vec3 position) {
 	transform[3] = glm::vec4(position, 1.0f);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Returns the number of children
+ * @return Number of children
+ */
+int LIB_API Node::getNumberOfChildren() {
+	return getChildren().size();
 }
