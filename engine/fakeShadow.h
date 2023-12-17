@@ -26,7 +26,7 @@
 /**
  * @brief Material class
  */
-class LIB_API FakeShadow : public Object {
+class LIB_API FakeShadow : public Mesh {
 //////////
 public: //
 //////////
@@ -44,10 +44,13 @@ public: //
 
     virtual bool render(glm::mat4, void*) override;
 
+    void setCastShadow(bool);
+
 ///////////
 private: //
 ///////////
     // Material settings
     std::shared_ptr<Material> material;
     Mesh* mesh;
+    bool castShadow = true;
 };

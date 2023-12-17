@@ -23,3 +23,8 @@ void LIB_API FakeShadow::setMesh(Mesh* mesh) {
 	this->mesh = mesh;
 }
 
+void LIB_API FakeShadow::setCastShadow(bool value) {
+	this->castShadow = value;
+}
+
+

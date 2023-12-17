@@ -1,80 +1,41 @@
-/**
- * @file	light.h
- * @brief	Class light extends mesh
- *
- * @author	Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
- * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
- */
+#include "Node.h"
 
-#pragma once
+#ifndef LIGHT
+#define LIGHT
 
-
- //////////////
- // #INCLUDE //
- //////////////
-#include "node.h"
-#include "engine.h"
-#include <gl/freeglut.h>
-
-
-/////////////
-// CLASSES //
-/////////////
-
-/**
- * @brief Simple mesh class.
- */
-//create class light
 class LIB_API Light : public Node {
-//////////
-public: //
-//////////
-    // Constructor
-    Light(const std::string& name);
-    // Destructor
-    ~Light();
 
 public:
-    enum LightType
-    {
-        DIRECTIONAL,
-        POINT,
-        SPOT
-    };
-    // Set light properties
-    void setIntensity(float intensity);
-    // Get light intensity
-    float getIntensity();
-    // Color is a float array with 3 components (RGB) from 0 to 1
-    void setColor(float r, float g, float b);
-    // get Color
-    float* getColor();
-    // Set light type
-    void setLightType(LightType type);
-    // get lightType
-    LightType getLightType();
-    // Set light position
-    void setPosition();
-    // Set light position
-    void setPosition(glm::vec4 pos);
-    // Get light position
-    glm::vec4 getPosition();
-    // Override render method
-    virtual bool render(glm::mat4, void*) override;
-    // Test method
-    static int test();
-///////////
-private: //
-///////////
-    // Light settings
-    float intensity;
-    // Color is a float array with 3 components (RGB) from 0 to 1
-    float color[3]; // RGB color components
-    // Light type
-    LightType type = DIRECTIONAL;
-    // Light position
-    glm::vec4 position;
-    // Light number
-    int lightNumber = GL_LIGHT0;
+	Light(const std::string name, const int lightNumber, const glm::vec4 ambient, const glm::vec4 diffuse, const glm::vec4 specular);
+	~Light();
+	
+public:
+	int getLightNumber();
+	void setPosition();
+	void setPosition(glm::vec4 pos);
+	glm::vec4 getPosition();
+	static int getNextLightNumber();
+	virtual bool render(glm::mat4 matrix, void* ptr) override;
+	virtual void setTransform(glm::mat4 transform) override;
+
+	float getConstantAttenuation();
+	float getLinearAttenuation();
+	float getQuadraticAttenuation();
+	void setConstantAttenuation(float constantAttenuation);
+	void setLinearAttenuation(float linearAttenuation);
+	void setQuadraticAttenuation(float quadraticAttenuation);
+
+private:
+	static int nextNumber;
+	int lightNumber;
+	glm::vec4 ambient;
+	glm::vec4 diffuse;
+	glm::vec4 specular;
+	glm::vec4 position{ 0.0f, 0.0f, 0.0f, 1.0f };
+
+	float constantAttenuation = 1.0f;
+	float linearAttenuation = 0.0f;
+	float quadraticAttenuation = 0.0f;
 };
 
+#endif 

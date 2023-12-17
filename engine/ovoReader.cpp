@@ -253,7 +253,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 
 
 		std::shared_ptr<Material> smaterial(materials.find("shadow_material")->second);
-		/*FakeShadow* shadow = new FakeShadow(nodeName_str + "_shadow", smaterial, thisMesh);
+		FakeShadow* shadow = new FakeShadow(nodeName_str + "_shadow", smaterial, thisMesh);
 
 
 		// Nr. of LODs:
@@ -402,18 +402,18 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		{
 		case OvLight::Subtype::DIRECTIONAL:
 		{
-			thisLight = new DirectionalLight(Object::getNextId(), nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f));
+			thisLight = new DirectionalLight(nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f));
 		}break;
 		case OvLight::Subtype::OMNI:
 		{
-			thisLight = new PointLight(Object::getNextId(), nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f), cutoff);
+			thisLight = new PointLight(nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f), cutoff);
 		}break;
 		case OvLight::Subtype::SPOT:
 		{
-			thisLight = new SpotLight(Object::getNextId(), nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f), cutoff, direction);
+			thisLight = new SpotLight(nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f), cutoff, direction);
 		}break;
 		default:
-			thisLight = new Light(Object::getNextId(), nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f));
+			thisLight = new Light(nodeName_str, nextLightPointer, glm::vec4(glm::vec3(color.x), 1.0f), glm::vec4(glm::vec3(color.y), 1.0f), glm::vec4(glm::vec3(color.z), 1.0f));
 		}
 
 
@@ -428,6 +428,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 			}
 		// Done:
 		return thisLight;
-	}*/
+	}
 	}
 }
