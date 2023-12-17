@@ -58,8 +58,13 @@ void LIB_API Texture::setTextureSettings(int width, int height) {
     // Add any other texture settings as needed
 }
 
-void LIB_API Texture::setTextureId(unsigned int id) {
-	this->texId = id;
+void LIB_API Texture::setTextureId(std::string) {
+    if (texId)
+        glDeleteTextures(1, &texId);
+    glGenTextures(1, &texId);
+    glBindTexture(GL_TEXTURE_2D, texId);
+
+    //load from file
 }
 
 

@@ -57,6 +57,9 @@ glm::mat4 ortho;
 #include <Windows.h>
 #include "mesh.h"
 #include "light.h"
+#include "ovoReader.h"
+#include "node.h"
+#include "list.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * DLL entry point. Avoid to rely on it for easier code portability (Linux doesn't use this method).
@@ -104,15 +107,12 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  /////////////////
  // FOR TESTING //
  /////////////////
-Material mat("mat");
-Texture tex("tex");
-Mesh teaPot("teaPot", &mat, &tex);
-Mesh mesh1("mesh", NULL, &tex);
-Mesh mesh2("mesh", &mat, &tex);
-Mesh mesh3("mesh", NULL, &tex);
-Light light("light");
+
+List list;
 
 bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
+
+
     if (!initFlag) {
         
         // Init context:
@@ -137,10 +137,15 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         // Create window
         windowId = glutCreateWindow(title);
 
+
+        OvoReader reader = OvoReader();
+        Node* root = reader.readFile("..\\scene\\examples\\simple3dScene.ovo");
+        list.addEntry(root);
+
+
         // Set callback functions
         glutDisplayFunc(displayCallback);
         glutReshapeFunc(reshapeCallback);
-
         //Enable Z-Buffer
         glEnable(GL_DEPTH_TEST);
         //Enable face culling
@@ -152,24 +157,6 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
 
         // Start FPS timer 
         glutTimerFunc(1000, updateFPS, 0);
-
-        initFlag = true;
-        mat.setAmbient(glm::vec4(0, 0.5f, 0.1f, 1.0f));
-        mat.setDiffuse(glm::vec4(0,1.0f,0,1.0f));
-        mat.setSpecular(glm::vec4(0,0,0,1.0f));
-        mat.setShininess(10.0f);
-
-        teaPot.loadGeometryFromFile("..\\scene\\teapot.obj",.09f);
-        mesh1.loadPyramid(5.0f);
-        mesh2.loadPyramid(3.0f);
-        mesh3.loadPyramid(4.0f);
-
-        light.setLightType(Light::DIRECTIONAL);
-        light.setColor(1.0f, 1.0f, 1.0f);
-        light.setIntensity(1.0f);
-        glm::mat4 lightPosition = glm::translate(glm::mat4(1.0f), glm::vec3(0,0, 0));
-        light.setTransform(lightPosition);
-        light.setPosition();
     }
     return initFlag;
 }
@@ -224,28 +211,18 @@ void LIB_API Engine::displayCallback()
     angle += 0.1f; // Adjust the rotation speed as needed
     
 
-    // Set a matrix to move our triangle: 
-    glm::mat4 translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -45.0f));
-    glm::mat4 rotationZ = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    // create a matrix called translation for the camera
+    glm::mat4 translation = glm::mat4(1.0f);
+    // translate the camera to the position (0, 0, -5)
+    translation = glm::translate(translation, glm::vec3(0.0f, 0.0f+angle, -0.0f+angle));
+    // create a matrix called rotationZ for the camera
+    glm::mat4 rotationZ = glm::mat4(1.0f);
+    // rotate the camera around the z axis
+    rotationZ = glm::rotate(rotationZ, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    
 
     // Compute model matrix:
     glm::mat4 f = translation * rotationZ;
-
-    
-    //Component for testing
-    light.render(f, NULL);
-
-    teaPot.setTransform(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, 11.0f, 0)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)));
-    teaPot.render(f, NULL);
-
-    mesh1.setTransform(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -10.0f, 0)), glm::radians(angle), glm::vec3(1.0f, 1.0f, 0.0f)));
-    mesh1.render(f, NULL);
-
-    mesh2.setTransform(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, 11.0f, 0)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 1.0f)));
-    mesh2.render(f, NULL);
-    
-    mesh3.setTransform(glm::rotate(glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, -11.0f, -30.0f)), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f)));
-    mesh3.render(f, NULL);
 
     // 2D
     // Set orthographic projection:
@@ -272,13 +249,18 @@ void LIB_API Engine::displayCallback()
     // Increment fps
     fpsCounter++;
 
+    list.render(f, nullptr);
+
     // Force rendering refresh
     glutPostWindowRedisplay(windowId);
-
+    angle += .05f;
     // Swap this context's buffer:
     glutSwapBuffers();
 }
 
+void LIB_API loadScene(std::string scene) {
+    
+}
 
 
 

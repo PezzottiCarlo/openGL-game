@@ -180,3 +180,10 @@ void LIB_API Node::setWorldPosition(glm::vec3 position) {
 int LIB_API Node::getNumberOfChildren() {
 	return getChildren().size();
 }
+
+Node* Node::getChildAt(int index) {
+	if (children.empty() || index >= (int)children.size())
+		return nullptr;
+
+	return children.at(index);//.get();
+}

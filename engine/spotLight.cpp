@@ -10,4 +10,6 @@ bool LIB_API SpotLight::render(glm::mat4 cameraInv, void* ptr) {
 	glLightfv(getLightNumber(), GL_SPOT_DIRECTION, glm::value_ptr(glm::vec4(direction, 1.0f)));
 
 	PointLight::render(cameraInv, NULL);
+
+	return true;
 }

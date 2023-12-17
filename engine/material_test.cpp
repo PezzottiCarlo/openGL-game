@@ -3,7 +3,7 @@
 
 int Material::test() {
 
-	Material material("TestMaterial");
+	Material material("TestMaterial", glm::vec4(1.0), glm::vec4(1.0), glm::vec4(1.0), glm::vec4(1.0), 1.0);
 
 	// test setEmission
 	assert(material.getEmission() == glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));

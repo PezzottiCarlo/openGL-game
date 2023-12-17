@@ -11,6 +11,8 @@ bool LIB_API DirectionalLight::render(glm::mat4 cameraInv, void* ptr) {
 	setPosition(pos);
 
 	Light::render(glm::mat4(1.0f), NULL);
+
+	return true;
 }
 
 void LIB_API DirectionalLight::setTransform(glm::mat4 transform) {

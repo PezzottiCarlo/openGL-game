@@ -40,7 +40,7 @@ public: //
     // Set texture settings (hypothetical example)
     void setTextureSettings(int width, int height);
 
-    void setTextureId(unsigned int id);
+    void setTextureId(std::string);
 
     virtual bool render(glm::mat4, void*) override;
 

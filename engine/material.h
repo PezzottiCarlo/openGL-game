@@ -29,7 +29,6 @@ public: //
 //////////
 
     // Constructor
-    Material(const std::string name);
     Material(const std::string name, glm::vec4 _emission, glm::vec4 _ambient, glm::vec4 _diffuse, glm::vec4 _specular, float _shininess);
 
     // Destructor
@@ -60,7 +59,6 @@ public: //
 private: //
 ///////////
     // Material settings
-    std::string diffuseTexturePath;
     glm::vec4 emission;
     glm::vec4 ambient;
     glm::vec4 diffuse;

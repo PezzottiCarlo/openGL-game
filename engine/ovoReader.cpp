@@ -5,13 +5,17 @@
 #include <string>
 #include <GL/freeglut.h>
 #include <iostream>
+#include <memory>
 #include "OvLight.h"
 #include "OvObject.h"
 #include <gtc/packing.hpp>
 #include "fakeShadow.h"
+#include "directionalLight.h"
+#include "pointLight.h"
+#include "spotLight.h"
 #pragma warning(disable : 4996)
 
-OvoReader::OvoReader() {}
+LIB_API OvoReader::OvoReader() {}
 
 OvoReader::~OvoReader() {
 	materials.clear();
@@ -104,9 +108,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 
 		Texture* texture = new Texture(textureName_str);
 
-		//texture->setTexId(textureName_str);
-
-		material->setTexture(texture); 
+		texture->setTextureId(textureName_str);
 
 		return recursiveLoad(dat);
 	}
@@ -140,6 +142,8 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 			while (thisNode->getNumberOfChildren() < nrOfChildren)
 			{
 				Node* childNode = recursiveLoad(dat);
+				//print child node name
+				std::cout << "loading " << childNode->getName() << std::endl;
 				thisNode->addChild(childNode);
 			}
 

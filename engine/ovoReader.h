@@ -1,6 +1,11 @@
-#include "Node.h"
-#include "Material.h"
-#include "Vertex.h"
+#pragma once
+
+#include "lib.h"
+#include "node.h"
+#include "material.h"
+#include "vertex.h"
+
+
 #include <string>
 #include <map>
 

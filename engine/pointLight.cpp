@@ -9,4 +9,6 @@ bool LIB_API PointLight::render(glm::mat4 cameraInv, void* ptr) {
 	glLightfv(getLightNumber(), GL_SPOT_CUTOFF, &cutOff);
 
 	Light::render(cameraInv, NULL);
+
+	return true;
 }

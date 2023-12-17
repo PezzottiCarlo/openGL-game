@@ -4,22 +4,9 @@
 #include <gtc/type_ptr.hpp>
 #include <math.h>
 
-// Constructor
-Material::Material(const std::string name){
-	Object::setId(Object::getNextId());
-	Object::setName(name);
-	diffuseTexturePath = "";	// <-- ?
-	this->setAmbient(glm::vec4(1.0, 1.0f, 1.0f, 1.0f));
-	this->setEmission(glm::vec4(0, 0, 0, 1.0f));
-	this->setDiffuse(glm::vec4(.5f, .5f, .5f, 1.0f));
-	this->setSpecular(glm::vec4(.5f, .5f, .5f, 1.0f));
-	this->setShininess(1.0f);
-}
-
 Material::Material(const std::string name, glm::vec4 _emission, glm::vec4 _ambient, glm::vec4 _diffuse, glm::vec4 _specular, float _shininess) {
 	Object::setId(Object::getNextId());
 	Object::setName(name);
-	diffuseTexturePath = "";	// <-- ?
 	this->setEmission(_emission);
 	this->setAmbient(_ambient);
 	this->setDiffuse(_diffuse);
@@ -48,7 +35,7 @@ glm::vec4 LIB_API Material::getSpecular() {
 float LIB_API Material::getShininess() {
 	return shininess;
 }
-Texture* LIB_API Material::getTexture() {
+Texture* Material::getTexture() {
 	return texture;
 }
 

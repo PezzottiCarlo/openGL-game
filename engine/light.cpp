@@ -76,4 +76,6 @@ bool LIB_API Light::render(glm::mat4 cameraInv, void* ptr) {
 	glLightfv(lightNumber, GL_QUADRATIC_ATTENUATION, &quadraticAttenuation);
 
 	glLightfv(lightNumber, GL_POSITION, glm::value_ptr(glm::vec4(0.0f, 0.0f, 0.0f, position.w)));
+
+	return true;
 }

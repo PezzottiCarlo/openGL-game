@@ -11,6 +11,7 @@
  ////////////////
  // #INCLUDE //
  ////////////////
+#include <memory>
 
 #include "engine.h"
 #include "node.h"
@@ -38,7 +39,6 @@ class LIB_API Mesh : public Node {
 public: //
 //////////
     // Constructor with a name, material, and texture
-    Mesh(std::string name, Material* material, Texture* texture);
     Mesh(std::string name, std::shared_ptr<Material> material);
 
     // Destructor
@@ -46,9 +46,7 @@ public: //
 public:
     // Load geometry from a file
     void loadGeometryFromFile(const std::string& filePath, float scale);
-    // Accessors for material and texture
-    Material* getMaterial() const;
-    Texture* getTexture() const;
+
     // Add a vertex to the mesh
     void addVertex(Vertex* v, int lod);
     // Get vertices
@@ -56,14 +54,7 @@ public:
     // Set LOD
     virtual bool render(glm::mat4, void*) override;
     // Get material
-    Material* getMaterial();
-    //Get texture
-    Texture* getTexture();
-
-
-    //TESTING METHOD - REMOVE
-    void loadPyramid(float size);
-    std::vector<Vertex*> genPyram(float size);
+    std::shared_ptr<Material> getMaterial();
 
     // Test method
     static int test();
@@ -77,7 +68,6 @@ protected:
 private: //
 ///////////
     // Mesh-specific members
-    Material* material;
-    Texture* texture;
+    std::shared_ptr<Material> material;
     std::vector<std::vector<Vertex*>> vertices;
 };

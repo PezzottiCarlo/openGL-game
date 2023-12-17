@@ -46,6 +46,8 @@ class LIB_API Node : public Object{
 		virtual void setTransform(glm::mat4 transform);
 		glm::mat4 getFinalMatrix() const;
 
+		Node* getChildAt(int index);
+
 		glm::vec3 getWorldPosition() const;
 		virtual void setWorldPosition(glm::vec3 position);
 

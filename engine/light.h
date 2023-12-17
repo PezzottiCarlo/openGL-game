@@ -25,6 +25,8 @@ public:
 	void setLinearAttenuation(float linearAttenuation);
 	void setQuadraticAttenuation(float quadraticAttenuation);
 
+	static int test();
+
 private:
 	static int nextNumber;
 	int lightNumber;
