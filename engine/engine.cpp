@@ -60,6 +60,7 @@ glm::mat4 ortho;
 #include "ovoReader.h"
 #include "node.h"
 #include "list.h"
+#include <FreeImage.h>
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * DLL entry point. Avoid to rely on it for easier code portability (Linux doesn't use this method).
@@ -155,6 +156,9 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         //enable texture
         glEnable(GL_TEXTURE_2D);
 
+        //Init FreeImage
+        FreeImage_Initialise();
+
         // Start FPS timer 
         glutTimerFunc(1000, updateFPS, 0);
     }
@@ -170,6 +174,11 @@ bool LIB_API Engine::free()
 {
     // Close open connections or free allocated memory
     mainLoopRunning = false;
+    
+    // Release bitmap and FreeImage:
+    //FreeImage_Unload(bitmap);
+    FreeImage_DeInitialise();
+
     return true;
 }
 
