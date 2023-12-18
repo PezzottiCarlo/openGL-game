@@ -62,20 +62,19 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     //if (material->getTexture() != nullptr) material->getTexture()->render(matrix, ptr);
     if (material != nullptr) material->render(matrix, ptr);
     
-    // Set model matrix as current OpenGL matrix:
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
+    std::cout << "Vertex for [ " << this->getName() << "]" << std::endl;
+
     //Vertex rendering Counter Clock-Wise
     glFrontFace(GL_CCW);
-    // Triangles rendering
-    //TODO: for make texture working, we need to add texture coordinates to the vertex class
     glBegin(GL_TRIANGLES);
 
-    std::cout << "Rendering: " << this->getName() << std::endl;
     for (Vertex* v : vertices.at(lod)) {
+        //std::cout << "\t" << glm::to_string(v->getPosition()) << std::endl;
         glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3fv(glm::value_ptr(v->getPosition()));
         glNormal3fv(glm::value_ptr(v->getNormal()));
         glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()));
-        glVertex3fv(glm::value_ptr(v->getPosition()*10.0f));
     }
 
     glEnd();

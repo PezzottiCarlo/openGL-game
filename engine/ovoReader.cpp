@@ -142,8 +142,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 			while (thisNode->getNumberOfChildren() < nrOfChildren)
 			{
 				Node* childNode = recursiveLoad(dat);
-				//print child node name
-				std::cout << "loading " << childNode->getName() << std::endl;
 				thisNode->addChild(childNode);
 			}
 
@@ -156,7 +154,9 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		// Optional target node, or [none] if not used:
 		char targetName[FILENAME_MAX];
 		strcpy(targetName, data + position);
+
 		position += (unsigned int)strlen(targetName) + 1;
+		std::cout << "Target name: " << nodeName_str << std::endl;
 
 		// Mesh subtype (see OvMesh SUBTYPE enum):
 		position += sizeof(unsigned char);
@@ -164,6 +164,8 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		// Material name, or [none] if not used:
 		char materialName[FILENAME_MAX];
 		strcpy(materialName, data + position);
+		std::cout << "\tMaterial name: " << materialName << std::endl;
+
 		position += (unsigned int)strlen(materialName) + 1;
 		std::string materialName_str(materialName);
 
@@ -265,19 +267,25 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		memcpy(&LODs, data + position, sizeof(unsigned int));
 		position += sizeof(unsigned int);
 
-		// For each LOD...:
-		float offset = 0;
+		std::cout << "\tLODs: " << LODs << std::endl;
+
 		for (unsigned int l = 0; l < LODs; l++)
 		{
 
 			// Nr. of vertices:
 			unsigned int vertices, faces;
+
 			memcpy(&vertices, data + position, sizeof(unsigned int));
 			position += sizeof(unsigned int);
+
+			std::cout << "\tNr. of vertices: " << vertices << std::endl;
+
 
 			// ...and faces:
 			memcpy(&faces, data + position, sizeof(unsigned int));
 			position += sizeof(unsigned int);
+
+			std::cout << "\tNr. of faces: " << faces << std::endl;
 
 			// Interleaved and compressed vertex/normal/UV/tangent data:
 			for (unsigned int c = 0; c < vertices; c++)
@@ -309,8 +317,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				glm::vec2 uv = glm::unpackHalf2x16(textureData);
 				newVertex->setTextureCoordinates(glm::vec2(uv));
 				tempVertices.push_back(newVertex);
-				if (vertex.y < offset)
-					offset = vertex.y;
 			}
 
 			// Faces:
@@ -320,6 +326,8 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				unsigned int face[3];
 				memcpy(face, data + position, sizeof(unsigned int) * 3);
 				position += sizeof(unsigned int) * 3;
+
+
 				for (int i = 0; i < 3; i++)
 				{
 					thisMesh->addVertex(tempVertices.at(face[i]), l);
