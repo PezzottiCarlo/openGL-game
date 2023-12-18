@@ -28,9 +28,6 @@
 // FreeGLUT:   
 #include <gl/freeglut.h>
 
-//FreeImage
-#include <FreeImage.h>
-
 
 ////////////
 // STATIC //
@@ -117,7 +114,7 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
 
 
     if (!initFlag) {
-        //FreeImage_Initialise();
+        FreeImage_Initialise();
         
         // Init context:
         if (useZBuffer) {

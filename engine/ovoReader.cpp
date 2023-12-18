@@ -22,6 +22,8 @@ OvoReader::~OvoReader() {
 	tempVertices.clear();
 }
 
+
+std::string _path;
 Node* OvoReader::readFile(const char* path) {
 
 	// Open file:
@@ -34,6 +36,8 @@ Node* OvoReader::readFile(const char* path) {
 
 	Material* shadow_material = new Material("shadow_material", glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), 0.0f);
 	materials.insert(std::pair<std::string, Material*>(shadow_material->getName(), shadow_material));
+
+	_path = path;
 
 	Node* root = recursiveLoad(dat);
 	fclose(dat);
@@ -108,7 +112,9 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 
 		Texture* texture = new Texture(textureName_str);
 
-		texture->setTextureId(textureName_str);
+		texture->setTextureId(_path.substr(0, _path.find_last_of("\\/")) + "\\" + textureName_str);
+
+		material->setTexture(texture);
 
 		return recursiveLoad(dat);
 	}
