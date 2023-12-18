@@ -155,9 +155,10 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         glShadeModel(GL_SMOOTH);
         //enable texture
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_NORMALIZE);
 
         //Init FreeImage
-        FreeImage_Initialise();
+        //FreeImage_Initialise();
 
         // Start FPS timer 
         glutTimerFunc(1000, updateFPS, 0);
@@ -177,7 +178,7 @@ bool LIB_API Engine::free()
     
     // Release bitmap and FreeImage:
     //FreeImage_Unload(bitmap);
-    FreeImage_DeInitialise();
+    //FreeImage_DeInitialise();
 
     return true;
 }
@@ -193,7 +194,7 @@ void LIB_API Engine::reshapeCallback(int width, int height)
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     perspective = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
-    ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, -1000.0f, 1.0f);
+    ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1000.0f, -1000.0f);
     glLoadMatrixf(glm::value_ptr(perspective));
     glMatrixMode(GL_MODELVIEW);
 }

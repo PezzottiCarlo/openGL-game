@@ -72,9 +72,9 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     for (Vertex* v : vertices.at(lod)) {
         //std::cout << "\t" << glm::to_string(v->getPosition()) << std::endl;
         glColor3f(1.0f, 0.0f, 0.0f);
-        glVertex3fv(glm::value_ptr(v->getPosition()));
         glNormal3fv(glm::value_ptr(v->getNormal()));
         glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()));
+        glVertex3fv(glm::value_ptr(v->getPosition()));
     }
 
     glEnd();
