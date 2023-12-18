@@ -346,7 +346,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				thisMesh->addChild(childNode);
 			}
 
-		shadow->setCastShadow(false);
+		shadow->setCastShadow(true);
 		thisMesh->addChild(shadow);
 
 		// Done:

@@ -21,7 +21,7 @@ Texture::~Texture() {
 
 // Load texture from a file
 bool LIB_API Texture::loadFromFile(const std::string& filePath) {
-    
+
     srand(0);
     for (int i = 0; i < 256 * 256 * 3; i++)
         bitmap[i] = rand() % 255;
@@ -59,13 +59,14 @@ void LIB_API Texture::setTextureSettings(int width, int height) {
     // Add any other texture settings as needed
 }
 
-void LIB_API Texture::setTextureId(std::string) {
+void LIB_API Texture::setTextureId(std::string filepath) {
     if (texId)
         glDeleteTextures(1, &texId);
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_2D, texId);
-
+    loadFromFile(filepath);
     //load from file
+
 }
 
 

@@ -150,7 +150,7 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         //Enable Z-Buffer
         glEnable(GL_DEPTH_TEST);
         //Enable face culling
-        //glEnable(GL_CULL_FACE);
+        glEnable(GL_CULL_FACE);
         //Enable smooth shading
         glShadeModel(GL_SMOOTH);
         //enable texture
@@ -194,8 +194,8 @@ void LIB_API Engine::reshapeCallback(int width, int height)
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     //create a perspective matrix with a 45 degree field of view and a near and far plane
-    perspective = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 1.0f, 100.0f);
-    ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1000.0f, -1000.0f);
+    perspective = glm::perspective(glm::radians(80.0f), (float)width / (float)height, 1.0f, 10000.0f);
+    ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1.0f, -1.0f);
     glLoadMatrixf(glm::value_ptr(perspective));
     glMatrixMode(GL_MODELVIEW);
 }
@@ -221,17 +221,20 @@ void LIB_API Engine::displayCallback()
     if (useZBuffer) execZBufferSetup();
 
     if (angle > 360.0f) angle -= 360.0f;
-    angle += 0.1f; // Adjust the rotation speed as needed
+    angle += 0.01f; // Adjust the rotation speed as needed
     
 
-       
-
+    // create a matrix called translation for the camera
+    glm::mat4 translation = glm::mat4(1.0f);
+    //make the camera go back 5 units
+    translation = glm::translate(translation, glm::vec3(0.0f, -50.0f, -150.0f));
+    //make the object at the center of the world
+    
     // Compute model matrix:
-    glm::mat4 translation = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 250.0f, -45.0f));
-    //rotate on the y axis
-    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(1.0f, 1.0f, 0.0f));
-    glm::mat4 f = translation * rotation;
+    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
     glLoadMatrixf(glm::value_ptr(f));
+
+    list.render(f, nullptr);
 
     // 2D
     // Set orthographic projection:
@@ -257,8 +260,6 @@ void LIB_API Engine::displayCallback()
 
     // Increment fps
     fpsCounter++;
-
-    list.render(f, nullptr);
 
     // Force rendering refresh
     glutPostWindowRedisplay(windowId);

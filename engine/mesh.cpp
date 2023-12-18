@@ -59,12 +59,10 @@ std::vector<Vertex*> Mesh::getVertices(int lod) {
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     
-    //if (material->getTexture() != nullptr) material->getTexture()->render(matrix, ptr);
+    if (material->getTexture() != nullptr) material->getTexture()->render(matrix, ptr);
     if (material != nullptr) material->render(matrix, ptr);
     
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
-    std::cout << "Vertex for [ " << this->getName() << "]" << std::endl;
-
     //Vertex rendering Counter Clock-Wise
     glFrontFace(GL_CCW);
     glBegin(GL_TRIANGLES);
