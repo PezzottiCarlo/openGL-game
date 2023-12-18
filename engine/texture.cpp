@@ -21,26 +21,22 @@ Texture::~Texture() {
 
 // Load texture from a file
 bool LIB_API Texture::loadFromFile(const std::string& filePath) {
-
-    srand(0);
-    for (int i = 0; i < 256 * 256 * 3; i++)
-        bitmap[i] = rand() % 255;
-    for (int i = 0; i < 256; i++) // white borders
-    {
-        unsigned char white[] = { 255, 255, 255 };
-        memcpy(bitmap + i * 3, white, sizeof(unsigned char) * 3);
-        memcpy(bitmap + 255 * 256 * 3 + i * 3, white, sizeof(unsigned char) * 3);
-        memcpy(bitmap + i * 256 * 3, white, sizeof(unsigned char) * 3);
-        memcpy(bitmap + i * 256 * 3 + 255 * 3, white, sizeof(unsigned char) * 3);
-    }
-
     if (texId)
         glDeleteTextures(1, &texId);
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_2D, texId);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, bitmap);
-    std::cout << "Texture ID: " << texId << std::endl;
+
+    /*FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(filePath.c_str(), 0), filePath.c_str());
+    FreeImage_FlipVertical(bitmap);
+
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA,
+        FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
+        GL_BGRA_EXT, GL_UNSIGNED_BYTE,
+        (void*)FreeImage_GetBits(bitmap));
+
+    // Release bitmap
+    FreeImage_Unload(bitmap);*/
     return true;
 }
 
@@ -66,7 +62,7 @@ void LIB_API Texture::setTextureId(std::string filepath) {
     glBindTexture(GL_TEXTURE_2D, texId);
     loadFromFile(filepath);
     //load from file
-
+    loadFromFile(filepath);
 }
 
 
