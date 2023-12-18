@@ -35,7 +35,13 @@ bool LIB_API Texture::loadFromFile(const std::string& filePath) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
         		0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(bitmap));
 
+    
     // Release bitmap
+    
+
+    std::cout << "Texture loaded successfully with id: " << texId << std::endl;
+    std::cout << "Texture size: " << FreeImage_GetWidth(bitmap) << "x" << FreeImage_GetHeight(bitmap) << std::endl;
+
     FreeImage_Unload(bitmap);
     return true;
 }
@@ -62,7 +68,6 @@ void LIB_API Texture::setTextureId(std::string filepath) {
 
 bool LIB_API Texture::render(glm::mat4 matrix, void* ptr) {
 
-    std::cout << "Rendering texture: " << getName() << std::endl;
 
     glBindTexture(GL_TEXTURE_2D, texId);
     
