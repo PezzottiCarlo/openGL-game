@@ -26,22 +26,22 @@ bool LIB_API Texture::loadFromFile(const std::string& filePath) {
 
     if (texId)
         glDeleteTextures(1, &texId);
+
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_2D, texId);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(filePath.c_str(), 0), filePath.c_str());
+
+    // Flip texture
     FreeImage_FlipVertical(bitmap);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
-        		0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(bitmap));
 
-    
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA,
+        FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
+        GL_BGRA_EXT, GL_UNSIGNED_BYTE,
+        (void*)FreeImage_GetBits(bitmap));
+
     // Release bitmap
-    
-
-    std::cout << "Texture loaded successfully with id: " << texId << std::endl;
-    std::cout << "Texture size: " << FreeImage_GetWidth(bitmap) << "x" << FreeImage_GetHeight(bitmap) << std::endl;
-
     FreeImage_Unload(bitmap);
     return true;
 }

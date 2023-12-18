@@ -178,7 +178,7 @@ bool LIB_API Engine::free()
     
     // Release bitmap and FreeImage:
     //FreeImage_Unload(bitmap);
-    //FreeImage_DeInitialise();
+    FreeImage_DeInitialise();
 
     return true;
 }
