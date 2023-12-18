@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iostream>
 
+
 // Constructor
 Texture::Texture(const std::string& name) : width(0), height(0) {
     Object::setId(Object::getNextId());
