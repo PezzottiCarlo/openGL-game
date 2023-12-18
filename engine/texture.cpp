@@ -3,7 +3,7 @@
 #include <glm.hpp>
 #include <GL/freeglut.h>
 #include <iostream>
-#include <iostream>
+#include <FreeImage.h>
 
 
 // Constructor
