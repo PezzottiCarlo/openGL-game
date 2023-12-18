@@ -193,7 +193,8 @@ void LIB_API Engine::reshapeCallback(int width, int height)
 {
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
-    perspective = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
+    //create a perspective matrix with a 45 degree field of view and a near and far plane
+    perspective = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 1.0f, 100.0f);
     ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1000.0f, -1000.0f);
     glLoadMatrixf(glm::value_ptr(perspective));
     glMatrixMode(GL_MODELVIEW);
@@ -223,18 +224,14 @@ void LIB_API Engine::displayCallback()
     angle += 0.1f; // Adjust the rotation speed as needed
     
 
-    // create a matrix called translation for the camera
-    glm::mat4 translation = glm::mat4(1.0f);
-    // translate the camera to the position (0, 0, -5)
-    translation = glm::translate(translation, glm::vec3(250.0f,250.0f,-45.0f));
-    // create a matrix called rotationZ for the camera
-    glm::mat4 rotationZ = glm::mat4(1.0f);
-    // rotate the camera around the z axis
-    rotationZ = glm::rotate(rotationZ, glm::radians(angle), glm::vec3(1.0f, 0.0f, .0f));
-    
+       
 
     // Compute model matrix:
-    glm::mat4 f = translation * rotationZ;
+    glm::mat4 translation = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 250.0f, -45.0f));
+    //rotate on the y axis
+    glm::mat4 rotation = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(1.0f, 1.0f, 0.0f));
+    glm::mat4 f = translation * rotation;
+    glLoadMatrixf(glm::value_ptr(f));
 
     // 2D
     // Set orthographic projection:
@@ -265,7 +262,7 @@ void LIB_API Engine::displayCallback()
 
     // Force rendering refresh
     glutPostWindowRedisplay(windowId);
-    angle += .05f;
+    //angle += .0005f;
     // Swap this context's buffer:
     glutSwapBuffers();
 }
