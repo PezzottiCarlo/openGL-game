@@ -5,7 +5,6 @@
 #include <iostream>
 #include <FreeImage.h>
 
-
 // Constructor
 Texture::Texture(const std::string& name) : width(0), height(0) {
     Object::setId(Object::getNextId());
@@ -33,13 +32,25 @@ bool LIB_API Texture::loadFromFile(const std::string& filePath) {
 
     FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(filePath.c_str(), 0), filePath.c_str());
 
+    std::cout << "BPP: " << FreeImage_GetBPP(bitmap) << std::endl;
+
     // Flip texture
     FreeImage_FlipVertical(bitmap);
 
-    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA,
-        FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
-        GL_BGRA_EXT, GL_UNSIGNED_BYTE,
-        (void*)FreeImage_GetBits(bitmap));
+    if (FreeImage_GetBPP(bitmap) == 32) {   
+        // 32 bits -> RGBA colors
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA,
+            FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
+            GL_BGRA_EXT, GL_UNSIGNED_BYTE,
+            (void*)FreeImage_GetBits(bitmap));
+    }
+    else if (FreeImage_GetBPP(bitmap) == 24) {
+        // 24 bits -> RGB colors
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB,
+            FreeImage_GetWidth(bitmap), FreeImage_GetHeight(bitmap),
+            GL_BGR_EXT, GL_UNSIGNED_BYTE,
+            (void*)FreeImage_GetBits(bitmap));
+    }
 
     // Release bitmap
     FreeImage_Unload(bitmap);

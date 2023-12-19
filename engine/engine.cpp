@@ -177,7 +177,6 @@ bool LIB_API Engine::free()
     mainLoopRunning = false;
     
     // Release bitmap and FreeImage:
-    //FreeImage_Unload(bitmap);
     FreeImage_DeInitialise();
 
     return true;
