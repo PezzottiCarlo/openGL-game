@@ -6,7 +6,7 @@ MAIN_OBJ_FILES := $(patsubst %.cpp,%.o,$(MAIN_SRC_FILES))
 TESTS_RUNNER := $(BASE_NAME)-tests-runner
 TEST_SRC_FILES := $(wildcard *_test.cpp)
 TEST_OBJ_FILES := $(patsubst %.cpp,%.o,$(TEST_SRC_FILES))
-DEPENDENCIES_DIR := dependencies
+DEPENDENCIES_DIR := ../dependencies
 
 CXX = g++
 CXX_FLAGS = -c -fPIC -std=c++11 -O2
