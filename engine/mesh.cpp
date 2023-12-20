@@ -19,7 +19,7 @@
 #include "texture.h"
 #include "vertex.h"
 
-#include <gl/freeglut.h>
+#include <GL/freeglut.h>
 #include <iostream>
 #include <gtc/type_ptr.hpp>
 #include <ext/matrix_transform.hpp>

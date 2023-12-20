@@ -1,6 +1,6 @@
 #include "material.h"
 #include "node.h"
-#include <gl/freeglut.h>
+#include <GL/freeglut.h>
 #include <gtc/type_ptr.hpp>
 #include <math.h>
 

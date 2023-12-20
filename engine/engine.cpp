@@ -26,7 +26,7 @@
 
 
 // FreeGLUT:   
-#include <gl/freeglut.h>
+#include <GL/freeglut.h>
 
 
 ////////////
