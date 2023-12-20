@@ -27,10 +27,52 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="directionalLight.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="fakeShadow.h" />
+    <ClInclude Include="lib.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="material.h" />
+    <ClInclude Include="mesh.h" />
+    <ClInclude Include="node.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="ortographicCamera.h" />
+    <ClInclude Include="OvMesh.h" />
+    <ClInclude Include="OvObject.h" />
+    <ClInclude Include="perspectiveCamera.h" />
+    <ClInclude Include="pointLight.h" />
+    <ClInclude Include="spotLight.h" />
+    <ClInclude Include="texture.h" />
+    <ClInclude Include="vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="directionalLight.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="FakeShadow.cpp" />
+    <ClCompile Include="light.cpp" />
+    <ClCompile Include="light_test.cpp" />
+    <ClCompile Include="list.cpp" />
+    <ClCompile Include="material.cpp" />
+    <ClCompile Include="material_test.cpp" />
+    <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="mesh_test.cpp" />
+    <ClCompile Include="node.cpp" />
+    <ClCompile Include="node_test.cpp" />
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="ortographicCamera.cpp" />
+    <ClCompile Include="OvLight.h" />
+    <ClCompile Include="ovoReader.cpp" />
+    <ClCompile Include="ovoReader.h" />
+    <ClCompile Include="perspectiveCamera.cpp" />
+    <ClCompile Include="pointLight.cpp" />
+    <ClCompile Include="spotLight.cpp" />
+    <ClCompile Include="Tester.cpp" />
+    <ClCompile Include="texture.cpp" />
+    <ClCompile Include="texture_test.cpp" />
+    <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -146,15 +188,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>FREEGLUT_STATIC;_DEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREEGLUT_STATIC;_DEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;FREEIMAGE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\dependencies\freeglut\include;..\dependencies\glm\glm</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\dependencies\glm\glm;..\dependencies\freeimage\include;..\dependencies\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>..\dependencies\freeglut\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\dependencies\freeglut\lib\$(Platform)\$(Configuration);..\dependencies\freeimage\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>FreeImageLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
