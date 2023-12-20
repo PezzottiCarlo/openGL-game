@@ -27,29 +27,30 @@ package: $(TARGET_ARCHIVE)
 
 $(TARGET_ARCHIVE): $(TARGET)
 	# package your distribution tar gz archive here with the necessary distribution artifacts
-	# ...
+	$(TAR_GZ) $(TARGET_ARCHIVE) $(TARGET) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
 	@echo "$(TARGET) package done!"
 
 
 $(TARGET): $(MAIN_OBJ_FILES) $(TESTS_RUNNER)
 	# build your client here
-	# ...
+	$(CXX) $(CXX_FLAGS) -o $(TARGET) $(MAIN_OBJ_FILES) $(LDFLAGS)
 	@echo "$(TARGET) compile done!"
 
 
 $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	# build your test runner executable here
-	# ...
-	@touch $(TESTS_RUNNER)
-	@echo "$(TESTS_RUNNER) build done!"
+	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LDFLAGS)
+	#@touch $(TESTS_RUNNER)
+	#@echo "$(TESTS_RUNNER) build done!"
 	# execute your tests here (on test failure, exit with exit code = 1)
-	# ...
+	./$(TESTS_RUNNER) || exit 1
+	@echo "$(TESTS_RUNNER) build done!"
 	@echo "tests execution done!"
 
 
 %.o: %.cpp
 	# compile your sources here
-	# ...
+	$(CXX) $(CXX_FLAGS) -o $@ $<
 
 
 clean:
