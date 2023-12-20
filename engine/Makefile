@@ -7,9 +7,12 @@ TESTS_RUNNER := $(BASE_NAME)-tests-runner
 TEST_SRC_FILES := $(wildcard *_test.cpp)
 TEST_OBJ_FILES := $(patsubst %.cpp,%.o,$(TEST_SRC_FILES))
 DEPENDENCIES_DIR := ../dependencies
+DEPENDENCIES_DIR_GLM := ../dependencies/glm/glm
+DEPENDENCIES_DIR_FREEIMAGE := ../dependencies/freeimage/include
+DEPENDENCIES_DIR_FREEGLUT := ../dependencies/freeglut/include
 
 CXX = g++
-CXX_FLAGS = -c -fPIC -std=c++11 -O2
+CXX_FLAGS = -c -fPIC -std=c++11 -O2 -I$(DEPENDENCIES_DIR_GLM) $(DEPENDENCIES_DIR_FREEIMAGE) $(DEPENDENCIES_DIR_FREEGLUT)
 LD_FLAGS = -shared
 LIBS = -lglut -lGL -lGLU -lfreeimage
 
