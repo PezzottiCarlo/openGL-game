@@ -35,7 +35,7 @@ $(TARGET): $(MAIN_OBJ_FILES) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
 
 $(TESTS_RUNNER): $(TEST_OBJ_FILES) $(ENGINE_LIB_FILENAME)
 	# build your test runner executable here
-	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LDFLAGS)
+	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LDFLAGS) -Dmain=run_tests
 	# execute your tests here (on test failure, exit with exit code = 1)
 	LD_LIBRARY_PATH=$(ENGINE_DIR) ./$(TESTS_RUNNER)
 	@echo "$(TESTS_RUNNER) build done!"
