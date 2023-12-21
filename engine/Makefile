@@ -10,7 +10,7 @@ TEST_OBJ_FILES := $(patsubst %.cpp,%.o,$(TEST_SRC_FILES))
 CXX = g++
 CXX_FLAGS = -c -fPIC -std=c++11 -O2
 LD_FLAGS = -shared
-LIBS = -lglut -lGLUT -lGLU -lfreeimage
+LIBS = -lglut -lGL -lGLU -lfreeimage
 
 install: $(TARGET)
 	@echo "all done!"
