@@ -30,6 +30,7 @@
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\engine;..\libs\glm\glm</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="rush-hour-test-runner.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

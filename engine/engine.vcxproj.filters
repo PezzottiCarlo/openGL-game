@@ -72,7 +72,7 @@
     <ClInclude Include="lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tester.h">
+    <ClInclude Include="engine-tests-runner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,7 +134,7 @@
     <ClCompile Include="texture_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tester.cpp">
+    <ClCompile Include="engine-tests-runner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="directionalLight.cpp">

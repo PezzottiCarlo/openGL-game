@@ -44,7 +44,7 @@
     <ClInclude Include="perspectiveCamera.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="spotLight.h" />
-    <ClInclude Include="tester.h" />
+    <ClInclude Include="engine-tests-runner.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="vertex.h" />
   </ItemGroup>
@@ -70,7 +70,7 @@
     <ClCompile Include="perspectiveCamera.cpp" />
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="spotLight.cpp" />
-    <ClCompile Include="tester.cpp" />
+    <ClCompile Include="engine-tests-runner.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="texture_test.cpp" />
     <ClCompile Include="vertex.cpp" />
