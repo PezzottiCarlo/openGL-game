@@ -31,7 +31,8 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 $(TEST_OBJ_FILES): %.o: %.cpp
 	$(eval SRC_FILE := $(patsubst %_test.cpp,%.cpp,$<))
 	@echo "Identifying class under test for $<: $(SRC_FILE)"
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $(patsubst %.cpp,%.o,$(SRC_FILE))
+	#$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $(patsubst %.cpp,%.o,$(SRC_FILE))
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $(SRC_FILE)
 
 %.o: %.cpp
 	# compile your sources here
