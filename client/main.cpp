@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 	Engine::setKeyboardCallback(keyboardCallback);
 	Engine::setSpecialCallback(specialCallback);
 	// Set background color
-	Engine::setBackgroundColor(0.2f, 0.2f, 0.7f, 1.0f); 
+	Engine::setBackgroundColor(0.01f, 0.01f, 0.3f, 1.0f); 
 
 	//Execute tests
 	Engine::executeTests();
