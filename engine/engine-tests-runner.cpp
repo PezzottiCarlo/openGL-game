@@ -2,8 +2,25 @@
 #include "light.h"
 #include "material.h"
 #include "mesh.h"
-#include "tester.h"
+#include "engine-tests-runner.h"
 
+
+// The main method gets invoked on the gitlab's docker image through the makefile
+int main() {
+	int status = 0;
+
+	// Run all tests
+	status |= Light::test();
+	status |= Material::test();
+	status |= Mesh::test();
+	status |= Node::test();
+	status |= Texture::test();
+
+	return status;
+}
+
+// This method is used to verify the tests before every single execution of the client
+// For development purposes only
 void runTests() {
 
 	std::cout << std::endl << "Starting tests..." << std::endl << std::endl;

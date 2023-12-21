@@ -9,9 +9,8 @@ TEST_OBJ_FILES := $(patsubst %.cpp,%.o,$(TEST_SRC_FILES))
 
 CXX = g++
 CXX_FLAGS = -c -fPIC -std=c++11 -O2
-LD_FLAGS = -shared -L 
-LIBS = -lglut -lGL -lGLU -lfreeimage
-
+LD_FLAGS = -shared
+LIBS = -lglut -lGLUT -lGLU -lfreeimage
 
 install: $(TARGET)
 	@echo "all done!"
@@ -27,6 +26,12 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	# execute your tests here (on test failure, exit with exit code = 1)
 	./$(TESTS_RUNNER)
 	@echo "tests execution done!"
+
+# Rules to identify the class under test and add the corresponding .cpp file
+$(TEST_OBJ_FILES): %.o: %_test.cpp
+	$(eval SRC_FILE := $(patsubst %_test.cpp,%.cpp,$<))
+	@echo "Identifying class under test for $<: $(SRC_FILE)"
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $(patsubst %.cpp,%.o,$(SRC_FILE))
 
 %.o: %.cpp
 	# compile your sources here

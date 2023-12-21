@@ -37,7 +37,7 @@
 #include "ovoReader.h"
 #include "node.h"
 #include "list.h"
-#include "tester.h"
+#include "engine-tests-runner.h"
 
 
 ////////////
