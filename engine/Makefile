@@ -28,7 +28,7 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	@echo "tests execution done!"
 
 # Rules to identify the class under test and add the corresponding .cpp file
-$(TEST_OBJ_FILES): %.o: %_test.cpp
+$(TEST_OBJ_FILES): %.o: %.cpp
 	$(eval SRC_FILE := $(patsubst %_test.cpp,%.cpp,$<))
 	@echo "Identifying class under test for $<: $(SRC_FILE)"
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $(patsubst %.cpp,%.o,$(SRC_FILE))
