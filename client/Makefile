@@ -1,6 +1,6 @@
 BASE_NAME := rush-hour
 TARGET_DIR = .
-TARGET := $(BASE_NAME) 
+TARGET := $(TARGET_DIR)/$(BASE_NAME) 
 TARGET_ARCHIVE := $(BASE_NAME).tar.gz
 MAIN_SRC_FILES := $(wildcard *.cpp)
 MAIN_OBJ_FILES := $(patsubst %.cpp,%.o,$(MAIN_SRC_FILES))
@@ -37,7 +37,7 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES) $(ENGINE_LIB_FILENAME)
 	# build your test runner executable here
 	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LDFLAGS)
 	# execute your tests here (on test failure, exit with exit code = 1)
-	./$(TESTS_RUNNER)
+	LD_LIBRARY_PATH=$(ENGINE_DIR) ./$(TESTS_RUNNER)
 	@echo "$(TESTS_RUNNER) build done!"
 	@echo "tests execution done!"
 
