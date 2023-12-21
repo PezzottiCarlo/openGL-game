@@ -17,6 +17,7 @@
 
 // C/C++:
 #include <iostream>
+#include <stdio.h>
 
 // GLM: 
 #include <glm.hpp>
@@ -24,9 +25,18 @@
 #include <gtc/type_ptr.hpp>
 #include <gtx/string_cast.hpp>
 
-
 // FreeGLUT:   
 #include <GL/freeglut.h>
+
+// FreeImage:
+#include <FreeImage.h>
+
+// Own header files:
+#include "mesh.h"
+#include "light.h"
+#include "ovoReader.h"
+#include "node.h"
+#include "list.h"
 
 
 ////////////
@@ -54,12 +64,7 @@ glm::mat4 ortho;
 
 #ifdef _WINDOWS
 #include <Windows.h>
-#include "mesh.h"
-#include "light.h"
-#include "ovoReader.h"
-#include "node.h"
-#include "list.h"
-#include <FreeImage.h>
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * DLL entry point. Avoid to rely on it for easier code portability (Linux doesn't use this method).
@@ -157,9 +162,6 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_NORMALIZE);
 
-        //Init FreeImage
-        //FreeImage_Initialise();
-
         // Start FPS timer 
         glutTimerFunc(1000, updateFPS, 0);
     }
@@ -247,7 +249,7 @@ void LIB_API Engine::displayCallback()
     glColor3f(1.0f, 1.0f, 1.0f);
 
     char text[64];
-    sprintf_s(text, "Current FPS: %d", fps);
+    sprintf(text, "Current FPS: %d", fps);
     //strcpy_s(text, "Current FPS: " + fps);
 
     glRasterPos2f(1.0f, 8.0f);
