@@ -146,7 +146,7 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
 
 
         OvoReader reader = OvoReader();
-        Node* root = reader.readFile("..\\scene\\examples\\simple3dScene.ovo");
+        Node* root = reader.readFile("..\\scene\\scene.ovo");
         list.addEntry(root);
 
 
@@ -229,11 +229,11 @@ void LIB_API Engine::displayCallback()
     // create a matrix called translation for the camera
     glm::mat4 translation = glm::mat4(1.0f);
     //make the camera go back 5 units
-    translation = glm::translate(translation, glm::vec3(0.0f, -50.0f, -150.0f));
+    translation = glm::translate(translation, glm::vec3(0.0f, -8.0f, -20.0f));
     //make the object at the center of the world
     
     // Compute model matrix:
-    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), angle, glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), glm::radians(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glLoadMatrixf(glm::value_ptr(f));
 
     list.render(f, nullptr);

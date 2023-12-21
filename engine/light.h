@@ -15,7 +15,7 @@ public:
 	void setPosition(glm::vec4 pos);
 	glm::vec4 getPosition();
 	static int getNextLightNumber();
-	virtual bool render(glm::mat4 matrix, void* ptr) override;
+	virtual bool render(glm::mat4, void*) override;
 	virtual void setTransform(glm::mat4 transform) override;
 
 	float getConstantAttenuation();

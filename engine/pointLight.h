@@ -10,7 +10,7 @@ public:
 	~PointLight() {};
 
 public:
-	virtual bool render(glm::mat4 cameraInv, void* ptr) override;
+	virtual bool render(glm::mat4,void*) override;
 
 private:
 	float cutOff;
