@@ -8,7 +8,6 @@ LIB_API SpotLight::SpotLight(const std::string name, const int lightNumber, cons
 
 bool LIB_API SpotLight::render(glm::mat4 matrix, void* ptr) {
 	glLightfv(getLightNumber(), GL_SPOT_DIRECTION, glm::value_ptr(glm::vec4(direction, 1.0f)));
-
 	PointLight::render(matrix, NULL);
 
 	return true;
