@@ -11,6 +11,9 @@
 // #INCLUDE //
 //////////////
 
+// Disable sprintf error, it's unsafe but in out case we don't receive any external input
+#pragma warning(disable : 4996)
+
 // Library main include:
 #include "engine.h"
 #include "vertex.h"

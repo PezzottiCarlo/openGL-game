@@ -1,4 +1,4 @@
-#include "DirectionalLight.h"
+#include "directionalLight.h"
 #include "light.h"
 
 LIB_API DirectionalLight::DirectionalLight(const std::string name, const int lightNumber, const glm::vec4 ambient, const glm::vec4 diffuse, const glm::vec4 specular) :

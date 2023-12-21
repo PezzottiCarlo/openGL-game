@@ -1,4 +1,4 @@
-#include "Light.h"
+#include "light.h"
 
 #ifndef DIRECTIONAL_LIGHT
 #define DIRECTIONAL_LIGHT

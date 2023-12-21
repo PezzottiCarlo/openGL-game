@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "node.h"
 
 #ifndef LIGHT
 #define LIGHT

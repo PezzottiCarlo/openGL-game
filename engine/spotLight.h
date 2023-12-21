@@ -1,4 +1,4 @@
-#include "PointLight.h"
+#include "pointLight.h"
 
 #ifndef SPOT_LIGHT
 #define SPOT_LIGHT

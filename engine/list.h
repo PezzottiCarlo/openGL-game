@@ -1,5 +1,5 @@
-#include "Object.h"
-#include "Node.h"
+#include "object.h"
+#include "node.h"
 #include <list>
 
 #ifndef LIST

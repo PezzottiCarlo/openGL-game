@@ -1,4 +1,4 @@
-#include "SpotLight.h"
+#include "spotLight.h"
 #include <GL/freeglut.h>
 #include <glm/gtc/type_ptr.hpp>
 

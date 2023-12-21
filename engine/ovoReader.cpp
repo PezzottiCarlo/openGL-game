@@ -6,8 +6,8 @@
 #include <GL/freeglut.h>
 #include <iostream>
 #include <memory>
-#include "OvLight.h"
-#include "OvObject.h"
+#include "ovLight.h"
+#include "ovObject.h"
 #include <glm/gtc/packing.hpp>
 #include "fakeShadow.h"
 #include "directionalLight.h"

@@ -48,10 +48,10 @@
     <ClInclude Include="vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OvMesh.h">
+    <ClInclude Include="ovMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OvObject.h">
+    <ClInclude Include="ovObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="directionalLight.h">
@@ -110,7 +110,7 @@
     <ClCompile Include="ovoReader.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="OvLight.h">
+    <ClCompile Include="ovLight.h">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="ovoReader.cpp">
@@ -131,7 +131,7 @@
     <ClCompile Include="texture_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tester.cpp">
+    <ClCompile Include="tester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="directionalLight.cpp">
@@ -143,7 +143,7 @@
     <ClCompile Include="spotLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FakeShadow.cpp">
+    <ClCompile Include="fakeShadow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="list.cpp">
