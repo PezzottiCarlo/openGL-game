@@ -24,7 +24,7 @@ package: $(TARGET_ARCHIVE)
 
 $(TARGET_ARCHIVE): $(TARGET) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
 	# package your distribution tar gz archive here with the necessary distribution artifacts
-	$(TAR_GZ) $(TARGET_ARCHIVE) -C $(TARGET_DIR) $(BASE_NAME) -C $(ENGINE_DIR) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
+	$(TAR_GZ) $(TARGET_ARCHIVE) $(TARGET) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
 	@echo "$(TARGET_ARCHIVE) package done!"
 
 $(TARGET): $(MAIN_OBJ_FILES) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
