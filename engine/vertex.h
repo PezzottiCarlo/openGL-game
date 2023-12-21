@@ -2,7 +2,7 @@
 
 #include "lib.h"
 #include "engine.h"
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 class LIB_API Vertex {
 

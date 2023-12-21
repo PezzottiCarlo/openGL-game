@@ -1,6 +1,6 @@
 #include "Light.h"
 #include <GL/freeglut.h>
-#include <gtc/type_ptr.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 LIB_API Light::Light(const std::string name, const int lightNumber, const glm::vec4 ambient, const glm::vec4 diffuse, const glm::vec4 specular) : Node(name){
 	this->lightNumber = lightNumber;

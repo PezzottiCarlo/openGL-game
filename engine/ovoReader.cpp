@@ -8,7 +8,7 @@
 #include <memory>
 #include "OvLight.h"
 #include "OvObject.h"
-#include <gtc/packing.hpp>
+#include <glm/gtc/packing.hpp>
 #include "fakeShadow.h"
 #include "directionalLight.h"
 #include "pointLight.h"

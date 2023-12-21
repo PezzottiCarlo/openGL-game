@@ -21,12 +21,12 @@
 
 #include <GL/freeglut.h>
 #include <iostream>
-#include <gtc/type_ptr.hpp>
-#include <ext/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/ext/matrix_transform.hpp>
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <gtx/string_cast.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 
  ///////////////////////

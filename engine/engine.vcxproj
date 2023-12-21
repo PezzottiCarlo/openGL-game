@@ -188,11 +188,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>FREEGLUT_STATIC;_DEBUG;ENGINE_EXPORTS;_WINDOWS;_USRDLL;FREEIMAGE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FREEGLUT_STATIC;_DEBUG;ENGINE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_WINDOWS;_USRDLL;FREEIMAGE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\dependencies\glm\glm;..\dependencies\freeimage\include;..\dependencies\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\glm;..\dependencies\freeimage\include;..\dependencies\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

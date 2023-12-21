@@ -1,7 +1,7 @@
 #include "material.h"
 #include "node.h"
 #include <GL/freeglut.h>
-#include <gtc/type_ptr.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <math.h>
 
 Material::Material(const std::string name, glm::vec4 _emission, glm::vec4 _ambient, glm::vec4 _diffuse, glm::vec4 _specular, float _shininess) {

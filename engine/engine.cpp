@@ -20,10 +20,10 @@
 #include <stdio.h>
 
 // GLM: 
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
-#include <gtx/string_cast.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 // FreeGLUT:   
 #include <GL/freeglut.h>
@@ -250,7 +250,6 @@ void LIB_API Engine::displayCallback()
 
     char text[64];
     sprintf(text, "Current FPS: %d", fps);
-    //strcpy_s(text, "Current FPS: " + fps);
 
     glRasterPos2f(1.0f, 8.0f);
     glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);

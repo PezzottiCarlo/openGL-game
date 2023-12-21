@@ -19,7 +19,7 @@
 #include "material.h"
 #include "texture.h"
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 /////////////
 // FORWARD DECLARATION //

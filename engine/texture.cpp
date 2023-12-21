@@ -1,6 +1,6 @@
 #include "texture.h"
 #include "node.h"
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include <GL/freeglut.h>
 #include <iostream>
 #include <FreeImage.h>
