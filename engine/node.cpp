@@ -15,6 +15,7 @@
 #include "node.h"
 #include "engine.h"
 #include <iostream>
+#include <algorithm>
 
 ////////////////////////
 // BODY OF CLASS Node //
@@ -57,11 +58,13 @@ bool LIB_API Node::addChild(Node* nodeToAdd) {
  * @return true if operation has been completed without any errors (also if node has not been found). 
  */
 bool LIB_API Node::removeChild(Node* nodeToRemove) {
-	children.erase(
-		std::remove(children.begin(), children.end(), nodeToRemove), 
-		children.end()
-	);
-	return true;
+	auto child = std::find(children.begin(), children.end(), nodeToRemove);
+	if (child != children.end()) {
+		delete* child;
+		children.erase(child);
+		return true;
+	}
+	return false;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
