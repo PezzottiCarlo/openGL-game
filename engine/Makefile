@@ -27,6 +27,11 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	./$(TESTS_RUNNER)
 	@echo "tests execution done!"
 
+$(TEST_OBJ_FILES): %.o: %_test.cpp
+	$(eval SRC_FILE := $(patsubst %_test.cpp,%.cpp,$<))
+	@echo "Identifying class under test for $<: $(SRC_FILE)"
+	$(CXX) $(CXX_FLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $@
+
 %.o: %.cpp
 	# compile your sources here
 	$(CXX) $(CXX_FLAGS) -o $@ $<
