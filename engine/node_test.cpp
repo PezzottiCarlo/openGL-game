@@ -8,7 +8,7 @@ int Node::test() {
 
 	// test addChild
 	assert(node.getChildren().size() == 0);
-
+	
 	node.addChild(&child1Node);
 	node.addChild(&child2Node);
 

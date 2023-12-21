@@ -11,9 +11,6 @@
 // #INCLUDE //
 //////////////
 
-// Disable sprintf error, it's unsafe but in out case we don't receive any external input
-#pragma warning(disable : 4996)
-
 // Library main include:
 #include "engine.h"
 #include "vertex.h"
@@ -40,6 +37,7 @@
 #include "ovoReader.h"
 #include "node.h"
 #include "list.h"
+#include "tester.h"
 
 
 ////////////
@@ -398,4 +396,8 @@ void Engine::updateFPS(int value) {
     fps = fpsCounter;
     fpsCounter = 0;
     glutTimerFunc(1000, updateFPS, 0);
+}
+
+void LIB_API Engine::executeTests() {
+    runTests();
 }

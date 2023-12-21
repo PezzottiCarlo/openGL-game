@@ -68,6 +68,9 @@ int main(int argc, char* argv[])
 	// Set background color
 	Engine::setBackgroundColor(0.2f, 0.2f, 0.7f, 1.0f); 
 
+	//Execute tests
+	Engine::executeTests();
+
 	// Start engine
 	Engine::start();
 	

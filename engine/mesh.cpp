@@ -36,6 +36,7 @@
 //constructor
 Mesh::Mesh(std::string name, std::shared_ptr<Material> material) : Node(name) {
     this->material = material;
+    this->vertices;
 }
 
 //destructor

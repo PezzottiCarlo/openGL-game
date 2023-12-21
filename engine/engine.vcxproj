@@ -44,6 +44,7 @@
     <ClInclude Include="perspectiveCamera.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="spotLight.h" />
+    <ClInclude Include="tester.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="vertex.h" />
   </ItemGroup>

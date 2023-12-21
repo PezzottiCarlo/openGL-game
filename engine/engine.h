@@ -40,6 +40,7 @@ public: //
 	static void reshapeCallback(int, int);
 	static void postWindowRedisplay();
 	static void update();
+	static void executeTests();
 	//static loadScene with a string
 	static void loadScene(std::string);
 	
