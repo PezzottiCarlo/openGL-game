@@ -22,15 +22,10 @@ $(TARGET): $(MAIN_OBJ_FILES) $(TESTS_RUNNER)
 
 $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	# build your test runner executable here
-	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LIBS)
+	$(CXX) -o $(TESTS_RUNNER) $(MAIN_OBJ_FILES) $(LIBS)
 	# execute your tests here (on test failure, exit with exit code = 1)
 	./$(TESTS_RUNNER)
 	@echo "tests execution done!"
-
-$(TEST_OBJ_FILES): %.o: %_test.cpp
-	$(eval SRC_FILE := $(patsubst %_test.cpp,%.cpp,$<))
-	@echo "Identifying class under test for $<: $(SRC_FILE)"
-	$(CXX) $(CXX_FLAGS) $(CPPFLAGS) -c $(SRC_FILE) -o $@
 
 %.o: %.cpp
 	# compile your sources here
