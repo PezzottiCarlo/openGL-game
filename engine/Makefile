@@ -25,7 +25,7 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	# build your test runner executable here
 	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LIBS)
 	# execute your tests here (on test failure, exit with exit code = 1)
-	./$(TESTS_RUNNER) || exit 1
+	./$(TESTS_RUNNER)
 	@echo "tests execution done!"
 
 %.o: %.cpp

@@ -43,7 +43,7 @@ $(TESTS_RUNNER): $(TEST_OBJ_FILES)
 	#@touch $(TESTS_RUNNER)
 	#@echo "$(TESTS_RUNNER) build done!"
 	# execute your tests here (on test failure, exit with exit code = 1)
-	./$(TESTS_RUNNER) || exit 1
+	./$(TESTS_RUNNER)
 	@echo "$(TESTS_RUNNER) build done!"
 	@echo "tests execution done!"
 
