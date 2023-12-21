@@ -233,7 +233,7 @@ void LIB_API Engine::displayCallback()
     //make the object at the center of the world
     
     // Compute model matrix:
-    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), glm::radians(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glLoadMatrixf(glm::value_ptr(f));
 
     list.render(f, nullptr);

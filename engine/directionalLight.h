@@ -10,7 +10,7 @@ public:
 	~DirectionalLight() {};
 
 public:
-	bool render(glm::mat4 cameraInv, void* ptr) override;
+	bool render(glm::mat4, void*) override;
 	void setTransform(glm::mat4 transform) override;
 };
 
