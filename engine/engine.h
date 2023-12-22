@@ -6,9 +6,11 @@
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 #pragma once
-#include "lib.h"
 #include <vector>
 #include <string>
+
+#include "lib.h"
+#include "camera.h"
 
 
 /////////////
@@ -41,8 +43,15 @@ public: //
 	static void postWindowRedisplay();
 	static void update();
 	static void executeTests();
-	//static loadScene with a string
+
+	//CLIENT FUNCTIONS
+
+	//Scene
 	static void loadScene(std::string);
+
+	//Cameras
+	static void initCameras(int);
+	static void loadCamera(float, float, float, float, float, float, int);
 	
 
 ///////////
@@ -67,4 +76,9 @@ private: //
 	static float bgG;
 	static float bgB;
 	static float bgA;
+
+	// cameras
+	static int activeCamera;
+	static std::vector<Camera*> cameras;
+
 };

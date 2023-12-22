@@ -38,10 +38,8 @@
     <ClInclude Include="mesh.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="object.h" />
-    <ClInclude Include="ortographicCamera.h" />
     <ClInclude Include="ovMesh.h" />
     <ClInclude Include="ovObject.h" />
-    <ClInclude Include="perspectiveCamera.h" />
     <ClInclude Include="pointLight.h" />
     <ClInclude Include="spotLight.h" />
     <ClInclude Include="engine-tests-runner.h" />
@@ -63,11 +61,9 @@
     <ClCompile Include="node.cpp" />
     <ClCompile Include="node_test.cpp" />
     <ClCompile Include="object.cpp" />
-    <ClCompile Include="ortographicCamera.cpp" />
     <ClCompile Include="ovLight.h" />
     <ClCompile Include="ovoReader.cpp" />
     <ClCompile Include="ovoReader.h" />
-    <ClCompile Include="perspectiveCamera.cpp" />
     <ClCompile Include="pointLight.cpp" />
     <ClCompile Include="spotLight.cpp" />
     <ClCompile Include="engine-tests-runner.cpp" />

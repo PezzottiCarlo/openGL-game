@@ -52,6 +52,8 @@ float Engine::bgG = 0.0f;
 float Engine::bgB = 0.0f;
 float Engine::bgA = 0.0f;
 int Engine::windowId = 0;
+std::vector<Camera*> Engine::cameras = std::vector<Camera*>();
+int Engine::activeCamera = 0;
 
 int fps = 0;
 int fpsCounter = 0;
@@ -145,10 +147,6 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         windowId = glutCreateWindow(title);
 
 
-        OvoReader reader = OvoReader();
-        Node* root = reader.readFile("..\\scene\\scene.ovo");
-        list.addEntry(root);
-
 
         // Set callback functions
         glutDisplayFunc(displayCallback);
@@ -225,18 +223,7 @@ void LIB_API Engine::displayCallback()
     if (angle > 360.0f) angle -= 360.0f;
     angle += 0.01f; // Adjust the rotation speed as needed
     
-
-    // create a matrix called translation for the camera
-    glm::mat4 translation = glm::mat4(1.0f);
-    //make the camera go back 5 units
-    translation = glm::translate(translation, glm::vec3(0.0f, -8.0f, -20.0f));
-    //make the object at the center of the world
-    
-    // Compute model matrix:
-    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), glm::radians(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    glLoadMatrixf(glm::value_ptr(f));
-
-    list.render(f, nullptr);
+    list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
     // 2D
     // Set orthographic projection:
@@ -269,9 +256,29 @@ void LIB_API Engine::displayCallback()
     glutSwapBuffers();
 }
 
-void LIB_API loadScene(std::string scene) {
-    
+void LIB_API Engine::loadScene(std::string pathName)
+{
+    OvoReader reader = OvoReader();
+    Node* root = reader.readFile(pathName.c_str());
+    list.addEntry(root);
 }
+
+void LIB_API Engine::initCameras(int n)
+{
+    for (int i = 0; i < n; i++) {
+        std::string str_camera = "camera";
+        str_camera += std::to_string(i);
+        Camera* camera = new Camera(str_camera);
+        cameras.push_back(camera);
+	}
+    activeCamera = 0;
+}
+
+void LIB_API Engine::loadCamera(float x, float y, float z, float rX, float rY, float rZ, int n)
+{
+    cameras.at(n)->setUserTransform(x, y, z, rX, rY, rZ);
+}
+
 
 
 
@@ -401,3 +408,5 @@ void Engine::updateFPS(int value) {
 void LIB_API Engine::executeTests() {
     runTests();
 }
+
+

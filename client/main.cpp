@@ -12,7 +12,6 @@
 
 // Library header:
 #include "engine.h"
-
 // C/C++:
 #include <iostream>
 
@@ -51,6 +50,20 @@ void keyboardCallback(unsigned char key, int x, int y) {
 // MAIN //
 //////////
 
+void loadScene(std::string pathName) {
+	Engine::loadScene(pathName);
+}
+
+void loadCameras() {
+	
+}
+
+void init(){
+	loadScene("..\\scene\\scene.ovo");
+}
+
+
+
 /**
  * Application entry point.
  * @param argc number of command-line arguments passed
@@ -62,6 +75,7 @@ int main(int argc, char* argv[])
 	// Setup initial frame properties
 	Engine::setZBufferUsage(true);	// Must be executed before Engine::init
 	Engine::init(argc, argv, "RushHour Game", 640, 480);
+	init();
 	// Setup callbacks 
 	Engine::setKeyboardCallback(keyboardCallback);
 	Engine::setSpecialCallback(specialCallback);

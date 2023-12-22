@@ -28,6 +28,10 @@ class LIB_API Camera : public Node{
 	//////////
 	public: //
 	//////////
+		Camera(std::string name) : Node(name) {};
+		~Camera();
+
 		glm::mat4 getInverseCameraMat();
+		void setUserTransform(float x, float y, float z, float rx, float ry, float rz);
 };
 
