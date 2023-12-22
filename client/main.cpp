@@ -1,5 +1,4 @@
 /**
- * @file    engine.cpp
  * @brief   A simple graphical engine library
  *
  * @author  Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
@@ -10,6 +9,7 @@
  // #INCLUDE //
  //////////////
 
+#include "main.h"
 // Library header:
 #include "engine.h"
 // C/C++:
@@ -55,10 +55,13 @@ void loadScene(std::string pathName) {
 }
 
 void loadCameras() {
-	
+	Engine::initCameras(2);
+	Engine::loadCamera(0, 0, -5.0f, 0, 75.0f, 0, 0);
+	Engine::loadCamera(0, -5.0f, 0, 0, 0, 90.0f, 0);
 }
 
 void init(){
+	loadCameras();
 	loadScene("..\\scene\\scene.ovo");
 }
 

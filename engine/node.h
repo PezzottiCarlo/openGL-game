@@ -13,7 +13,6 @@
 // #INCLUDE //
 //////////////
 #include <vector>
-
 #include "object.h"
 
 
