@@ -13,7 +13,6 @@
 
 // Library main include:
 #include "object.h"
-#include "engine.h"
 
 //////////////////////////
 // BODY OF CLASS Object //

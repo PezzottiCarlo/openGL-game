@@ -11,9 +11,10 @@
  /////////////
  // #INCLUDE //
  /////////////
+#include <string>     // Include for std::string
 
 #include "object.h"  // Assuming you have an "object.h" header for the base class
-#include <string>     // Include for std::string
+
 #define GL_TEXTURE_MAX_ANISOTROPY_EXT        0x84FE
 #define GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT    0x84FF
 

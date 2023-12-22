@@ -11,11 +11,11 @@
  /////////////
  // #INCLUDE //
  /////////////
-
+#include <memory>
 #include <string>   
+
 #include "object.h"  
 #include "texture.h"
-#include <memory>
 #include "material.h"
 #include "mesh.h"
 

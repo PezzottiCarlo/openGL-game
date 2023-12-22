@@ -1,6 +1,8 @@
-#include "spotLight.h"
 #include <GL/freeglut.h>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "spotLight.h"
+
 
 LIB_API SpotLight::SpotLight(const std::string name, const int lightNumber, const glm::vec4 ambient,
 	const glm::vec4 diffuse, const glm::vec4 specular, const float cutOff, const glm::vec3 direction) :

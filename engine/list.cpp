@@ -1,10 +1,12 @@
+#include <GL/freeglut.h>
+#include <iostream>
+
 #include "list.h"
 #include "light.h"
 #include "directionalLight.h"
 #include "pointLight.h"
 #include "spotLight.h"
-#include <GL/freeglut.h>
-#include <iostream>
+
 
 void LIB_API List::addEntry(Node* root) {
     //don't get the root

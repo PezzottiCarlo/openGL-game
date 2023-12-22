@@ -13,7 +13,6 @@
 
  // Library main include:
 #include "camera.h"
-#include "engine.h"
 
 //////////////////////////
 // BODY OF CLASS Camera //

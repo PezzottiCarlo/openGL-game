@@ -13,7 +13,6 @@
 
  // Library main include:
 #include "perspectiveCamera.h"
-#include "engine.h"
 
 /////////////////////////////////////
 // BODY OF CLASS PerspectiveCamera //

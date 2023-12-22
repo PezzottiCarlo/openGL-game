@@ -12,14 +12,14 @@
  // #INCLUDE //
  ////////////////
 #include <memory>
+#include <glm/glm.hpp>
 
-#include "engine.h"
 #include "node.h"
 #include "vertex.h"
 #include "material.h"
 #include "texture.h"
 
-#include <glm/glm.hpp>
+
 
 /////////////
 // FORWARD DECLARATION //
