@@ -1,11 +1,11 @@
-#include "ovoReader.h"
-#include "mesh.h"
-#include "light.h"
-
 #include <string>
 #include <GL/freeglut.h>
 #include <iostream>
 #include <memory>
+
+#include "ovoReader.h"
+#include "mesh.h"
+#include "light.h"
 #include "ovLight.h"
 #include "ovObject.h"
 #include <glm/gtc/packing.hpp>

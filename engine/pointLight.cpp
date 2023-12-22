@@ -1,5 +1,6 @@
-#include "pointLight.h"
 #include <GL/freeglut.h>
+
+#include "pointLight.h"
 
 LIB_API PointLight::PointLight(const std::string name, const int lightNumber, const glm::vec4 ambient,
 	const glm::vec4 diffuse, const glm::vec4 specular, const float cutOff) :

@@ -13,7 +13,6 @@
 
  // Library main include:
 #include "ortographicCamera.h"
-#include "engine.h"
 
 /////////////////////////////////////
 // BODY OF CLASS OrtographicCamera //

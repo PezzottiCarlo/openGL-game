@@ -12,10 +12,10 @@
 //////////////
 
 // Library main include:
-#include "node.h"
-#include "engine.h"
 #include <iostream>
 #include <algorithm>
+
+#include "node.h"
 
 ////////////////////////
 // BODY OF CLASS Node //

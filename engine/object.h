@@ -15,8 +15,8 @@
 
 #include <string>
 #include <glm/glm.hpp>
-#include "engine.h"
 
+#include "lib.h"
 /////////////
 // CLASSES //
 /////////////

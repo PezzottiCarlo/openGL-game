@@ -12,13 +12,6 @@
  //////////////
 
  // Library main include:
-#include "mesh.h"
-#include "engine.h"
-#include "node.h"
-#include "material.h"
-#include "texture.h"
-#include "vertex.h"
-
 #include <GL/freeglut.h>
 #include <iostream>
 #include <glm/gtc/type_ptr.hpp>
@@ -27,6 +20,15 @@
 #include <sstream>
 #include <vector>
 #include <glm/gtx/string_cast.hpp>
+
+
+#include "mesh.h"
+#include "node.h"
+#include "material.h"
+#include "texture.h"
+#include "vertex.h"
+
+
 
 
  ///////////////////////

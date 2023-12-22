@@ -1,9 +1,11 @@
-#include "texture.h"
-#include "node.h"
 #include <glm/glm.hpp>
 #include <GL/freeglut.h>
 #include <iostream>
 #include <FreeImage.h>
+
+#include "texture.h"
+#include "node.h"
+
 
 // Constructor
 Texture::Texture(const std::string& name) : width(0), height(0) {
