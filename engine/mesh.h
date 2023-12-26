@@ -44,9 +44,6 @@ public: //
     // Destructor
     ~Mesh();
 public:
-    // Load geometry from a file
-    void loadGeometryFromFile(const std::string& filePath, float scale);
-
     // Add a vertex to the mesh
     void addVertex(Vertex* v, int lod);
     // Get vertices

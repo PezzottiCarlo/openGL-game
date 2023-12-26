@@ -11,15 +11,47 @@
 
 #include "main.h"
 // Library header:
+
 #include "engine.h"
+#include "node.h"
+
 // C/C++:
 #include <iostream>
+#include <glm/gtx/string_cast.hpp>
+#include <mesh.h>
+
+
+/*
+
+Playing field where:
+0 -> indicates empty space
+1 -> indicates car presence at 0 degrees
+2 -> indicates car presence at 90 degrees
+3 -> indicates car presence at 180 degrees
+4 -> indicates car presence at 270 degrees
+5 -> indicates the exit
+6 -> indicates the wall
+
+in the game scene the point matrix[0][0] is [5.645,5.645,0] and the point matrix[7][7] is [-5.645,-5.645,0]
+*/
+
+int matrix[8][8] = {
+	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+	{ 6 , 1 , 0 , 0 , 0 , 1 , 0 , 6 },
+	{ 6 , 0 , 0 , 1 , 0 , 1 , 0 , 6 },
+	{ 6 , 0 , 1 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 1 , 0 , 0 , 6 },
+	{ 6 , 1 , 0 , 1 , 0 , 1 , 1 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 6 , 5 , 6 , 6 , 6 , 6 , 6 }
+};
+
+
 
 
 ///////////////
 // CALLBACKS //
 ///////////////
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This callback gets invoked when a special character on the keyboard gets pressed.
@@ -61,10 +93,48 @@ void loadCameras() {
 	Engine::loadCamera(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0, 0);
 	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
 }
+void loadCars()
+{
+	for (int i = 1; i < 7; i++) {
+		for (int j = 1; j < 7 ; j++) {
+			if (matrix[i][j] == 0 || matrix[i][j] == 5 || matrix[i][j] == 6) continue;
+			std::string path = "..\\scene\\car.ovo";
+			Node car = Engine::loadNode(path);
+			glm::mat4 m = glm::mat4(1.0f);
+			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (7-i)),0.5f, -8.0f + (2.2f * j)));
+
+			switch (matrix[i][j])
+			{
+				case 1:
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					break;
+				case 2:
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					break;
+				case 3:
+					m = glm::rotate(m, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					break;
+				case 4:
+					m = glm::rotate(m, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					break;
+				default:
+					break;
+			}
+
+
+			car.getChildAt(0)->setTransform(m);
+			car.getChildAt(0)->setScale(2.2f);
+			Engine::addNode(car);
+		}
+	}
+}
+
+
 
 void init() {
 	loadCameras();
 	loadScene("..\\scene\\scene.ovo");
+	loadCars();
 }
 
 

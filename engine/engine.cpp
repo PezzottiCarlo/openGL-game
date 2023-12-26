@@ -34,9 +34,7 @@
 // Own header files:
 #include "mesh.h"
 #include "light.h"
-#include "ovoReader.h"
 #include "node.h"
-#include "list.h"
 #include "engine-tests-runner.h"
 
 
@@ -57,6 +55,9 @@ int Engine::activeCamera = 0;
 
 int fps = 0;
 int fpsCounter = 0;
+
+OvoReader Engine::reader = OvoReader();
+List Engine::list;
 
 glm::mat4 perspective;
 glm::mat4 ortho;
@@ -116,7 +117,7 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  // FOR TESTING //
  /////////////////
 
-List list;
+
 
 bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
 
@@ -247,14 +248,13 @@ void LIB_API Engine::displayCallback()
     fpsCounter++;
 
     // Force rendering refresh
-    glutPostWindowRedisplay(windowId);
+    //glutPostWindowRedisplay(windowId);
     // Swap this context's buffer:
     glutSwapBuffers();
 }
 
 void LIB_API Engine::loadScene(std::string pathName)
 {
-    OvoReader reader = OvoReader();
     Node* root = reader.readFile(pathName.c_str());
     list.addEntry(root);
 }
@@ -281,6 +281,19 @@ void LIB_API Engine::setActiveCamera(int num)
         activeCamera = num;
     else
         activeCamera = 0;
+}
+
+Node LIB_API Engine::loadNode(std::string pathName)
+{
+    Node* _car = reader.readFile(pathName.c_str());
+    Node car = *_car;
+    return car;
+}
+
+void LIB_API Engine::addNode(Node node)
+{
+    Node* _node = new Node(node);
+    list.addEntry(_node);
 }
 
 

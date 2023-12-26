@@ -10,6 +10,8 @@
 #include <string>
 
 #include "lib.h"
+#include "list.h"
+#include "ovoreader.h"
 #include "camera.h"
 
 
@@ -53,7 +55,10 @@ public: //
 	static void initCameras(int);
 	static void loadCamera(float, float, float, float, float, float, int);
 	static void setActiveCamera(int);
-	
+
+	//node
+	static Node loadNode(std::string);
+	static void addNode(Node);
 
 ///////////
 private: //
@@ -77,6 +82,9 @@ private: //
 	static float bgG;
 	static float bgB;
 	static float bgA;
+
+	static OvoReader reader;
+	static List list;
 
 	// cameras
 	static int activeCamera;

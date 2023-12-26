@@ -71,12 +71,12 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
 
     glFrontFace(GL_CCW);
     glBegin(GL_TRIANGLES);
-
+    //render with the scale
     for (Vertex* v : vertices.at(lod)) {
         glColor3f(1.0f, 0.0f, 0.0f);
-        glNormal3fv(glm::value_ptr(v->getNormal()));
-        glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()));
-        glVertex3fv(glm::value_ptr(v->getPosition()));
+        glNormal3fv(glm::value_ptr(v->getNormal()*getScale()));
+        glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()*getScale()));
+        glVertex3fv(glm::value_ptr(v->getPosition()*getScale()));
     }
 
     //disable texture

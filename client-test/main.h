@@ -5,6 +5,11 @@
 
 void specialCallback(int, int, int);
 void keyboardCallback(unsigned char, int, int);
+
 void loadScene(std::string);
 void loadCameras();
+
+void loadCars();
+
 void init();
+
