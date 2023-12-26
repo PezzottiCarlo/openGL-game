@@ -52,6 +52,7 @@ public: //
 	//Cameras
 	static void initCameras(int);
 	static void loadCamera(float, float, float, float, float, float, int);
+	static void setActiveCamera(int);
 	
 
 ///////////

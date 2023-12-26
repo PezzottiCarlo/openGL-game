@@ -204,7 +204,6 @@ void LIB_API Engine::reshapeCallback(int width, int height)
 /**
  * This is the main rendering routine automatically invoked by FreeGLUT.
  */
-float angle = 0.0f;
 void LIB_API Engine::displayCallback()
 {
     Engine::clearWindow();
@@ -220,9 +219,7 @@ void LIB_API Engine::displayCallback()
     // Enable Z buffer if it's required
     if (useZBuffer) execZBufferSetup();
 
-    if (angle > 360.0f) angle -= 360.0f;
-    angle += 0.01f; // Adjust the rotation speed as needed
-    
+    glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
     // 2D
@@ -251,7 +248,6 @@ void LIB_API Engine::displayCallback()
 
     // Force rendering refresh
     glutPostWindowRedisplay(windowId);
-    //angle += .0005f;
     // Swap this context's buffer:
     glutSwapBuffers();
 }
@@ -277,6 +273,14 @@ void LIB_API Engine::initCameras(int n)
 void LIB_API Engine::loadCamera(float x, float y, float z, float rX, float rY, float rZ, int n)
 {
     cameras.at(n)->setUserTransform(x, y, z, rX, rY, rZ);
+}
+
+void LIB_API Engine::setActiveCamera(int num)
+{
+    if (num < cameras.size())
+        activeCamera = num;
+    else
+        activeCamera = 0;
 }
 
 
