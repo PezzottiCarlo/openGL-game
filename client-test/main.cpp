@@ -19,6 +19,7 @@
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
 #include <mesh.h>
+#include <node.h>
 
 
 /*
@@ -128,16 +129,58 @@ void loadCars()
 }
 
 
+Node* pickedObject = nullptr;
+glm::vec4 lastObjectEmission;
+static float range = .5f;
+static float step = .01f;
+static float blinkStep = 0.0f;
+bool blink = false;
 
-void init() {
-	loadCameras();
-	loadScene("..\\scene\\scene.ovo");
-	loadCars();
+void makeObjectBlink(Node* obj) {
+
+	if (blink) {
+		blinkStep += step;
+		if (blinkStep > range) 
+			blink = false;
+	}
+	else {
+		blinkStep -= step;
+		if (blinkStep < 0.0f) 
+			blink = true;
+	}
+	((Mesh*)obj)->getMaterial()->setEmission(glm::vec4(blinkStep, blinkStep, blinkStep, 1.0f));
 }
 
 void getPickedObject(Node* n) {
-	std::cout << "Picked object: " << n->getName() << std::endl;
+	if (n == nullptr) {
+		//when mouse is released
+		((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
+		pickedObject = nullptr;
+		blinkStep = 0.0f;
+		blink = false;
+		return;
+	}
+	std::cout << "Object picked: " << n->getName() << " with id: " << n->getId() << std::endl;
+	lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
+	pickedObject = n;
 }
+
+void init(int argc, char* argv[]) {
+	Engine::setZBufferUsage(true);
+	Engine::init(argc, argv, "RushHour Game", 640, 480);
+	loadCameras();
+	loadScene("..\\scene\\scene.ovo");
+	loadCars();
+	Engine::setKeyboardCallback(keyboardCallback);
+	Engine::setSpecialCallback(specialCallback);
+	Engine::setObjectPickedCallback(getPickedObject);
+	Engine::setBackgroundColor(0.01f, 0.01f, 0.3f, 1.0f);
+	Engine::executeTests();
+	Engine::start();
+}
+
+
+
 
 
 
@@ -147,32 +190,18 @@ void getPickedObject(Node* n) {
  * @param argv array containing up to argc passed arguments
  * @return error code (0 on success, error code otherwise)
  */
+
+
+
 int main(int argc, char* argv[])
 {
-	// Setup initial frame properties
-	Engine::setZBufferUsage(true);	// Must be executed before Engine::init
-	Engine::init(argc, argv, "RushHour Game", 640, 480);
-	init();
-	// Setup callbacks 
-	Engine::setKeyboardCallback(keyboardCallback);
-	Engine::setSpecialCallback(specialCallback);
-	Engine::setMouseCallback(getPickedObject);
-	// Set background color
-	Engine::setBackgroundColor(0.01f, 0.01f, 0.3f, 1.0f);
+	init(argc,argv);
 
-	//Execute tests
-	Engine::executeTests();
-
-	// Start engine
-	Engine::start();
-
-	// Execute application logic
 	while (Engine::isRunning()) {
-		// Render stuff…
-		// Engine::renderTriangle();
-		// Update engine 
-		
 		Engine::update();
+		if (pickedObject != nullptr) {
+			makeObjectBlink(pickedObject);
+		}
 	}
 
 	// Free engine

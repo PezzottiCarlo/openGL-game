@@ -34,11 +34,6 @@ public: //
 
 	// Other functions
 	static void setZBufferUsage(bool);
-	static void setKeyboardCallback(void (*func)(unsigned char, int, int));
-	static void setSpecialCallback(void (*func)(int, int, int));
-
-	static void setMouseCallback(void (*func)(Node*));
-
 	static void setBackgroundColor(float, float, float, float);
 	static bool isRunning();
 	static void clearWindow();
@@ -48,6 +43,16 @@ public: //
 	static void postWindowRedisplay();
 	static void update();
 	static void executeTests();
+
+	//Keyboard handling
+	static void setKeyboardCallback(void (*func)(unsigned char, int, int));
+	static void setSpecialCallback(void (*func)(int, int, int));
+
+	//Mouse handling
+	static void setObjectPickedCallback(void (*func)(Node*));
+	
+
+
 
 	//CLIENT FUNCTIONS
 

@@ -313,8 +313,12 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
 }
 
 
-void LIB_API Engine::setMouseCallback(void (*func)(Node* n)) {
+void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
+        if (x == -1 && y == -1) {
+            return func(nullptr);
+		}
+
         glDisable(GL_LIGHTING);
         glDisable(GL_TEXTURE_2D);
         glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
@@ -339,9 +343,15 @@ void LIB_API Engine::setMouseCallback(void (*func)(Node* n)) {
         }
     };
 
-    glutPassiveMotionFunc([](int x, int y) {
-        Engine::clearWindow();
-        lambdaWrapper(x, y);
+    //call lambdaWrapper when mouse left button is pressed
+    glutMouseFunc([](int button, int state, int x, int y) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            Engine::clearWindow();
+            lambdaWrapper(x, y);
+        }
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+            lambdaWrapper(-1,-1);
+		}
     });
 }
 
