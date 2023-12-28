@@ -54,8 +54,6 @@ int Engine::windowId = 0;
 std::vector<Camera*> Engine::cameras = std::vector<Camera*>();
 int Engine::activeCamera = 0;
 
-int fps = 0;
-int fpsCounter = 0;
 
 OvoReader Engine::reader = OvoReader();
 List Engine::list;
@@ -149,10 +147,8 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         windowId = glutCreateWindow(title);
 
 
-
         // Set callback functions
         glutDisplayFunc(displayCallback);
-        glutReshapeFunc(reshapeCallback);
         //Enable Z-Buffer
         glEnable(GL_DEPTH_TEST);
         //Enable face culling
@@ -162,9 +158,6 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         //enable texture
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_NORMALIZE);
-
-        // Start FPS timer 
-        glutTimerFunc(1000, updateFPS, 0);
     }
     return initFlag;
 }
@@ -196,7 +189,7 @@ void LIB_API Engine::reshapeCallback(int width, int height)
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     //create a perspective matrix with a 45 degree field of view and a near and far plane
-    perspective = glm::perspective(glm::radians(80.0f), (float)width / (float)height, 1.0f, 10000.0f);
+    perspective = glm::perspective(glm::radians(80.0f), (float)width / (float)height, 1.0f, 1000.0f);
     ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1.0f, -1.0f);
     glLoadMatrixf(glm::value_ptr(perspective));
     glMatrixMode(GL_MODELVIEW);
@@ -224,34 +217,10 @@ void LIB_API Engine::displayCallback()
     glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
-    // 2D
-    // Set orthographic projection:
-    glMatrixMode(GL_PROJECTION);
-    glLoadMatrixf(glm::value_ptr(ortho));
-    glMatrixMode(GL_MODELVIEW);
-    glLoadMatrixf(glm::value_ptr(glm::mat4(10.0f)));
-
-    // Write 2D text
-    glDisable(GL_LIGHTING);
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    char text[64];
-    sprintf(text, "Current FPS: %d", fps);
-
-    glRasterPos2f(1.0f, 8.0f);
-    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
-    
-
-    // Re-enable lighting
-    glEnable(GL_LIGHTING);
-
-    // Increment fps
-    fpsCounter++;
-
     // Force rendering refresh
-    glutPostWindowRedisplay(windowId);
+    
     // Swap this context's buffer:
-    glutSwapBuffers();
+    
 }
 
 void LIB_API Engine::loadScene(std::string pathName)
@@ -295,6 +264,30 @@ void LIB_API Engine::addNode(Node node)
 {
     Node* _node = new Node(node);
     list.addEntry(_node);
+}
+
+void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, float fontSize)
+{
+    // 2D
+    // Set orthographic projection:
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixf(glm::value_ptr(ortho));
+    glMatrixMode(GL_MODELVIEW);
+    glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
+
+    // Write 2D text
+    glDisable(GL_LIGHTING);
+    glColor3f(color.x, color.y, color.z);
+    glRasterPos2f(coord.x, coord.y);
+    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
+
+    // Re-enable lighting
+    glEnable(GL_LIGHTING);
+}
+
+void LIB_API Engine::startTimer(void(*func)(int), int time)
+{
+    glutTimerFunc(time, func, 0);
 }
 
 
@@ -384,6 +377,11 @@ void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {
     bgA = a;
 }
 
+void Engine::setWindowResizeHandler(void(*func)(int, int))
+{
+    glutReshapeFunc(func);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This function defines if the engine is still running.
@@ -460,14 +458,14 @@ void LIB_API Engine::update() {
     glutMainLoopEvent();
 }
 
-void Engine::updateFPS(int value) {
-    fps = fpsCounter;
-    fpsCounter = 0;
-    glutTimerFunc(1000, updateFPS, 0);
-}
-
 void LIB_API Engine::executeTests() {
     runTests();
+}
+
+void LIB_API Engine::refreshAndSwapBuffers()
+{
+    glutPostWindowRedisplay(windowId);
+    glutSwapBuffers();
 }
 
 

@@ -35,6 +35,8 @@ public: //
 	// Other functions
 	static void setZBufferUsage(bool);
 	static void setBackgroundColor(float, float, float, float);
+	static void setWindowResizeHandler(void (*func)(int, int));
+
 	static bool isRunning();
 	static void clearWindow();
 	static void swapBuffers();
@@ -43,6 +45,7 @@ public: //
 	static void postWindowRedisplay();
 	static void update();
 	static void executeTests();
+	static void refreshAndSwapBuffers();
 
 	//Keyboard handling
 	static void setKeyboardCallback(void (*func)(unsigned char, int, int));
@@ -51,8 +54,6 @@ public: //
 	//Mouse handling
 	static void setObjectPickedCallback(void (*func)(Node*,bool));
 	
-
-
 
 	//CLIENT FUNCTIONS
 
@@ -68,6 +69,12 @@ public: //
 	static Node loadNode(std::string);
 	static void addNode(Node);
 
+	//Write on screen
+	static void writeOnScreen(std::string,glm::vec3,glm::vec2,float);
+
+	//Timer
+	static void startTimer(void (*func)(int),int);
+
 ///////////
 private: //
 ///////////
@@ -79,7 +86,6 @@ private: //
 	// Functions
 	static void displayCallback();
 	static void execZBufferSetup();
-	static void updateFPS(int);
 
 	// Internal vars:
 	static bool initFlag;

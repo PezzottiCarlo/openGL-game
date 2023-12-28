@@ -46,6 +46,8 @@ int matrix[8][8] = {
 	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 6 , 5 , 6 , 6 , 6 , 6 , 6 }
 };
+int width = 640;
+int height = 480;
 
 
 
@@ -168,22 +170,35 @@ void getPickedObject(Node* n,bool mousePressed) {
 	}
 }
 
+void handleWindowResize(int w, int h) {
+	width = w;
+	height = h;
+	Engine::reshapeCallback(w, h);
+}
+
+int fc;
+int fps;
+void updateFPS(int value) {
+	fps = fc;
+	fc = 0;
+	Engine::startTimer(updateFPS, 1000);
+}
+
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
-	Engine::init(argc, argv, "RushHour Game", 640, 480);
+	Engine::init(argc, argv, "RushHour Game", width, height);
 	loadCameras();
 	loadScene("..\\scene\\scene.ovo");
 	loadCars();
 	Engine::setKeyboardCallback(keyboardCallback);
+	Engine::setWindowResizeHandler(handleWindowResize);
 	Engine::setSpecialCallback(specialCallback);
 	Engine::setObjectPickedCallback(getPickedObject);
 	Engine::setBackgroundColor(0.01f, 0.01f, 0.3f, 1.0f);
 	Engine::executeTests();
 	Engine::start();
+	Engine::startTimer(updateFPS, 1000);
 }
-
-
-
 
 
 
@@ -193,9 +208,6 @@ void init(int argc, char* argv[]) {
  * @param argv array containing up to argc passed arguments
  * @return error code (0 on success, error code otherwise)
  */
-
-
-
 int main(int argc, char* argv[])
 {
 	init(argc,argv);
@@ -205,6 +217,12 @@ int main(int argc, char* argv[])
 		if (pickedObject != nullptr) {
 			makeObjectBlink(pickedObject);
 		}
+
+
+		Engine::writeOnScreen("Rush Hour Game", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f):
+		Engine::refreshAndSwapBuffers();
+		fc++;
 	}
 
 	// Free engine
