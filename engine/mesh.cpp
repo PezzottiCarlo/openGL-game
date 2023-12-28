@@ -39,6 +39,7 @@
 Mesh::Mesh(std::string name, std::shared_ptr<Material> material) : Node(name) {
     this->material = material;
     this->vertices;
+    setColorBasedOnId(getId());
 }
 
 //destructor
@@ -73,7 +74,7 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     glBegin(GL_TRIANGLES);
     //render with the scale
     for (Vertex* v : vertices.at(lod)) {
-        glColor3f(1.0f, 0.0f, 0.0f);
+        
         glNormal3fv(glm::value_ptr(v->getNormal()*getScale()));
         glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()*getScale()));
         glVertex3fv(glm::value_ptr(v->getPosition()*getScale()));
@@ -88,4 +89,13 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
 
 std::shared_ptr<Material> Mesh::getMaterial() {
 	return material;
+}
+
+void Mesh::setColorBasedOnId(int id)
+{
+    float r = (float)((id >> 16) & 0xFF) / 255.0f;
+    float g = (float)((id >> 8) & 0xFF) / 255.0f;
+    float b = (float)((id >> 0) & 0xFF) / 255.0f;
+    glm::vec4 color = glm::vec4(r, g, b, 1.0f);
+    material->setAmbient(color);
 }

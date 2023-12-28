@@ -18,6 +18,7 @@
 // C/C++:
 #include <iostream>
 #include <stdio.h>
+#include <functional>
 
 // GLM: 
 #include <glm/glm.hpp>
@@ -239,7 +240,7 @@ void LIB_API Engine::displayCallback()
 
     glRasterPos2f(1.0f, 8.0f);
     glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
-
+    
 
     // Re-enable lighting
     glEnable(GL_LIGHTING);
@@ -248,7 +249,7 @@ void LIB_API Engine::displayCallback()
     fpsCounter++;
 
     // Force rendering refresh
-    //glutPostWindowRedisplay(windowId);
+    glutPostWindowRedisplay(windowId);
     // Swap this context's buffer:
     glutSwapBuffers();
 }
@@ -309,6 +310,33 @@ void LIB_API Engine::addNode(Node node)
  */
 void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, int y)) {
     glutKeyboardFunc(func);
+}
+
+
+void LIB_API Engine::setMouseCallback(void (*func)(Node* n)) {
+    static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
+        // Disable lighting and texture mapping
+        //TO-DO: da fixare
+        glDisable(GL_LIGHTING);
+        glDisable(GL_TEXTURE_2D);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
+        unsigned char pixel[4];
+        glReadPixels(x, glutGet(GLUT_WINDOW_HEIGHT) - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_TEXTURE_2D);
+        int id = (pixel[0] << 16) | (pixel[1] << 8) | (pixel[2] << 0);
+        std::cout << "ID: " << id << std::endl;
+        Node* n = list.getObjectById(id);
+        if (n != nullptr) {
+            func(n);
+        }
+    };
+
+    // Set up the mouse callback
+    glutPassiveMotionFunc([](int x, int y) {
+        lambdaWrapper(x, y);
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

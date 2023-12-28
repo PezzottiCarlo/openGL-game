@@ -53,6 +53,8 @@ public:
     // Get material
     std::shared_ptr<Material> getMaterial();
 
+    void setColorBasedOnId(int);
+
     // Test method
     static int test();
 

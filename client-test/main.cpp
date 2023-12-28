@@ -120,8 +120,6 @@ void loadCars()
 				default:
 					break;
 			}
-
-
 			car.getChildAt(0)->setTransform(m);
 			car.getChildAt(0)->setScale(2.2f);
 			Engine::addNode(car);
@@ -135,6 +133,10 @@ void init() {
 	loadCameras();
 	loadScene("..\\scene\\scene.ovo");
 	loadCars();
+}
+
+void getPickedObject(Node* n) {
+	std::cout << "Picked object: " << n->getName() << std::endl;
 }
 
 
@@ -154,6 +156,7 @@ int main(int argc, char* argv[])
 	// Setup callbacks 
 	Engine::setKeyboardCallback(keyboardCallback);
 	Engine::setSpecialCallback(specialCallback);
+	Engine::setMouseCallback(getPickedObject);
 	// Set background color
 	Engine::setBackgroundColor(0.01f, 0.01f, 0.3f, 1.0f);
 

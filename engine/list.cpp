@@ -11,6 +11,7 @@
 void LIB_API List::addEntry(Node* root) {
     //don't get the root
     Node* node = root->getChildAt(0);
+
     int children = root->getNumberOfChildren();
     //insert nodes to list
     for (int i = 1; i <= children; i++) {
@@ -80,4 +81,14 @@ Node LIB_API* List::getObject(int i) {
 
 int LIB_API List::size() {
     return objectsList.size();
+}
+
+Node LIB_API* List::getObjectById(int id) {
+	std::list<Node*>::iterator it;
+    for (it = objectsList.begin(); it != objectsList.end(); it++)
+    {
+		if ((*it)->getId() == id)
+			return (*it);
+	}
+	return NULL;
 }
