@@ -209,7 +209,6 @@ void LIB_API Engine::reshapeCallback(int width, int height)
 void LIB_API Engine::displayCallback()
 {
     Engine::clearWindow();
-
     //////
     // 3D:
 
@@ -221,6 +220,7 @@ void LIB_API Engine::displayCallback()
     // Enable Z buffer if it's required
     if (useZBuffer) execZBufferSetup();
 
+    //disable texturing
     glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
@@ -315,26 +315,32 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
 
 void LIB_API Engine::setMouseCallback(void (*func)(Node* n)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
-        // Disable lighting and texture mapping
-        //TO-DO: da fixare
         glDisable(GL_LIGHTING);
         glDisable(GL_TEXTURE_2D);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
+        glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadMatrixf(glm::value_ptr(perspective));
+        glMatrixMode(GL_MODELVIEW);
+        glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
+
+        list.render(cameras.at(activeCamera)->getInverseCameraMat(), (void*)true);
+
         unsigned char pixel[4];
         glReadPixels(x, glutGet(GLUT_WINDOW_HEIGHT) - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+
         glEnable(GL_LIGHTING);
         glEnable(GL_TEXTURE_2D);
+
         int id = (pixel[0] << 16) | (pixel[1] << 8) | (pixel[2] << 0);
-        std::cout << "ID: " << id << std::endl;
         Node* n = list.getObjectById(id);
         if (n != nullptr) {
             func(n);
         }
     };
 
-    // Set up the mouse callback
     glutPassiveMotionFunc([](int x, int y) {
+        Engine::clearWindow();
         lambdaWrapper(x, y);
     });
 }

@@ -83,11 +83,10 @@ bool LIB_API Material::render(glm::mat4 matrix, void* ptr) {
 
 	if (texture != nullptr) 
 		texture->render(matrix, ptr);
-	
 
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(emission));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glm::value_ptr(ambient));
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, glm::value_ptr(emission));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glm::value_ptr(diffuse));
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(specular));
     return true;

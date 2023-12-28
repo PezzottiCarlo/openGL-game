@@ -39,7 +39,6 @@
 Mesh::Mesh(std::string name, std::shared_ptr<Material> material) : Node(name) {
     this->material = material;
     this->vertices;
-    setColorBasedOnId(getId());
 }
 
 //destructor
@@ -62,27 +61,20 @@ std::vector<Vertex*> Mesh::getVertices(int lod) {
 }
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
+
     if (material != nullptr) material->render(matrix, ptr);
     
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
-    //Vertex rendering Counter Clock-Wise
-
-    //enable texture
-    glEnable(GL_TEXTURE_2D);
-
+    
     glFrontFace(GL_CCW);
     glBegin(GL_TRIANGLES);
     //render with the scale
     for (Vertex* v : vertices.at(lod)) {
-        
+        glColor4fv(glm::value_ptr(getColorBasedOnId(getId())));
         glNormal3fv(glm::value_ptr(v->getNormal()*getScale()));
         glTexCoord2fv(glm::value_ptr(v->getTextureCoordinates()*getScale()));
         glVertex3fv(glm::value_ptr(v->getPosition()*getScale()));
     }
-
-    //disable texture
-    glDisable(GL_TEXTURE_2D);
-
     glEnd();
     return true;
 }
@@ -91,11 +83,11 @@ std::shared_ptr<Material> Mesh::getMaterial() {
 	return material;
 }
 
-void Mesh::setColorBasedOnId(int id)
+glm::vec4 Mesh::getColorBasedOnId(int id)
 {
     float r = (float)((id >> 16) & 0xFF) / 255.0f;
     float g = (float)((id >> 8) & 0xFF) / 255.0f;
     float b = (float)((id >> 0) & 0xFF) / 255.0f;
     glm::vec4 color = glm::vec4(r, g, b, 1.0f);
-    material->setAmbient(color);
+    return color;
 }
