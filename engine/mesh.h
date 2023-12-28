@@ -39,7 +39,7 @@ class LIB_API Mesh : public Node {
 public: //
 //////////
     // Constructor with a name, material, and texture
-    Mesh(std::string name, std::shared_ptr<Material> material);
+    Mesh(std::string name, Material material);
 
     // Destructor
     ~Mesh();
@@ -51,7 +51,7 @@ public:
     // Set LOD
     virtual bool render(glm::mat4, void*) override;
     // Get material
-    std::shared_ptr<Material> getMaterial();
+    Material* getMaterial();
 
     glm::vec4 getColorBasedOnId(int);
 
@@ -67,6 +67,6 @@ protected:
 private: //
 ///////////
     // Mesh-specific members
-    std::shared_ptr<Material> material;
+    Material material;
     std::vector<std::vector<Vertex*>> vertices;
 };

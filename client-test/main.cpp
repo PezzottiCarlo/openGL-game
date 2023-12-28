@@ -151,18 +151,21 @@ void makeObjectBlink(Node* obj) {
 	((Mesh*)obj)->getMaterial()->setEmission(glm::vec4(blinkStep, blinkStep, blinkStep, 1.0f));
 }
 
-void getPickedObject(Node* n) {
-	if (n == nullptr) {
-		//when mouse is released
+void getPickedObject(Node* n,bool mousePressed) {
+	if (!mousePressed && pickedObject != nullptr) {
 		((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
 		pickedObject = nullptr;
 		blinkStep = 0.0f;
 		blink = false;
 		return;
 	}
-	std::cout << "Object picked: " << n->getName() << " with id: " << n->getId() << std::endl;
-	lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
-	pickedObject = n;
+	else {
+		if (n != nullptr) {
+			std::cout << "Object picked: " << n->getName() << " with id: " << n->getId() << std::endl;
+			lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
+			pickedObject = n;
+		}
+	}
 }
 
 void init(int argc, char* argv[]) {

@@ -6,6 +6,17 @@
 #include "node.h"
 
 
+Material::Material()
+{
+	Object::setId(Object::getNextId());
+	Object::setName("default");
+	this->setEmission(glm::vec4(0.0));
+	this->setAmbient(glm::vec4(0.0));
+	this->setDiffuse(glm::vec4(0.0));
+	this->setSpecular(glm::vec4(0.0));
+	this->setShininess(0.0);
+}
+
 Material::Material(const std::string name, glm::vec4 _emission, glm::vec4 _ambient, glm::vec4 _diffuse, glm::vec4 _specular, float _shininess) {
 	Object::setId(Object::getNextId());
 	Object::setName(name);

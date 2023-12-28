@@ -8,7 +8,7 @@ int Mesh::test() {
 
 	Vertex vertex(glm::vec3(1.0), glm::vec3(1.0));
 
-	Mesh mesh("TestMesh", std::make_shared<Material>(material));
+	Mesh mesh("TestMesh", material);
 	
 	// test get and add vertices
 

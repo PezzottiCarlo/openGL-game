@@ -179,12 +179,12 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 
 		Mesh* thisMesh;
 		if (materialName_str != "[none]") {
-			std::shared_ptr<Material> material(materials.find(materialName_str)->second);
+			Material material = *(materials.find(materialName_str)->second);
 			thisMesh = new Mesh(nodeName_str, material);
 			thisMesh->setTransform(matrix);
 		}
 		else {
-			thisMesh = new Mesh(nodeName_str, nullptr);
+			thisMesh = new Mesh(nodeName_str, Material());
 			thisMesh->setTransform(matrix);
 		}
 
@@ -266,10 +266,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		}
 
 
-		std::shared_ptr<Material> smaterial(materials.find("shadow_material")->second);
-		FakeShadow* shadow = new FakeShadow(nodeName_str + "_shadow", smaterial, thisMesh);
-
-
 		// Nr. of LODs:
 		unsigned int LODs;
 		memcpy(&LODs, data + position, sizeof(unsigned int));
@@ -339,7 +335,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				for (int i = 0; i < 3; i++)
 				{
 					thisMesh->addVertex(tempVertices.at(face[i]), l);
-					shadow->addVertex(tempVertices.at(face[i]), l);
 				}
 			}
 
@@ -354,8 +349,6 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				thisMesh->addChild(childNode);
 			}
 
-		shadow->setCastShadow(true);
-		thisMesh->addChild(shadow);
 
 		// Done:
 		return thisMesh;

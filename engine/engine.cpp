@@ -313,12 +313,11 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
 }
 
 
-void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n)) {
+void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n,bool mousePressed)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
-        if (x == -1 && y == -1) {
-            return func(nullptr);
-		}
-
+        if (x == -1 && y == -1) 
+			return func(nullptr,false);
+		
         glDisable(GL_LIGHTING);
         glDisable(GL_TEXTURE_2D);
         glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
@@ -339,8 +338,9 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n)) {
         int id = (pixel[0] << 16) | (pixel[1] << 8) | (pixel[2] << 0);
         Node* n = list.getObjectById(id);
         if (n != nullptr) {
-            func(n);
+            return func(n,true);
         }
+        return func(nullptr,false);
     };
 
     //call lambdaWrapper when mouse left button is pressed
@@ -350,7 +350,7 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n)) {
             lambdaWrapper(x, y);
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
-            lambdaWrapper(-1,-1);
+            lambdaWrapper(-1, -1);
 		}
     });
 }

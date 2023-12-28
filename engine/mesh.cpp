@@ -36,7 +36,7 @@
 ////////////////////////
 
 //constructor
-Mesh::Mesh(std::string name, std::shared_ptr<Material> material) : Node(name) {
+Mesh::Mesh(std::string name, Material material) : Node(name) {
     this->material = material;
     this->vertices;
 }
@@ -62,10 +62,8 @@ std::vector<Vertex*> Mesh::getVertices(int lod) {
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
 
-    if (material != nullptr) material->render(matrix, ptr);
-    
+    material.render(matrix, ptr);
     glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
-    
     glFrontFace(GL_CCW);
     glBegin(GL_TRIANGLES);
     //render with the scale
@@ -79,8 +77,8 @@ bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {
     return true;
 }
 
-std::shared_ptr<Material> Mesh::getMaterial() {
-	return material;
+Material* Mesh::getMaterial() {
+	return &material;
 }
 
 glm::vec4 Mesh::getColorBasedOnId(int id)
