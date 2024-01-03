@@ -11,7 +11,7 @@
 
 #include "lib.h"
 #include "list.h"
-#include "ovoreader.h"
+#include "ovoReader.h"
 #include "camera.h"
 
 
