@@ -116,7 +116,12 @@ void loadCameras() {
 	Engine::initCameras(2);
 	Engine::loadCamera(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0, 0);
 	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
+	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
 	Engine::setActiveCamera(1);
+}
+
+void rotateCamera() {
+	//Camera* c = Engine
 }
 
 void loadCars(){
