@@ -52,6 +52,7 @@ int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 
 int width = 640;
 int height = 480;
+Camera* cameras[3];
 
 // Fps calculation
 int fc;
@@ -113,11 +114,23 @@ void loadScene(std::string pathName) {
 }
 
 void loadCameras() {
-	Engine::initCameras(2);
-	Engine::loadCamera(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0, 0);
-	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
-	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
-	Engine::setActiveCamera(1);
+
+	Camera* c1 = new Camera("camera1");
+	c1->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
+	Camera* c2 = new Camera("camera2");
+	c2->setUserTransform(0, 15.0f, 0, -90.0f, 0, -90.0f);
+	Camera* c3 = new Camera("camera3");
+	c3->setUserTransform(0, 15.0f, 5.0f, 0, -75.0f, 0);
+
+	Engine::addCamera(c1);
+	Engine::addCamera(c2);
+	Engine::addCamera(c3);
+
+	cameras[0] = c1;
+	cameras[1] = c2;
+	cameras[2] = c3;
+
+	Engine::setActiveCamera(0);
 }
 
 void rotateCamera() {

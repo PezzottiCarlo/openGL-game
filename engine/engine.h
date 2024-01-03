@@ -15,20 +15,20 @@
 #include "camera.h"
 
 
-/////////////
-// CLASSES //
-/////////////
+ /////////////
+ // CLASSES //
+ /////////////
 
-/**
- * @brief Simple static class example.
- */
-class LIB_API Engine{
+ /**
+  * @brief Simple static class example.
+  */
+class LIB_API Engine {
 
-//////////
+	//////////
 public: //
-//////////
+	//////////
 
-	// Init/free:
+		// Init/free:
 	static bool init(int, char**, const char*, int, int);
 	static bool free();
 
@@ -52,8 +52,8 @@ public: //
 	static void setSpecialCallback(void (*func)(int, int, int));
 
 	//Mouse handling
-	static void setObjectPickedCallback(void (*func)(Node*,bool));
-	
+	static void setObjectPickedCallback(void (*func)(Node*, bool));
+
 
 	//CLIENT FUNCTIONS
 
@@ -61,25 +61,24 @@ public: //
 	static void loadScene(std::string);
 
 	//Cameras
-	static void initCameras(int);
-	static void loadCamera(float, float, float, float, float, float, int);
 	static void setActiveCamera(int);
+	static void addCamera(Camera*);
 
 	//node
 	static Node loadNode(std::string);
 	static void addNode(Node);
 
 	//Write on screen
-	static void writeOnScreen(std::string,glm::vec3,glm::vec2,float);
+	static void writeOnScreen(std::string, glm::vec3, glm::vec2, float);
 
 	//Timer
-	static void startTimer(void (*func)(int),int);
+	static void startTimer(void (*func)(int), int);
 
-///////////
+	///////////
 private: //
-///////////
+	///////////
 
-	// Const/dest (as private to prevent instantiation):
+		// Const/dest (as private to prevent instantiation):
 	Engine() {}
 	~Engine() {}
 

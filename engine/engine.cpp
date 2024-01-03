@@ -7,11 +7,11 @@
  */
 
 
-//////////////
-// #INCLUDE //
-//////////////
+ //////////////
+ // #INCLUDE //
+ //////////////
 
-// Library main include:
+ // Library main include:
 #include "engine.h"
 #include "vertex.h"
 
@@ -105,7 +105,7 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Initialization method. Call this before any other Eureka function.
- * @param argc argument count 
+ * @param argc argument count
  * @param argv array containing arguments
  * @param title FreeGlut window title
  * @param width window width
@@ -118,19 +118,20 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 
 
 
-bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
+bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height) {
 
 
     if (!initFlag) {
         FreeImage_Initialise();
-        
+
         // Init context:
         if (useZBuffer) {
             glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-        } else {
+        }
+        else {
             glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
         }
-        
+
         glutInitWindowPosition(100, 100);
         glutInitWindowSize(width, height);
 
@@ -142,7 +143,7 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
 
         // Enable Z buffer if it's required
         if (useZBuffer) execZBufferSetup();
-        
+
         // Create window
         windowId = glutCreateWindow(title);
 
@@ -171,7 +172,7 @@ bool LIB_API Engine::free()
 {
     // Close open connections or free allocated memory
     mainLoopRunning = false;
-    
+
     // Release bitmap and FreeImage:
     FreeImage_DeInitialise();
 
@@ -218,9 +219,9 @@ void LIB_API Engine::displayCallback()
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
     // Force rendering refresh
-    
+
     // Swap this context's buffer:
-    
+
 }
 
 void LIB_API Engine::loadScene(std::string pathName)
@@ -229,28 +230,13 @@ void LIB_API Engine::loadScene(std::string pathName)
     list.addEntry(root);
 }
 
-void LIB_API Engine::initCameras(int n)
-{
-    for (int i = 0; i < n; i++) {
-        std::string str_camera = "camera";
-        str_camera += std::to_string(i);
-        Camera* camera = new Camera(str_camera);
-        cameras.push_back(camera);
-	}
-    activeCamera = 0;
-}
-
-void LIB_API Engine::loadCamera(float x, float y, float z, float rX, float rY, float rZ, int n)
-{
-    cameras.at(n)->setUserTransform(x, y, z, rX, rY, rZ);
+void LIB_API  Engine::addCamera(Camera* camera) {
+    cameras.push_back(camera);
 }
 
 void LIB_API Engine::setActiveCamera(int num)
 {
-    if (num < cameras.size())
-        activeCamera = num;
-    else
-        activeCamera = 0;
+    activeCamera = num;
 }
 
 Node LIB_API Engine::loadNode(std::string pathName)
@@ -306,11 +292,11 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
 }
 
 
-void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n,bool mousePressed)) {
+void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePressed)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
-        if (x == -1 && y == -1) 
-			return func(nullptr,false);
-		
+        if (x == -1 && y == -1)
+            return func(nullptr, false);
+
         glDisable(GL_LIGHTING);
         glDisable(GL_TEXTURE_2D);
         glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
@@ -331,10 +317,10 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n,bool mousePres
         int id = (pixel[0] << 16) | (pixel[1] << 8) | (pixel[2] << 0);
         Node* n = list.getObjectById(id);
         if (n != nullptr) {
-            return func(n,true);
+            return func(n, true);
         }
-        return func(nullptr,false);
-    };
+        return func(nullptr, false);
+        };
 
     //call lambdaWrapper when mouse left button is pressed
     glutMouseFunc([](int button, int state, int x, int y) {
@@ -344,8 +330,8 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n,bool mousePres
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
             lambdaWrapper(-1, -1);
-		}
-    });
+        }
+        });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -364,13 +350,13 @@ void LIB_API Engine::setSpecialCallback(void (*func)(int key, int x, int y)) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * This function sets the frames background color. 
+ * This function sets the frames background color.
  * @param r red rgba color component
  * @param g green rgba color component
  * @param b blue rgba color component
  * @param a alpha rgba color component
  */
-void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {     
+void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {
     bgR = r;
     bgG = g;
     bgB = b;
@@ -397,7 +383,7 @@ bool LIB_API Engine::isRunning() {
  */
 void LIB_API Engine::clearWindow() {
     // RGBA components
-    glClearColor(bgR, bgG, bgB, bgA); 
+    glClearColor(bgR, bgG, bgB, bgA);
     if (useZBuffer) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
@@ -444,7 +430,7 @@ void LIB_API Engine::postWindowRedisplay() {
 /**
  * This function sets up the z-buffer.
  */
-void LIB_API Engine::execZBufferSetup(){
+void LIB_API Engine::execZBufferSetup() {
     glEnable(GL_DEPTH_TEST);
     glClearDepth(1.0f);
     glDepthFunc(GL_LESS);
@@ -467,5 +453,3 @@ void LIB_API Engine::refreshAndSwapBuffers()
     glutPostWindowRedisplay(windowId);
     glutSwapBuffers();
 }
-
-
