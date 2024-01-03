@@ -18,6 +18,7 @@
 
 // C/C++:
 #include <iostream>
+#include <fstream>
 #include <glm/gtx/string_cast.hpp>
 
 // Constants:
@@ -41,19 +42,9 @@ Playing field where:
 
 std::pair<int, unsigned int> matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
 
-int initialMatrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
-	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-	{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
-	{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 3 , 0 , 0 , 4 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
-	{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
-};
-
 int width = 640;
 int height = 480;
+int gameDifficulty = -1;
 Camera* cameras[3];
 
 // Fps calculation
@@ -118,6 +109,75 @@ void keyboardCallback(unsigned char key, int x, int y) {
 // MAIN //
 //////////
 
+std::vector<std::vector<int>> loadGameDifficulty() {
+	std::string text;
+	int diff = 1;
+
+	// Read from the text file
+	std::ifstream prefsFile(".." + getSeparator() + "preferences" + getSeparator() + "preferences.json");
+
+	// Use a while loop together with the getline() function to read the file line by line
+	while (std::getline(prefsFile, text)) {
+		// Retrieve game difficulty
+		if (text.substr(0, 14) == "\t\"difficulty\":") {
+			diff = text[15] - '0';
+			break;
+		}
+	}
+
+	// Update global difficulty
+	gameDifficulty = diff;
+
+	// Close the file
+	prefsFile.close();
+
+	// Set initialMatrix
+	std::vector<std::vector<int>> initialMatrix;
+
+	switch (gameDifficulty) {
+		case 2:
+			initialMatrix = {
+				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
+				{ 6 , 1 , 0 , 5 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 1 , 6 },
+				{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
+				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+			};
+			break;
+
+		case 3:
+			initialMatrix = {
+				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
+				{ 6 , 0 , 1 , 5 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 3 , 0 , 0 , 4 , 0 , 0 , 6 },
+				{ 6 , 0 , 4 , 0 , 0 , 0 , 1 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+			};
+			break;
+
+		default:
+			initialMatrix = {
+				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
+				{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
+				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+			};
+			break;
+	}
+
+	return initialMatrix;
+}
+
 void loadScene(std::string pathName) {
 	Engine::loadScene(pathName);
 }
@@ -180,6 +240,10 @@ int* getCarDataFromId(unsigned int id) {
 }
 
 void loadCars(){
+
+	// Populate initialMatrix
+	std::vector<std::vector<int>> initialMatrix = loadGameDifficulty();
+
 	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
 		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
 
@@ -323,6 +387,23 @@ int main(int argc, char* argv[])
 {
 	init(argc,argv);
 
+	std::string difficultyStr;
+
+	switch (gameDifficulty) {
+		case 1:
+			difficultyStr = "Easy";
+			break;
+		case 2:
+			difficultyStr = "Medium";
+			break;
+		case 3:
+			difficultyStr = "Hard";
+			break;
+		default:
+			difficultyStr = "Undefined";
+			break;
+	}
+
 	while (Engine::isRunning()) {
 		Engine::update();
 		if (pickedObject != nullptr) {
@@ -333,6 +414,7 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
 		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 45.0f), 10.0f);
 		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 60.0f), 10.0f);
+		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 75.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
 
 		rotateCamera();
