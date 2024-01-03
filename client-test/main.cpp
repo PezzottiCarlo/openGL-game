@@ -124,10 +124,10 @@ void loadCars(){
 
 			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE - 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
 
-			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car1.ovo";
+			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car0.ovo";
 			Node car = Engine::loadNode(path);
 			glm::mat4 m = glm::mat4(1.0f);
-			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (7-i)),0.5f, -8.0f + (2.2f * j)));
+			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (PLAYGROUND_SIZE + 1 - i)),0.5f, -8.0f + (2.2f * j)));
 
 			switch (matrix[i][j])
 			{
@@ -155,7 +155,7 @@ void loadCars(){
 
 void makeObjectBlink(Node* obj) {
 
-	if (obj->getName().length() < 3 || obj->getName().substr(0, 3) != "Car") return;
+	if (obj->getName().substr(0, 3) != "Car" || obj->getName().substr(0, 9) != "Limousine") return;
 
 	if (blink) {
 		blinkStep += step;
@@ -167,6 +167,7 @@ void makeObjectBlink(Node* obj) {
 		if (blinkStep < 0.0f) 
 			blink = true;
 	}
+
 	((Mesh*)obj)->getMaterial()->setEmission(glm::vec4(blinkStep, blinkStep, blinkStep, 1.0f));
 }
 
