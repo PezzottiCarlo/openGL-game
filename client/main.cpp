@@ -201,13 +201,13 @@ void loadCars(){
 					car.getChildAt(0)->setScale(1.1f);
 					break;
 				case 3:
-					m = glm::rotate(m, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(3.3f, 0.0f, 0.6f));
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
 					car.getChildAt(0)->setScale(1.0f);
 					break;
 				case 4:
-					m = glm::rotate(m, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(0.35f, 0.0f, -0.1f));
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
 					car.getChildAt(0)->setScale(1.0f);
 					break;
 				default:
