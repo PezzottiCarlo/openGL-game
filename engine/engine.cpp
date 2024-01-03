@@ -7,17 +7,18 @@
  */
 
 
-//////////////
-// #INCLUDE //
-//////////////
+ //////////////
+ // #INCLUDE //
+ //////////////
 
-// Library main include:
+ // Library main include:
 #include "engine.h"
 #include "vertex.h"
 
 // C/C++:
 #include <iostream>
 #include <stdio.h>
+#include <functional>
 
 // GLM: 
 #include <glm/glm.hpp>
@@ -34,9 +35,7 @@
 // Own header files:
 #include "mesh.h"
 #include "light.h"
-#include "ovoReader.h"
 #include "node.h"
-#include "list.h"
 #include "engine-tests-runner.h"
 
 
@@ -52,9 +51,12 @@ float Engine::bgG = 0.0f;
 float Engine::bgB = 0.0f;
 float Engine::bgA = 0.0f;
 int Engine::windowId = 0;
+std::vector<Camera*> Engine::cameras = std::vector<Camera*>();
+int Engine::activeCamera = 0;
 
-int fps = 0;
-int fpsCounter = 0;
+
+OvoReader Engine::reader = OvoReader();
+List Engine::list;
 
 glm::mat4 perspective;
 glm::mat4 ortho;
@@ -103,7 +105,7 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Initialization method. Call this before any other Eureka function.
- * @param argc argument count 
+ * @param argc argument count
  * @param argv array containing arguments
  * @param title FreeGlut window title
  * @param width window width
@@ -114,21 +116,22 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  // FOR TESTING //
  /////////////////
 
-List list;
 
-bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height){
+
+bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height) {
 
 
     if (!initFlag) {
         FreeImage_Initialise();
-        
+
         // Init context:
         if (useZBuffer) {
             glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-        } else {
+        }
+        else {
             glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
         }
-        
+
         glutInitWindowPosition(100, 100);
         glutInitWindowSize(width, height);
 
@@ -140,19 +143,13 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
 
         // Enable Z buffer if it's required
         if (useZBuffer) execZBufferSetup();
-        
+
         // Create window
         windowId = glutCreateWindow(title);
 
 
-        OvoReader reader = OvoReader();
-        Node* root = reader.readFile("..\\scene\\scene.ovo");
-        list.addEntry(root);
-
-
         // Set callback functions
         glutDisplayFunc(displayCallback);
-        glutReshapeFunc(reshapeCallback);
         //Enable Z-Buffer
         glEnable(GL_DEPTH_TEST);
         //Enable face culling
@@ -162,9 +159,6 @@ bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, 
         //enable texture
         glEnable(GL_TEXTURE_2D);
         glEnable(GL_NORMALIZE);
-
-        // Start FPS timer 
-        glutTimerFunc(1000, updateFPS, 0);
     }
     return initFlag;
 }
@@ -178,7 +172,7 @@ bool LIB_API Engine::free()
 {
     // Close open connections or free allocated memory
     mainLoopRunning = false;
-    
+
     // Release bitmap and FreeImage:
     FreeImage_DeInitialise();
 
@@ -196,7 +190,7 @@ void LIB_API Engine::reshapeCallback(int width, int height)
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     //create a perspective matrix with a 45 degree field of view and a near and far plane
-    perspective = glm::perspective(glm::radians(80.0f), (float)width / (float)height, 1.0f, 10000.0f);
+    perspective = glm::perspective(glm::radians(80.0f), (float)width / (float)height, 1.0f, 1000.0f);
     ortho = glm::ortho(0.0f, (float)width, 0.0f, (float)height, 1.0f, -1.0f);
     glLoadMatrixf(glm::value_ptr(perspective));
     glMatrixMode(GL_MODELVIEW);
@@ -206,11 +200,9 @@ void LIB_API Engine::reshapeCallback(int width, int height)
 /**
  * This is the main rendering routine automatically invoked by FreeGLUT.
  */
-float angle = 0.0f;
 void LIB_API Engine::displayCallback()
 {
     Engine::clearWindow();
-
     //////
     // 3D:
 
@@ -222,56 +214,68 @@ void LIB_API Engine::displayCallback()
     // Enable Z buffer if it's required
     if (useZBuffer) execZBufferSetup();
 
-    if (angle > 360.0f) angle -= 360.0f;
-    angle += 0.01f; // Adjust the rotation speed as needed
-    
+    //disable texturing
+    glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
+    list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 
-    // create a matrix called translation for the camera
-    glm::mat4 translation = glm::mat4(1.0f);
-    //make the camera go back 5 units
-    translation = glm::translate(translation, glm::vec3(0.0f, -8.0f, -20.0f));
-    //make the object at the center of the world
-    
-    // Compute model matrix:
-    glm::mat4 f = translation * glm::rotate(glm::mat4(1.0f), glm::radians(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    glLoadMatrixf(glm::value_ptr(f));
+    // Force rendering refresh
 
-    list.render(f, nullptr);
+    // Swap this context's buffer:
 
+}
+
+void LIB_API Engine::loadScene(std::string pathName)
+{
+    Node* root = reader.readFile(pathName.c_str());
+    list.addEntry(root);
+}
+
+void LIB_API  Engine::addCamera(Camera* camera) {
+    cameras.push_back(camera);
+}
+
+void LIB_API Engine::setActiveCamera(int num)
+{
+    activeCamera = num;
+}
+
+Node LIB_API Engine::loadNode(std::string pathName)
+{
+    Node* _car = reader.readFile(pathName.c_str());
+    Node car = *_car;
+    return car;
+}
+
+void LIB_API Engine::addNode(Node node)
+{
+    Node* _node = new Node(node);
+    list.addEntry(_node);
+}
+
+void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, float fontSize)
+{
     // 2D
     // Set orthographic projection:
     glMatrixMode(GL_PROJECTION);
     glLoadMatrixf(glm::value_ptr(ortho));
     glMatrixMode(GL_MODELVIEW);
-    glLoadMatrixf(glm::value_ptr(glm::mat4(10.0f)));
+    glLoadMatrixf(glm::value_ptr(glm::mat4(1.0f)));
 
     // Write 2D text
     glDisable(GL_LIGHTING);
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    char text[64];
-    sprintf(text, "Current FPS: %d", fps);
-
-    glRasterPos2f(1.0f, 8.0f);
-    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text);
-
+    glColor3f(color.x, color.y, color.z);
+    glRasterPos2f(coord.x, coord.y);
+    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
 
     // Re-enable lighting
     glEnable(GL_LIGHTING);
-
-    // Increment fps
-    fpsCounter++;
-
-    // Force rendering refresh
-    glutPostWindowRedisplay(windowId);
-    //angle += .0005f;
-    // Swap this context's buffer:
-    glutSwapBuffers();
 }
 
-void LIB_API loadScene(std::string scene) {
-    
+void LIB_API Engine::startTimer(void(*func)(int), int time)
+{
+    glutTimerFunc(time, func, 0);
 }
+
 
 
 
@@ -285,6 +289,49 @@ void LIB_API loadScene(std::string scene) {
  */
 void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, int y)) {
     glutKeyboardFunc(func);
+}
+
+
+void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePressed)) {
+    static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
+        if (x == -1 && y == -1)
+            return func(nullptr, false);
+
+        glDisable(GL_LIGHTING);
+        glDisable(GL_TEXTURE_2D);
+        glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadMatrixf(glm::value_ptr(perspective));
+        glMatrixMode(GL_MODELVIEW);
+        glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
+
+        list.render(cameras.at(activeCamera)->getInverseCameraMat(), (void*)true);
+
+        unsigned char pixel[4];
+        glReadPixels(x, glutGet(GLUT_WINDOW_HEIGHT) - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+
+        glEnable(GL_LIGHTING);
+        glEnable(GL_TEXTURE_2D);
+
+        int id = (pixel[0] << 16) | (pixel[1] << 8) | (pixel[2] << 0);
+        Node* n = list.getObjectById(id);
+        if (n != nullptr) {
+            return func(n, true);
+        }
+        return func(nullptr, false);
+        };
+
+    //call lambdaWrapper when mouse left button is pressed
+    glutMouseFunc([](int button, int state, int x, int y) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            Engine::clearWindow();
+            lambdaWrapper(x, y);
+        }
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+            lambdaWrapper(-1, -1);
+        }
+        });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -303,17 +350,22 @@ void LIB_API Engine::setSpecialCallback(void (*func)(int key, int x, int y)) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * This function sets the frames background color. 
+ * This function sets the frames background color.
  * @param r red rgba color component
  * @param g green rgba color component
  * @param b blue rgba color component
  * @param a alpha rgba color component
  */
-void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {     
+void LIB_API Engine::setBackgroundColor(float r, float g, float b, float a) {
     bgR = r;
     bgG = g;
     bgB = b;
     bgA = a;
+}
+
+void Engine::setWindowResizeHandler(void(*func)(int, int))
+{
+    glutReshapeFunc(func);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -331,7 +383,7 @@ bool LIB_API Engine::isRunning() {
  */
 void LIB_API Engine::clearWindow() {
     // RGBA components
-    glClearColor(bgR, bgG, bgB, bgA); 
+    glClearColor(bgR, bgG, bgB, bgA);
     if (useZBuffer) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
@@ -378,7 +430,7 @@ void LIB_API Engine::postWindowRedisplay() {
 /**
  * This function sets up the z-buffer.
  */
-void LIB_API Engine::execZBufferSetup(){
+void LIB_API Engine::execZBufferSetup() {
     glEnable(GL_DEPTH_TEST);
     glClearDepth(1.0f);
     glDepthFunc(GL_LESS);
@@ -392,12 +444,12 @@ void LIB_API Engine::update() {
     glutMainLoopEvent();
 }
 
-void Engine::updateFPS(int value) {
-    fps = fpsCounter;
-    fpsCounter = 0;
-    glutTimerFunc(1000, updateFPS, 0);
-}
-
 void LIB_API Engine::executeTests() {
     runTests();
+}
+
+void LIB_API Engine::refreshAndSwapBuffers()
+{
+    glutPostWindowRedisplay(windowId);
+    glutSwapBuffers();
 }

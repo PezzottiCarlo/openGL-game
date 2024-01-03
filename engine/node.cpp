@@ -29,6 +29,7 @@
 Node::Node(std::string name) {
 	Object::setId(Object::getNextId());
 	Object::setName(name);
+	scale = 1.0f;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,6 +118,16 @@ void LIB_API Node::setParent(Node* newParent) {
 bool LIB_API Node::render(glm::mat4 mat, void* attr) {
 	return false;
 }
+void LIB_API Node::setScale(float scale)
+{
+	this->scale = scale;
+}
+
+float Node::getScale() const
+{
+	return scale;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Getter of the transform matrix

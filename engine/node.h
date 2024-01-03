@@ -13,7 +13,6 @@
 // #INCLUDE //
 //////////////
 #include <vector>
-
 #include "object.h"
 
 
@@ -26,14 +25,6 @@
  * @brief Simple node class.
  */
 class LIB_API Node : public Object{
-
-	///////////
-	private: //
-	///////////
-		glm::mat4 transform = glm::mat4(1.0f);
-		std::vector<Node*> children;	
-		Node* parent;
-		
 
 	//////////
 	public: //
@@ -64,8 +55,19 @@ class LIB_API Node : public Object{
 
 		// Other
 		virtual bool render(glm::mat4, void*) override;
+		void setScale(float scale);
+		float getScale() const;
 
 		// Test method
 		static int test();
+
+		///////////
+	private: //
+		///////////
+		glm::mat4 transform = glm::mat4(1.0f);
+		std::vector<Node*> children;
+		Node* parent;
+		float scale;
+
 };
 

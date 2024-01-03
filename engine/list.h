@@ -14,6 +14,7 @@ public:
 	bool render(glm::mat4,void*) override;
 	void clear();
 	Node* getObject(int);
+	Node* getObjectById(int);
 	int size();
 
 private:
