@@ -144,11 +144,19 @@ void loadCars(){
 			glm::mat4 m = glm::mat4(1.0f);
 			m = glm::translate(m, glm::vec3(-8.0f + (2.265f * (PLAYGROUND_SIZE + 1 - i)),1.0f, -7.25f + (2.25f * j)));
 
+
+			/*	1->indicates car presence at 0 degrees with lenght 2		|
+				2->indicates car presence at 90 degrees with lenght 2		-
+				3->indicates car presence at 0 degrees with lenght 3		|
+				4->indicates car presence at 90 degrees with lenght 3		-
+				5->indicates the target car	at 0 degrees					|
+				*/
+
 			switch (matrix[i][j])
 			{
-				case 1:
+				case 1: case 5:
 					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(0.0f, 0.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-2.0f, 0.0f, 0.0f));
 					car.getChildAt(0)->setScale(1.2f);
 					break;
 				case 2:
@@ -175,16 +183,16 @@ void loadCars(){
 
 void makeObjectBlink(Node* obj) {
 
-	if (obj->getName().substr(0, 3) != "Car" || obj->getName().substr(0, 9) != "Limousine") return;
+	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine")) return;
 
 	if (blink) {
 		blinkStep += step;
-		if (blinkStep > range) 
+		if (blinkStep > range)
 			blink = false;
 	}
 	else {
 		blinkStep -= step;
-		if (blinkStep < 0.0f) 
+		if (blinkStep < 0.0f)
 			blink = true;
 	}
 
