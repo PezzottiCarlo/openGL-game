@@ -41,11 +41,11 @@ Playing field where:
 
 int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-	{ 6 , 2 , 0 , 0 , 0 , 1 , 0 , 6 },
+	{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
 	{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
 	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 3 , 0 , 0 , 4 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 5 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
 	{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
 };
@@ -161,20 +161,22 @@ void loadCars(){
 			{
 				case 1: case 5:
 					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-2.0f, 0.0f, 0.0f));
-					car.getChildAt(0)->setScale(1.2f);
+					m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
+					car.getChildAt(0)->setScale(1.1f);
 					break;
 				case 2:
 					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					car.getChildAt(0)->setScale(1.2f);
+					car.getChildAt(0)->setScale(1.1f);
 					break;
 				case 3:
 					m = glm::rotate(m, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					car.getChildAt(0)->setScale(0.8f);
+					m = glm::translate(m, glm::vec3(3.3f, 0.0f, 0.6f));
+					car.getChildAt(0)->setScale(1.0f);
 					break;
 				case 4:
 					m = glm::rotate(m, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					car.getChildAt(0)->setScale(1.2f);
+					m = glm::translate(m, glm::vec3(0.35f, 0.0f, -0.1f));
+					car.getChildAt(0)->setScale(1.0f);
 					break;
 				default:
 					break;
