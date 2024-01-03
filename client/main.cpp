@@ -23,6 +23,7 @@
 
 // Constants:
 #define PLAYGROUND_SIZE 6
+#define BLOCK_SIZE 2.25f
 
 
 /*
@@ -67,6 +68,27 @@ std::string getSeparator(){
 	#endif
 }
 
+int* getCarDataFromId(unsigned int id) {
+
+	int results[3];
+
+	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+			if (matrix[i][j].second == id) {
+				// 0: i
+				// 1: j
+				// 2: direction code
+				results[0] = i;
+				results[1] = j;
+				results[2] = matrix[i][j].first;
+				return results;
+			}
+		}
+	}
+
+	return nullptr;
+}
+
 ///////////////
 // CALLBACKS //
 ///////////////
@@ -78,8 +100,67 @@ std::string getSeparator(){
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void specialCallback(int key, int x, int y) {
-	std::cout << key << " has been pressed." << std::endl;
-	// TBD
+	int* carData = getCarDataFromId(pickedObject->getId());
+	if (carData == nullptr) return;
+	//convert to int array
+	int i = carData[0];
+	int j = carData[1];
+	int d = carData[2];
+	int carSize = (d == 1 || d == 2 || d == 5) ? 2 : 3;
+
+	std::cout << "i: " << i << " j: " << j << " direction: " << d << " carSize: " << carSize << std::endl;
+
+	if (carData == nullptr) return;
+	glm::mat4 currentTransform = pickedObject->getTransform();
+
+	bool canMoveVertical = (d == 1 || d == 3 || d == 5) && ((i-1 > 0||key==103)) && ((i+carSize-1 < PLAYGROUND_SIZE ||key==101));
+	bool canMoveHorizontal = (d == 2 || d == 4) && ((j-1 > 0||key==102)) && ((j+carSize-1< PLAYGROUND_SIZE||key==100));
+
+	std::cout << "canMoveVertical: " << canMoveVertical << " canMoveHorizontal: " << canMoveHorizontal << std::endl;
+
+
+	switch (key) {
+	case 100:
+		if (canMoveHorizontal) {
+			currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+			matrix[i][j].second = 0;
+			matrix[i][j - 1].first = matrix[i][j].first;
+			matrix[i][j - 1].second = pickedObject->getId();
+			matrix[i][j].first = 0;
+		}
+		break;
+	case 102:
+		if (canMoveHorizontal) {
+			currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+			matrix[i][j].second = 0;
+			matrix[i][j + 1].first = matrix[i][j].first;
+			matrix[i][j + 1].second = pickedObject->getId();
+			matrix[i][j].first = 0;
+		}
+		break;
+	case 101:
+		if (canMoveVertical) {
+			currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+			matrix[i][j].second = 0;
+			matrix[i - 1][j].first = matrix[i][j].first;
+			matrix[i - 1][j].second = pickedObject->getId();
+			matrix[i][j].first = 0;
+		}
+		break;
+	case 103:
+		if (canMoveVertical) {
+			currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+			matrix[i][j].second = 0;
+			matrix[i + 1][j].first = matrix[i][j].first;
+			matrix[i + 1][j].second = pickedObject->getId();
+			matrix[i][j].first = 0;
+		}
+		break;
+	}
+	pickedObject->setTransform(currentTransform);
+
+	
+
 	Engine::postWindowRedisplay();
 }
 
@@ -207,37 +288,17 @@ void rotateCamera() {
 	static bool rotationSense = false;
 	static float angle = 0.0f;
 	glm::mat4 currentTransform = cameras[2]->getTransform();
-	float rotation = 0.2f * (fps / 60.0f) * (rotationSense) ? -1.0f : 1.0f;
-	currentTransform = glm::rotate(currentTransform, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+	float rotation = (rotationSense) ? -0.005f : 0.005f;
+	currentTransform = glm::rotate_slow(currentTransform,rotation, glm::vec3(0.0f, 1.0f, 0.0f));
 	cameras[2]->setTransform(currentTransform);
-
-	if (angle == 120.0f) 
+	if (angle > 1.5) 
 		rotationSense = true;
-	else if (angle == 0.0f)
+	else if (angle < 0.0f)
 		rotationSense = false;
 	angle += rotation;
 }
 
-int* getCarDataFromId(unsigned int id) {
 
-	int results[3];
-
-	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
-		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
-			if (matrix[i][j].second == id) {
-				// 0: i
-				// 1: j
-				// 2: direction code
-				results[0] = i;
-				results[1] = j;
-				results[2] = matrix[i][j].first;
-				return results;
-			}
-		}
-	}
-
-	return nullptr;
-}
 
 void loadCars(){
 
@@ -275,7 +336,7 @@ void loadCars(){
 					3->indicates car presence at 0 degrees with lenght 3		|
 					4->indicates car presence at 90 degrees with lenght 3		-
 					5->indicates the target car	at 0 degrees					|
-					*/
+				*/
 
 				switch (initialMatrix[i][j])
 				{
@@ -306,7 +367,7 @@ void loadCars(){
 				Engine::addNode(car);
 
 				// Create pair
-				matrix[i][j] = std::make_pair(initialMatrix[i][j], car.getId());
+				matrix[i][j] = std::make_pair(initialMatrix[i][j], car.getChildAt(0)->getId());
 			}
 			else {
 				// Cell does not contain car
@@ -320,8 +381,9 @@ void makeObjectBlink(Node* obj) {
 
 	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
 
-	//scale step base on fps for a smooth animation
-	step = 0.1f * (8.0f / fps);
+	//scale step base on fps for a smooth animation TODO: fix this
+	//step = 0.1f * (8.0f / (float)fps);
+	step = 0.1f;
 
 	if (blink) {
 		blinkStep += step;
