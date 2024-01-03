@@ -98,10 +98,17 @@ void specialCallback(int key, int x, int y) {
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void keyboardCallback(unsigned char key, int x, int y) {
-	if (key == '1')
-		Engine::setActiveCamera(1);
-	else if (key == '2')
-		Engine::setActiveCamera(0);
+	switch (key) {
+		case '1':
+			Engine::setActiveCamera(0);
+			break;
+		case '2':
+			Engine::setActiveCamera(1);
+			break;
+		case '3':
+			Engine::setActiveCamera(2);
+			break;
+	}
 	Engine::postWindowRedisplay();
 }
 
@@ -116,11 +123,11 @@ void loadScene(std::string pathName) {
 void loadCameras() {
 
 	Camera* c1 = new Camera("camera1");
-	c1->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
+	c1->setUserTransform(0, 15.0f, 0, -90.0f, 0, -90.0f);
 	Camera* c2 = new Camera("camera2");
-	c2->setUserTransform(0, 15.0f, 0, -90.0f, 0, -90.0f);
+	c2->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
 	Camera* c3 = new Camera("camera3");
-	c3->setUserTransform(0, 15.0f, 5.0f, 0, -75.0f, 0);
+	c3->setUserTransform(0.0f, 5.0f, 10.0f, 0, -75.0f, 0);
 
 	Engine::addCamera(c1);
 	Engine::addCamera(c2);
@@ -133,8 +140,20 @@ void loadCameras() {
 	Engine::setActiveCamera(0);
 }
 
+
 void rotateCamera() {
-	//Camera* c = Engine
+	static bool rotationSense = false;
+	static float angle = 0.0f;
+	glm::mat4 currentTransform = cameras[2]->getTransform();
+	float rotation = 0.2f * (fps / 60.0f) * (rotationSense) ? -1.0f : 1.0f;
+	currentTransform = glm::rotate(currentTransform, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+	cameras[2]->setTransform(currentTransform);
+
+	if (angle == 120.0f) 
+		rotationSense = true;
+	else if (angle == 0.0f)
+		rotationSense = false;
+	angle += rotation;
 }
 
 void loadCars(){
@@ -205,6 +224,9 @@ void makeObjectBlink(Node* obj) {
 
 	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
 
+	//scale step base on fps for a smooth animation
+	step = 0.1f * (fps / 60.0f);
+
 	if (blink) {
 		blinkStep += step;
 		if (blinkStep > range)
@@ -220,19 +242,12 @@ void makeObjectBlink(Node* obj) {
 }
 
 void getPickedObject(Node* n,bool mousePressed) {
-	if (!mousePressed && pickedObject != nullptr) {
-		((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
-		pickedObject = nullptr;
-		blinkStep = 0.0f;
-		blink = false;
-		return;
-	}
-	else {
-		if (n != nullptr) {
-			std::cout << "Object picked: " << n->getName() << " with id: " << n->getId() << std::endl;
-			lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
-			pickedObject = n;
+	if (n != nullptr && mousePressed) {
+		if (pickedObject != nullptr) {
+			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
 		}
+		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
+		pickedObject = n;
 	}
 }
 
@@ -282,9 +297,13 @@ int main(int argc, char* argv[])
 			makeObjectBlink(pickedObject);
 		}
 
-		Engine::writeOnScreen("Press [1] or [2] to change perspective", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
-		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
+		Engine::writeOnScreen("Press [1] -> Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
+		Engine::writeOnScreen("Press [2] -> Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
+		Engine::writeOnScreen("Press [3] -> Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 45.0f), 10.0f);
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 60.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
+
+		rotateCamera();
 		fc++;
 	}
 
