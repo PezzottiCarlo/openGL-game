@@ -14,12 +14,14 @@
 
 #include "engine.h"
 #include "node.h"
+#include <mesh.h>
 
 // C/C++:
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
-#include <mesh.h>
-#include <node.h>
+
+// Constants:
+#define PLAYGROUND_SIZE 6
 
 
 /*
@@ -36,7 +38,7 @@ Playing field where:
 in the game scene the point matrix[0][0] is [5.645,5.645,0] and the point matrix[7][7] is [-5.645,-5.645,0]
 */
 
-int matrix[8][8] = {
+int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
 	{ 6 , 1 , 0 , 0 , 0 , 1 , 0 , 6 },
 	{ 6 , 0 , 0 , 1 , 0 , 1 , 0 , 6 },
@@ -46,11 +48,29 @@ int matrix[8][8] = {
 	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 6 , 5 , 6 , 6 , 6 , 6 , 6 }
 };
+
 int width = 640;
 int height = 480;
 
+// Fps calculation
+int fc;
+int fps;
 
+// Object blinking vars
+Node* pickedObject = nullptr;
+glm::vec4 lastObjectEmission;
+static float range = .5f;
+static float step = .01f;
+static float blinkStep = 0.0f;
+bool blink = false;
 
+std::string getSeparator(){
+	#ifdef _WIN32
+	return "\\";
+	#else
+	return "/";
+	#endif
+}
 
 ///////////////
 // CALLBACKS //
@@ -77,9 +97,9 @@ void specialCallback(int key, int x, int y) {
  */
 void keyboardCallback(unsigned char key, int x, int y) {
 	if (key == '1')
-		Engine::setActiveCamera(0);
-	else if (key == '2')
 		Engine::setActiveCamera(1);
+	else if (key == '2')
+		Engine::setActiveCamera(0);
 	Engine::postWindowRedisplay();
 }
 
@@ -95,13 +115,16 @@ void loadCameras() {
 	Engine::initCameras(2);
 	Engine::loadCamera(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0, 0);
 	Engine::loadCamera(0, 15.0f, 0, -90.0f, 0, -90.0f, 1);
+	Engine::setActiveCamera(1);
 }
-void loadCars()
-{
-	for (int i = 1; i < 7; i++) {
-		for (int j = 1; j < 7 ; j++) {
-			if (matrix[i][j] == 0 || matrix[i][j] == 5 || matrix[i][j] == 6) continue;
-			std::string path = "..\\scene\\car.ovo";
+
+void loadCars(){
+	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+
+			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE - 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
+
+			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car.ovo";
 			Node car = Engine::loadNode(path);
 			glm::mat4 m = glm::mat4(1.0f);
 			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (7-i)),0.5f, -8.0f + (2.2f * j)));
@@ -123,6 +146,7 @@ void loadCars()
 				default:
 					break;
 			}
+
 			car.getChildAt(0)->setTransform(m);
 			car.getChildAt(0)->setScale(2.2f);
 			Engine::addNode(car);
@@ -130,16 +154,7 @@ void loadCars()
 	}
 }
 
-
-Node* pickedObject = nullptr;
-glm::vec4 lastObjectEmission;
-static float range = .5f;
-static float step = .01f;
-static float blinkStep = 0.0f;
-bool blink = false;
-
 void makeObjectBlink(Node* obj) {
-
 	if (blink) {
 		blinkStep += step;
 		if (blinkStep > range) 
@@ -176,8 +191,6 @@ void handleWindowResize(int w, int h) {
 	Engine::reshapeCallback(w, h);
 }
 
-int fc;
-int fps;
 void updateFPS(int value) {
 	fps = fc;
 	fc = 0;
@@ -187,9 +200,11 @@ void updateFPS(int value) {
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
+
 	loadCameras();
-	loadScene("..\\scene\\scene.ovo");
+	loadScene(".." + getSeparator() + "scene" + getSeparator() + "scene.ovo");
 	loadCars();
+
 	Engine::setKeyboardCallback(keyboardCallback);
 	Engine::setWindowResizeHandler(handleWindowResize);
 	Engine::setSpecialCallback(specialCallback);
@@ -199,8 +214,6 @@ void init(int argc, char* argv[]) {
 	Engine::start();
 	Engine::startTimer(updateFPS, 1000);
 }
-
-
 
 /**
  * Application entry point.
@@ -218,9 +231,8 @@ int main(int argc, char* argv[])
 			makeObjectBlink(pickedObject);
 		}
 
-
-		Engine::writeOnScreen("Rush Hour Game", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
-		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f):
+		Engine::writeOnScreen("Press [1] or [2] to change perspective", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
 		fc++;
 	}
