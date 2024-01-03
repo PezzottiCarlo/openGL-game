@@ -155,6 +155,9 @@ void loadCars(){
 }
 
 void makeObjectBlink(Node* obj) {
+
+	if (obj->getName().length() < 3 || obj->getName().substr(0, 3) != "Car") return;
+
 	if (blink) {
 		blinkStep += step;
 		if (blinkStep > range) 
