@@ -40,11 +40,11 @@ in the game scene the point matrix[0][0] is [5.645,5.645,0] and the point matrix
 
 int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-	{ 6 , 1 , 0 , 0 , 0 , 1 , 0 , 6 },
-	{ 6 , 0 , 0 , 1 , 0 , 1 , 0 , 6 },
-	{ 6 , 0 , 1 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 1 , 0 , 0 , 6 },
-	{ 6 , 1 , 0 , 1 , 0 , 1 , 1 , 6 },
+	{ 6 , 2 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
 	{ 6 , 6 , 5 , 6 , 6 , 6 , 6 , 6 }
 };
@@ -124,7 +124,7 @@ void loadCars(){
 
 			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE - 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
 
-			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car.ovo";
+			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car1.ovo";
 			Node car = Engine::loadNode(path);
 			glm::mat4 m = glm::mat4(1.0f);
 			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (7-i)),0.5f, -8.0f + (2.2f * j)));
@@ -148,7 +148,6 @@ void loadCars(){
 			}
 
 			car.getChildAt(0)->setTransform(m);
-			car.getChildAt(0)->setScale(2.2f);
 			Engine::addNode(car);
 		}
 	}
