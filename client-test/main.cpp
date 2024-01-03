@@ -190,7 +190,7 @@ void loadCars(){
 
 void makeObjectBlink(Node* obj) {
 
-	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine")) return;
+	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
 
 	if (blink) {
 		blinkStep += step;
