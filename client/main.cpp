@@ -39,7 +39,9 @@ Playing field where:
 
 */
 
-int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
+std::pair<int, unsigned int> matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
+
+int initialMatrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
 	{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
 	{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
@@ -156,66 +158,96 @@ void rotateCamera() {
 	angle += rotation;
 }
 
+int* getCarDataFromId(unsigned int id) {
+
+	int results[3];
+
+	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+			if (matrix[i][j].second == id) {
+				// 0: i
+				// 1: j
+				// 2: direction code
+				results[0] = i;
+				results[1] = j;
+				results[2] = matrix[i][j].first;
+				return results;
+			}
+		}
+	}
+
+	return nullptr;
+}
+
 void loadCars(){
 	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
 		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
 
-			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE + 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
+			// Setup matrix
+			if (initialMatrix[i][j] >= 1 && initialMatrix[i][j] <= 5) {
+				// Cell contains car
+				std::string carName;
 
-			std::string carName;
-
-			switch (matrix[i][j]) {
+				switch (initialMatrix[i][j]) {
 				case 1: case 2:
 					carName = "car1.ovo";
 					break;
 				case 3: case 4:
 					carName = "car2.ovo";
 					break;
-				case 5: 
+				case 5:
 					carName = "car0.ovo";
 					break;
+				}
+
+				std::string path = ".." + getSeparator() + "scene" + getSeparator() + carName;
+				Node car = Engine::loadNode(path);
+				glm::mat4 m = glm::mat4(1.0f);
+				m = glm::translate(m, glm::vec3(-8.0f + (2.265f * (PLAYGROUND_SIZE + 1 - i)), 1.0f, -7.25f + (2.25f * j)));
+
+
+				/*	1->indicates car presence at 0 degrees with lenght 2		|
+					2->indicates car presence at 90 degrees with lenght 2		-
+					3->indicates car presence at 0 degrees with lenght 3		|
+					4->indicates car presence at 90 degrees with lenght 3		-
+					5->indicates the target car	at 0 degrees					|
+					*/
+
+				switch (initialMatrix[i][j])
+				{
+					case 1: case 5:
+						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
+						car.getChildAt(0)->setScale(1.1f);
+						break;
+					case 2:
+						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						car.getChildAt(0)->setScale(1.1f);
+						break;
+					case 3:
+						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
+						car.getChildAt(0)->setScale(1.0f);
+						break;
+					case 4:
+						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
+						car.getChildAt(0)->setScale(1.0f);
+						break;
+					default:
+						break;
+				}
+
+				car.getChildAt(0)->setTransform(m);
+				Engine::addNode(car);
+
+				// Create pair
+				matrix[i][j] = std::make_pair(initialMatrix[i][j], car.getId());
 			}
-
-			std::string path = ".." + getSeparator() + "scene" + getSeparator() + carName;
-			Node car = Engine::loadNode(path);
-			glm::mat4 m = glm::mat4(1.0f);
-			m = glm::translate(m, glm::vec3(-8.0f + (2.265f * (PLAYGROUND_SIZE + 1 - i)),1.0f, -7.25f + (2.25f * j)));
-
-
-			/*	1->indicates car presence at 0 degrees with lenght 2		|
-				2->indicates car presence at 90 degrees with lenght 2		-
-				3->indicates car presence at 0 degrees with lenght 3		|
-				4->indicates car presence at 90 degrees with lenght 3		-
-				5->indicates the target car	at 0 degrees					|
-				*/
-
-			switch (matrix[i][j])
-			{
-				case 1: case 5:
-					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
-					car.getChildAt(0)->setScale(1.1f);
-					break;
-				case 2:
-					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					car.getChildAt(0)->setScale(1.1f);
-					break;
-				case 3:
-					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
-					car.getChildAt(0)->setScale(1.0f);
-					break;
-				case 4:
-					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
-					car.getChildAt(0)->setScale(1.0f);
-					break;
-				default:
-					break;
+			else {
+				// Cell does not contain car
+				matrix[i][j] = std::make_pair(initialMatrix[i][j], 0);
 			}
-
-			car.getChildAt(0)->setTransform(m);
-			Engine::addNode(car);
 		}
 	}
 }
@@ -225,7 +257,7 @@ void makeObjectBlink(Node* obj) {
 	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
 
 	//scale step base on fps for a smooth animation
-	step = 0.1f * (fps / 60.0f);
+	step = 0.1f * (8.0f / fps);
 
 	if (blink) {
 		blinkStep += step;
@@ -297,9 +329,9 @@ int main(int argc, char* argv[])
 			makeObjectBlink(pickedObject);
 		}
 
-		Engine::writeOnScreen("Press [1] -> Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
-		Engine::writeOnScreen("Press [2] -> Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
-		Engine::writeOnScreen("Press [3] -> Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 45.0f), 10.0f);
+		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
+		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
+		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 45.0f), 10.0f);
 		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 60.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
 
