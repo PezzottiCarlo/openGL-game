@@ -28,25 +28,26 @@
 
 Playing field where:
 0 -> indicates empty space
-1 -> indicates car presence at 0 degrees
-2 -> indicates car presence at 90 degrees
-3 -> indicates car presence at 180 degrees
-4 -> indicates car presence at 270 degrees
-5 -> indicates the exit
-6 -> indicates the wall
+1 -> indicates car presence at 0 degrees with lenght 2 
+2 -> indicates car presence at 90 degrees with lenght 2
+3 -> indicates car presence at 0 degrees with lenght 3
+4 -> indicates car presence at 90 degrees with lenght 3
+5 -> indicates the target car
 
-in the game scene the point matrix[0][0] is [5.645,5.645,0] and the point matrix[7][7] is [-5.645,-5.645,0]
+6 -> indicates the wall
+7 -> indicates the exit
+
 */
 
 int matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2] = {
 	{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-	{ 6 , 2 , 0 , 0 , 0 , 0 , 0 , 6 },
+	{ 6 , 2 , 0 , 0 , 0 , 1 , 0 , 6 },
+	{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
 	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-	{ 6 , 6 , 5 , 6 , 6 , 6 , 6 , 6 }
+	{ 6 , 3 , 0 , 0 , 4 , 0 , 0 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 0 , 5 , 6 },
+	{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
+	{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
 };
 
 int width = 640;
@@ -122,26 +123,45 @@ void loadCars(){
 	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
 		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
 
-			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE - 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
+			if (matrix[i][j] == 0 || matrix[i][j] == PLAYGROUND_SIZE + 1 || matrix[i][j] == PLAYGROUND_SIZE) continue;
 
-			std::string path = ".." + getSeparator() + "scene" + getSeparator() + "car0.ovo";
+			std::string carName;
+
+			switch (matrix[i][j]) {
+				case 1: case 2:
+					carName = "car1.ovo";
+					break;
+				case 3: case 4:
+					carName = "car2.ovo";
+					break;
+				case 5: 
+					carName = "car0.ovo";
+					break;
+			}
+
+			std::string path = ".." + getSeparator() + "scene" + getSeparator() + carName;
 			Node car = Engine::loadNode(path);
 			glm::mat4 m = glm::mat4(1.0f);
-			m = glm::translate(m, glm::vec3(-8.0f + (2.2f * (PLAYGROUND_SIZE + 1 - i)),0.5f, -8.0f + (2.2f * j)));
+			m = glm::translate(m, glm::vec3(-8.0f + (2.265f * (PLAYGROUND_SIZE + 1 - i)),1.0f, -7.25f + (2.25f * j)));
 
 			switch (matrix[i][j])
 			{
 				case 1:
 					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(0.0f, 0.0f, 0.0f));
+					car.getChildAt(0)->setScale(1.2f);
 					break;
 				case 2:
 					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					car.getChildAt(0)->setScale(1.2f);
 					break;
 				case 3:
 					m = glm::rotate(m, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					car.getChildAt(0)->setScale(0.8f);
 					break;
 				case 4:
 					m = glm::rotate(m, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					car.getChildAt(0)->setScale(1.2f);
 					break;
 				default:
 					break;
