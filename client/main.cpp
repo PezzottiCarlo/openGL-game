@@ -1,7 +1,7 @@
-/**
+ï»¿/**
  * @brief   A simple graphical engine library
  *
- * @author  Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
+ * @author  Jari Nï¿½ser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
@@ -15,6 +15,7 @@
 #include "engine.h"
 #include "node.h"
 #include <mesh.h>
+#include <light.h>
 
 // C/C++:
 #include <iostream>
@@ -30,7 +31,7 @@
 
 Playing field where:
 0 -> indicates empty space
-1 -> indicates car presence at 0 degrees with lenght 2 
+1 -> indicates car presence at 0 degrees with lenght 2
 2 -> indicates car presence at 90 degrees with lenght 2
 3 -> indicates car presence at 0 degrees with lenght 3
 4 -> indicates car presence at 90 degrees with lenght 3
@@ -63,12 +64,12 @@ static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
 
-std::string getSeparator(){
-	#ifdef _WIN32
+std::string getSeparator() {
+#ifdef _WIN32
 	return "\\";
-	#else
+#else
 	return "/";
-	#endif
+#endif
 }
 
 void fillInitialPositioningMatrix() {
@@ -135,68 +136,68 @@ void specialCallback(int key, int x, int y) {
 	glm::mat4 currentTransform = pickedObject->getTransform();
 
 	switch (key) {
-		case 100:	// Left
-			if (canMoveHorizontal) {
-				// Check if cells on the left are empty
-				if (!positioningMatrix[i][j - 1]) {
-					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-					matrix[i][j].second = 0;
-					matrix[i][j - 1].first = matrix[i][j].first;
-					matrix[i][j - 1].second = pickedObject->getId();
-					matrix[i][j].first = 0;
-					// Move position matrix elements
-					positioningMatrix[i][j - 1] = true;
-					positioningMatrix[i][j + carSize - 1] = false;
-					numberOfMoves++;
-				}
-				
+	case 100:	// Left
+		if (canMoveHorizontal) {
+			// Check if cells on the left are empty
+			if (!positioningMatrix[i][j - 1]) {
+				currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+				matrix[i][j].second = 0;
+				matrix[i][j - 1].first = matrix[i][j].first;
+				matrix[i][j - 1].second = pickedObject->getId();
+				matrix[i][j].first = 0;
+				// Move position matrix elements
+				positioningMatrix[i][j - 1] = true;
+				positioningMatrix[i][j + carSize - 1] = false;
+				numberOfMoves++;
 			}
-			break;
-		case 102:	// Right
-			if (canMoveHorizontal) {
-				if (!positioningMatrix[i][j + carSize]) {
-					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-					matrix[i][j].second = 0;
-					matrix[i][j + 1].first = matrix[i][j].first;
-					matrix[i][j + 1].second = pickedObject->getId();
-					matrix[i][j].first = 0;
-					// Move position matrix elements
-					positioningMatrix[i][j + carSize] = true;
-					positioningMatrix[i][j] = false;
-					numberOfMoves++;
-				}
+
+		}
+		break;
+	case 102:	// Right
+		if (canMoveHorizontal) {
+			if (!positioningMatrix[i][j + carSize]) {
+				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+				matrix[i][j].second = 0;
+				matrix[i][j + 1].first = matrix[i][j].first;
+				matrix[i][j + 1].second = pickedObject->getId();
+				matrix[i][j].first = 0;
+				// Move position matrix elements
+				positioningMatrix[i][j + carSize] = true;
+				positioningMatrix[i][j] = false;
+				numberOfMoves++;
 			}
-			break;
-		case 101:	// Up
-			if (canMoveVertical) {
-				if (!positioningMatrix[i - 1][j]) {
-					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-					matrix[i][j].second = 0;
-					matrix[i - 1][j].first = matrix[i][j].first;
-					matrix[i - 1][j].second = pickedObject->getId();
-					matrix[i][j].first = 0;
-					// Move position matrix elements
-					positioningMatrix[i - 1][j] = true;
-					positioningMatrix[i + carSize - 1][j] = false;
-					numberOfMoves++;
-				}
+		}
+		break;
+	case 101:	// Up
+		if (canMoveVertical) {
+			if (!positioningMatrix[i - 1][j]) {
+				currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+				matrix[i][j].second = 0;
+				matrix[i - 1][j].first = matrix[i][j].first;
+				matrix[i - 1][j].second = pickedObject->getId();
+				matrix[i][j].first = 0;
+				// Move position matrix elements
+				positioningMatrix[i - 1][j] = true;
+				positioningMatrix[i + carSize - 1][j] = false;
+				numberOfMoves++;
 			}
-			break;
-		case 103:	// Down
-			if (canMoveVertical) {
-				if (!positioningMatrix[i + carSize][j]) {
-					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-					matrix[i][j].second = 0;
-					matrix[i + 1][j].first = matrix[i][j].first;
-					matrix[i + 1][j].second = pickedObject->getId();
-					matrix[i][j].first = 0;
-					// Move position matrix elements
-					positioningMatrix[i + carSize][j] = true;
-					positioningMatrix[i][j] = false;
-					numberOfMoves++;
-				}
+		}
+		break;
+	case 103:	// Down
+		if (canMoveVertical) {
+			if (!positioningMatrix[i + carSize][j]) {
+				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+				matrix[i][j].second = 0;
+				matrix[i + 1][j].first = matrix[i][j].first;
+				matrix[i + 1][j].second = pickedObject->getId();
+				matrix[i][j].first = 0;
+				// Move position matrix elements
+				positioningMatrix[i + carSize][j] = true;
+				positioningMatrix[i][j] = false;
+				numberOfMoves++;
 			}
-			break;
+		}
+		break;
 	}
 
 	pickedObject->setTransform(currentTransform);
@@ -212,15 +213,15 @@ void specialCallback(int key, int x, int y) {
  */
 void keyboardCallback(unsigned char key, int x, int y) {
 	switch (key) {
-		case '1':
-			Engine::setActiveCamera(0);
-			break;
-		case '2':
-			Engine::setActiveCamera(1);
-			break;
-		case '3':
-			Engine::setActiveCamera(2);
-			break;
+	case '1':
+		Engine::setActiveCamera(0);
+		break;
+	case '2':
+		Engine::setActiveCamera(1);
+		break;
+	case '3':
+		Engine::setActiveCamera(2);
+		break;
 	}
 	Engine::postWindowRedisplay();
 }
@@ -255,44 +256,44 @@ std::vector<std::vector<int>> loadGameDifficulty() {
 	std::vector<std::vector<int>> initialMatrix;
 
 	switch (gameDifficulty) {
-		case 2:
-			initialMatrix = {
-				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
-				{ 6 , 1 , 0 , 5 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 1 , 6 },
-				{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
-				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
-			};
-			break;
+	case 2:
+		initialMatrix = {
+			{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+			{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
+			{ 6 , 1 , 0 , 5 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 0 , 1 , 6 },
+			{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
+			{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+		};
+		break;
 
-		case 3:
-			initialMatrix = {
-				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-				{ 6 , 2 , 0 , 5 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 3 , 2 , 0 , 6 },
-				{ 6 , 3 , 3 , 0 , 0 , 0 , 1 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 2 , 0 , 1 , 6 },
-				{ 6 , 0 , 0 , 4 , 0 , 0 , 0 , 6 },
-				{ 6 , 6 , 6 , 7 , 6 , 6 , 6 , 6 }
-			};
-			break;
+	case 3:
+		initialMatrix = {
+			{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+			{ 6 , 2 , 0 , 5 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 3 , 2 , 0 , 6 },
+			{ 6 , 3 , 3 , 0 , 0 , 0 , 1 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 2 , 0 , 1 , 6 },
+			{ 6 , 0 , 0 , 4 , 0 , 0 , 0 , 6 },
+			{ 6 , 6 , 6 , 7 , 6 , 6 , 6 , 6 }
+		};
+		break;
 
-		default:
-			initialMatrix = {
-				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
-				{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
-				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
-			};
-			break;
+	default:
+		initialMatrix = {
+			{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
+			{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
+			{ 6 , 0 , 0 , 5 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 3 , 4 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
+			{ 6 , 0 , 0 , 0 , 0 , 2 , 0 , 6 },
+			{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+		};
+		break;
 	}
 
 	return initialMatrix;
@@ -309,7 +310,7 @@ void loadCameras() {
 	Camera* c2 = new Camera("camera2");
 	c2->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
 	Camera* c3 = new Camera("camera3");
-	c3->setUserTransform(0.0f, 5.0f, 12.0f, 0, -45.0f, 0);
+	c3->setUserTransform(0.0f, 5.0f, 10.0f, 0, -45.0f, 0);
 
 	Engine::addCamera(c1);
 	Engine::addCamera(c2);
@@ -326,12 +327,12 @@ void rotateCamera(int value) {
 	static bool rotationSense = false;
 	static float angle = 0.0f;
 	glm::mat4 currentTransform = cameras[2]->getTransform();
-	float rotation = (rotationSense) ? -0.002f : 0.002f;
+	float rotation = (rotationSense) ? -0.001f : 0.001f;
 
-	currentTransform = glm::rotate_slow(currentTransform,rotation, glm::vec3(0.0f, 1.0f, 0.0f));
+	currentTransform = glm::rotate_slow(currentTransform, rotation, glm::vec3(0.0f, 1.0f, 0.0f));
 	cameras[2]->setTransform(currentTransform);
 
-	if (angle > 1.5) 
+	if (angle > 1.5)
 		rotationSense = true;
 	else if (angle < 0.0f)
 		rotationSense = false;
@@ -341,7 +342,7 @@ void rotateCamera(int value) {
 	Engine::startTimer(rotateCamera, 10);
 }
 
-void loadCars(){
+void loadCars() {
 
 	// Populate initialMatrix
 	std::vector<std::vector<int>> initialMatrix = loadGameDifficulty();
@@ -381,41 +382,41 @@ void loadCars(){
 
 				switch (initialMatrix[i][j])
 				{
-					case 1: case 5:
-						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
-						car.getChildAt(0)->setScale(1.1f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i + 1][j] = true;
-						break;
-					case 2:
-						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						car.getChildAt(0)->setScale(1.1f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i][j + 1] = true;
-						break;
-					case 3:
-						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
-						car.getChildAt(0)->setScale(1.0f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i + 1][j] = true;
-						positioningMatrix[i + 2][j] = true;
-						break;
-					case 4:
-						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
-						car.getChildAt(0)->setScale(1.0f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i][j + 1] = true;
-						positioningMatrix[i][j + 2] = true;
-						break;
-					default:
-						break;
+				case 1: case 5:
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
+					car.getChildAt(0)->setScale(1.1f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i + 1][j] = true;
+					break;
+				case 2:
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					car.getChildAt(0)->setScale(1.1f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i][j + 1] = true;
+					break;
+				case 3:
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
+					car.getChildAt(0)->setScale(1.0f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i + 1][j] = true;
+					positioningMatrix[i + 2][j] = true;
+					break;
+				case 4:
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
+					car.getChildAt(0)->setScale(1.0f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i][j + 1] = true;
+					positioningMatrix[i][j + 2] = true;
+					break;
+				default:
+					break;
 				}
 
 				car.getChildAt(0)->setTransform(m);
@@ -457,7 +458,7 @@ void updateBlinking(int value) {
 	Engine::startTimer(updateBlinking, 10);
 }
 
-void getPickedObject(Node* n,bool mousePressed) {
+void getPickedObject(Node* n, bool mousePressed) {
 	if (n != nullptr && mousePressed) {
 		if (pickedObject != nullptr) {
 			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
@@ -484,6 +485,27 @@ void updateFPS(int value) {
 	Engine::startTimer(updateFPS, 1000);
 }
 
+void blinkLight(int value) {
+	static bool blink = false;
+	static Mesh* lamp_parent = (Mesh*)(Engine::getList()->getObject(1)->getParent());
+	static Light* light = (Light*)(lamp_parent)->getChildren().at(0);
+	static Mesh* light_bulbe = (Mesh*)(lamp_parent)->getChildren().at(1);
+	static glm::vec4 light_bulbe_emission = light_bulbe->getMaterial()->getEmission();
+	if (blink) {
+		light->setIntensity(0.0f);
+		light_bulbe->getMaterial()->setEmission(glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+		blink = false;
+	}
+	else {
+		light->setIntensity(7.0f);
+		light_bulbe->getMaterial()->setEmission(light_bulbe_emission);
+		blink = true;
+	}
+	//random between 0.5 and 3 seconds
+	int random = rand() % 2500 + 500;
+	Engine::startTimer(blinkLight, random);
+}
+
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
@@ -501,7 +523,10 @@ void init(int argc, char* argv[]) {
 	Engine::executeTests();
 	Engine::start();
 	Engine::startTimer(updateFPS, 1000);
+	Engine::startTimer(blinkLight, 500);
+
 }
+
 
 /**
  * Application entry point.
@@ -511,23 +536,23 @@ void init(int argc, char* argv[]) {
  */
 int main(int argc, char* argv[])
 {
-	init(argc,argv);
+	init(argc, argv);
 
 	std::string difficultyStr;
 
 	switch (gameDifficulty) {
-		case 1:
-			difficultyStr = "Easy";
-			break;
-		case 2:
-			difficultyStr = "Medium";
-			break;
-		case 3:
-			difficultyStr = "Hard";
-			break;
-		default:
-			difficultyStr = "Undefined";
-			break;
+	case 1:
+		difficultyStr = "Easy";
+		break;
+	case 2:
+		difficultyStr = "Medium";
+		break;
+	case 3:
+		difficultyStr = "Hard";
+		break;
+	default:
+		difficultyStr = "Undefined";
+		break;
 	}
 
 	Engine::startTimer(rotateCamera, 10);
@@ -536,15 +561,15 @@ int main(int argc, char* argv[])
 		Engine::update();
 
 		Engine::writeOnScreen("Commands:", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 15.0f), 10.0f);
-		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height-30.0f), 10.0f);
+		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 30.0f), 10.0f);
 		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 45.0f), 10.0f);
 		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 60.0f), 10.0f);
 		Engine::writeOnScreen("[Arrows]: Move selected car", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 75.0f), 10.0f);
 
-		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
-		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
-		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 135.0f), 10.0f);
-		
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 90.0f), 10.0f);
+		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
+		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
+
 		Engine::refreshAndSwapBuffers();
 
 		fc++;
