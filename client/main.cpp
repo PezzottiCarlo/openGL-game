@@ -310,7 +310,7 @@ void loadCameras() {
 	Camera* c2 = new Camera("camera2");
 	c2->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
 	Camera* c3 = new Camera("camera3");
-	c3->setUserTransform(0.0f, 5.0f, 10.0f, 0, -45.0f, 0);
+	c3->setUserTransform(0.0f, 5.0f, 12.0f, 0, -45.0f, 0);
 
 	Engine::addCamera(c1);
 	Engine::addCamera(c2);
@@ -566,9 +566,10 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 60.0f), 10.0f);
 		Engine::writeOnScreen("[Arrows]: Move selected car", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 75.0f), 10.0f);
 
-		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 90.0f), 10.0f);
-		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
-		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
+		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
+		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 135.0f), 10.0f);
+
 
 		Engine::refreshAndSwapBuffers();
 
