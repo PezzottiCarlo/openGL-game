@@ -69,6 +69,8 @@ static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
+int winningAnimationCounter = 0;
+bool gameFinished = false;
 
 std::string getSeparator() {
 #ifdef _WIN32
@@ -196,6 +198,9 @@ void specialCallback(int key, int x, int y) {
 			// Exit block is [5][3] (in game coords. [4][2])
 			if (pickedObject->getName() == "Car" && i == 5 && j == 3) {
 
+				// Disable mouse
+				Engine::removeObjectPickedCallback();
+
 				// Move camera
 				Engine::setActiveCamera(1);
 				Engine::refreshAndSwapBuffers();
@@ -203,6 +208,7 @@ void specialCallback(int key, int x, int y) {
 				// Start animation
 				Engine::startTimer(moveWinningCar, 10);
 
+				gameFinished = true;
 
 			} else if (!positioningMatrix[i + carSize][j]) {
 				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
@@ -223,6 +229,21 @@ void specialCallback(int key, int x, int y) {
 	Engine::postWindowRedisplay();
 }
 
+void getPickedObject(Node* n, bool mousePressed) {
+	if (n != nullptr && mousePressed) {
+		if (pickedObject != nullptr) {
+			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
+		}
+		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
+		pickedObject = n;
+		// Start blinker timer if it isn't already running
+		if (!blinkerTimerStarted) {
+			Engine::startTimer(updateBlinking, 10);
+			blinkerTimerStarted = true;
+		}
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This callback gets invoked when a regular character on the keyboard gets pressed.
@@ -241,6 +262,34 @@ void keyboardCallback(unsigned char key, int x, int y) {
 	case '3':
 		Engine::setActiveCamera(2);
 		break;
+	/*case 'n':
+		if (gameFinished) {
+			// Start new game
+			gameFinished = false;
+
+			// Reenable mouse
+			Engine::setObjectPickedCallback(getPickedObject);
+
+			// Reset variables
+			numberOfMoves = 0;
+			winningAnimationCounter = 0;
+			pickedObject = nullptr;
+			blink = false;
+
+			// Refill matrixes and other elements
+			for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
+				for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
+					//matrix[i][j] = std::make_pair(initialMatrix[i][j], car.getChildAt(0)->getId());;
+					positioningMatrix[i][j] = false;
+				}
+			}
+
+			fillInitialPositioningMatrix();
+			loadCameras();
+			loadScene(".." + getSeparator() + "scene" + getSeparator() + "scene.ovo");
+			loadCars();
+		}
+		break;*/
 	}
 	Engine::postWindowRedisplay();
 }
@@ -366,7 +415,12 @@ void moveWinningCar(int value) {
 	pickedObject->setTransform(currentTransform);
 	Engine::postWindowRedisplay();
 	Engine::refreshAndSwapBuffers();
-	Engine::startTimer(moveWinningCar, 10);
+
+	// Recall function
+	if (winningAnimationCounter < 200) {
+		Engine::startTimer(moveWinningCar, 10);
+		winningAnimationCounter++;
+	}
 }
 
 void loadCars() {
@@ -481,22 +535,9 @@ void makeObjectBlink(Node* obj) {
 }
 
 void updateBlinking(int value) {
-	makeObjectBlink(pickedObject);
-	Engine::startTimer(updateBlinking, 10);
-}
-
-void getPickedObject(Node* n, bool mousePressed) {
-	if (n != nullptr && mousePressed) {
-		if (pickedObject != nullptr) {
-			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
-		}
-		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
-		pickedObject = n;
-		// Start blinker timer if it isn't already running
-		if (!blinkerTimerStarted) {
-			Engine::startTimer(updateBlinking, 10);
-			blinkerTimerStarted = true;
-		}
+	if (blink) {
+		makeObjectBlink(pickedObject);
+		Engine::startTimer(updateBlinking, 10);
 	}
 }
 
@@ -551,7 +592,6 @@ void init(int argc, char* argv[]) {
 	Engine::start();
 	Engine::startTimer(updateFPS, 1000);
 	Engine::startTimer(blinkLight, 500);
-
 }
 
 
@@ -597,9 +637,14 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
 		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 135.0f), 10.0f);
 
+		if (gameFinished) {
+			// Display string on screen
+			Engine::writeOnScreen("You won!", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 -40.f, height - height / 2 + 15.0f), 50.0f);
+			Engine::writeOnScreen("To start a new game press [n]", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 - 100.f, height - height / 2 - 15.0f), 30.0f);
+			Engine::refreshAndSwapBuffers();
+		}
 
 		Engine::refreshAndSwapBuffers();
-
 		fc++;
 	}
 

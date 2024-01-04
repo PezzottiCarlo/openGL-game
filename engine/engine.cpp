@@ -281,9 +281,6 @@ List LIB_API* Engine::getList()
     return &list;
 }
 
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This callback connects the given function handler with the glutKeyboardFunc function.
@@ -296,6 +293,10 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
     glutKeyboardFunc(func);
 }
 
+void LIB_API Engine::removeObjectPickedCallback() {
+    // Disables the generation of mouse callbacks
+    glutMouseFunc(NULL);
+}
 
 void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePressed)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
@@ -336,7 +337,7 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePre
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
             lambdaWrapper(-1, -1);
         }
-        });
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

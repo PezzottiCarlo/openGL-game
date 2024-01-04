@@ -52,6 +52,7 @@ public: //
 	static void setSpecialCallback(void (*func)(int, int, int));
 
 	//Mouse handling
+	static void removeObjectPickedCallback();
 	static void setObjectPickedCallback(void (*func)(Node*, bool));
 
 
