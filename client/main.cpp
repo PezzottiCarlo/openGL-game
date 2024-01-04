@@ -42,6 +42,7 @@ Playing field where:
 */
 
 std::pair<int, unsigned int> matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
+bool positioningMatrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
 
 int width = 640;
 int height = 480;
@@ -66,6 +67,20 @@ std::string getSeparator(){
 	#else
 	return "/";
 	#endif
+}
+
+void fillInitialPositioningMatrix() {
+	// Put borders to "true" value
+	for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
+		for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
+			if (i == 0 || i == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+			else if (j == 0 || j == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+		}
+	}
 }
 
 int* getCarDataFromId(unsigned int id) {
@@ -100,6 +115,7 @@ int* getCarDataFromId(unsigned int id) {
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void specialCallback(int key, int x, int y) {
+	// Retrieve data from selected car
 	int* carData = getCarDataFromId(pickedObject->getId());
 	if (carData == nullptr) return;
 	//convert to int array
@@ -110,57 +126,74 @@ void specialCallback(int key, int x, int y) {
 
 	std::cout << "i: " << i << " j: " << j << " direction: " << d << " carSize: " << carSize << std::endl;
 
-	if (carData == nullptr) return;
+	// Define if car can move vertically or horizontally
+	bool canMoveVertical = (d == 1 || d == 3 || d == 5);
+	bool canMoveHorizontal = (d == 2 || d == 4);
+
 	glm::mat4 currentTransform = pickedObject->getTransform();
 
-	bool canMoveVertical = (d == 1 || d == 3 || d == 5) && ((i-1 > 0||key==103)) && ((i+carSize-1 < PLAYGROUND_SIZE ||key==101));
-	bool canMoveHorizontal = (d == 2 || d == 4) && ((j-1 > 0||key==102)) && ((j+carSize-1< PLAYGROUND_SIZE||key==100));
-
-	std::cout << "canMoveVertical: " << canMoveVertical << " canMoveHorizontal: " << canMoveHorizontal << std::endl;
-
-
 	switch (key) {
-	case 100:
-		if (canMoveHorizontal) {
-			currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-			matrix[i][j].second = 0;
-			matrix[i][j - 1].first = matrix[i][j].first;
-			matrix[i][j - 1].second = pickedObject->getId();
-			matrix[i][j].first = 0;
-		}
-		break;
-	case 102:
-		if (canMoveHorizontal) {
-			currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-			matrix[i][j].second = 0;
-			matrix[i][j + 1].first = matrix[i][j].first;
-			matrix[i][j + 1].second = pickedObject->getId();
-			matrix[i][j].first = 0;
-		}
-		break;
-	case 101:
-		if (canMoveVertical) {
-			currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-			matrix[i][j].second = 0;
-			matrix[i - 1][j].first = matrix[i][j].first;
-			matrix[i - 1][j].second = pickedObject->getId();
-			matrix[i][j].first = 0;
-		}
-		break;
-	case 103:
-		if (canMoveVertical) {
-			currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-			matrix[i][j].second = 0;
-			matrix[i + 1][j].first = matrix[i][j].first;
-			matrix[i + 1][j].second = pickedObject->getId();
-			matrix[i][j].first = 0;
-		}
-		break;
+		case 100:	// Left
+			if (canMoveHorizontal) {
+				// Check if cells on the left are empty
+				if (!positioningMatrix[i][j - 1]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i][j - 1].first = matrix[i][j].first;
+					matrix[i][j - 1].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i][j - 1] = true;
+					positioningMatrix[i][j + carSize - 1] = false;
+				}
+				
+			}
+			break;
+		case 102:	// Right
+			if (canMoveHorizontal) {
+				if (!positioningMatrix[i][j + carSize]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i][j + 1].first = matrix[i][j].first;
+					matrix[i][j + 1].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i][j + carSize] = true;
+					positioningMatrix[i][j] = false;
+				}
+			}
+			break;
+		case 101:	// Up
+			if (canMoveVertical) {
+				if (!positioningMatrix[i - 1][j]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i - 1][j].first = matrix[i][j].first;
+					matrix[i - 1][j].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i - 1][j] = true;
+					positioningMatrix[i + carSize - 1][j] = false;
+				}
+			}
+			break;
+		case 103:	// Down
+			if (canMoveVertical) {
+				if (!positioningMatrix[i + carSize][j]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i + 1][j].first = matrix[i][j].first;
+					matrix[i + 1][j].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i + carSize][j] = true;
+					positioningMatrix[i][j] = false;
+				}
+			}
+			break;
 	}
+
 	pickedObject->setTransform(currentTransform);
-
-	
-
 	Engine::postWindowRedisplay();
 }
 
@@ -344,20 +377,34 @@ void loadCars(){
 						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 						m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
 						car.getChildAt(0)->setScale(1.1f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i + 1][j] = true;
 						break;
 					case 2:
 						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 						car.getChildAt(0)->setScale(1.1f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i][j + 1] = true;
 						break;
 					case 3:
 						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 						m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
 						car.getChildAt(0)->setScale(1.0f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i + 1][j] = true;
+						positioningMatrix[i + 2][j] = true;
 						break;
 					case 4:
 						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 						m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
 						car.getChildAt(0)->setScale(1.0f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i][j + 1] = true;
+						positioningMatrix[i][j + 2] = true;
 						break;
 					default:
 						break;
@@ -425,6 +472,7 @@ void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
 
+	fillInitialPositioningMatrix();
 	loadCameras();
 	loadScene(".." + getSeparator() + "scene" + getSeparator() + "scene.ovo");
 	loadCars();
