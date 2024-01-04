@@ -15,11 +15,15 @@
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../dependencies/glm/glm" />
+					<Add directory="../dependencies/glm" />
 					<Add directory="../dependencies/freeglut/include" />
+					<Add directory="../dependencies/freeimage/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-DFREEGLUT_STATIC" />
+					<Add option="-DFREEIMAGE_LIB" />
+					<Add library="../dependencies/freeglut/lib/x64/Debug/freeglut_staticd.lib" />
+					<Add library="../dependencies/freeimage/lib/x64/Debug/FreeImageLib.lib" />
 					<Add directory="../dependencies/freeglut/lib/x64/Debug" />
 				</Linker>
 			</Target>
@@ -41,8 +45,47 @@
 			<Add option="-Wall" />
 			<Add option="-fPIC" />
 		</Compiler>
+		<Unit filename="camera.cpp" />
+		<Unit filename="camera.h" />
+		<Unit filename="directionalLight.cpp" />
+		<Unit filename="directionalLight.h" />
+		<Unit filename="engine-tests-runner.cpp" />
+		<Unit filename="engine-tests-runner.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
+		<Unit filename="fakeShadow.cpp" />
+		<Unit filename="fakeShadow.h" />
+		<Unit filename="lib.h" />
+		<Unit filename="light.cpp" />
+		<Unit filename="light.h" />
+		<Unit filename="light_test.cpp" />
+		<Unit filename="list.cpp" />
+		<Unit filename="list.h" />
+		<Unit filename="material.cpp" />
+		<Unit filename="material.h" />
+		<Unit filename="material_test.cpp" />
+		<Unit filename="mesh.cpp" />
+		<Unit filename="mesh.h" />
+		<Unit filename="mesh_test.cpp" />
+		<Unit filename="node.cpp" />
+		<Unit filename="node.h" />
+		<Unit filename="node_test.cpp" />
+		<Unit filename="object.cpp" />
+		<Unit filename="object.h" />
+		<Unit filename="ovLight.h" />
+		<Unit filename="ovMesh.h" />
+		<Unit filename="ovObject.h" />
+		<Unit filename="ovoReader.cpp" />
+		<Unit filename="ovoReader.h" />
+		<Unit filename="pointLight.cpp" />
+		<Unit filename="pointLight.h" />
+		<Unit filename="spotLight.cpp" />
+		<Unit filename="spotLight.h" />
+		<Unit filename="texture.cpp" />
+		<Unit filename="texture.h" />
+		<Unit filename="texture_test.cpp" />
+		<Unit filename="vertex.cpp" />
+		<Unit filename="vertex.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

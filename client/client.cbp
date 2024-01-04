@@ -13,6 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../dependencies/glm" />
+					<Add directory="../engine" />
 				</Compiler>
 				<Linker>
 					<Add library="engine" />
@@ -38,6 +40,8 @@
 			<Add directory="../engine" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="main.h" />
+		<Unit filename="rush-hour-test-runner.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
