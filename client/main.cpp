@@ -52,6 +52,7 @@ Camera* cameras[3];
 // Fps calculation
 int fc;
 int fps;
+int numberOfMoves = 0;
 
 // Object blinking vars
 Node* pickedObject = nullptr;
@@ -147,6 +148,7 @@ void specialCallback(int key, int x, int y) {
 					// Move position matrix elements
 					positioningMatrix[i][j - 1] = true;
 					positioningMatrix[i][j + carSize - 1] = false;
+					numberOfMoves++;
 				}
 				
 			}
@@ -162,6 +164,7 @@ void specialCallback(int key, int x, int y) {
 					// Move position matrix elements
 					positioningMatrix[i][j + carSize] = true;
 					positioningMatrix[i][j] = false;
+					numberOfMoves++;
 				}
 			}
 			break;
@@ -176,6 +179,7 @@ void specialCallback(int key, int x, int y) {
 					// Move position matrix elements
 					positioningMatrix[i - 1][j] = true;
 					positioningMatrix[i + carSize - 1][j] = false;
+					numberOfMoves++;
 				}
 			}
 			break;
@@ -190,6 +194,7 @@ void specialCallback(int key, int x, int y) {
 					// Move position matrix elements
 					positioningMatrix[i + carSize][j] = true;
 					positioningMatrix[i][j] = false;
+					numberOfMoves++;
 				}
 			}
 			break;
@@ -267,13 +272,13 @@ std::vector<std::vector<int>> loadGameDifficulty() {
 		case 3:
 			initialMatrix = {
 				{ 6 , 6 , 6 , 6 , 6 , 6 , 6 , 6 },
-				{ 6 , 2 , 0 , 0 , 3 , 1 , 0 , 6 },
-				{ 6 , 0 , 1 , 5 , 0 , 0 , 0 , 6 },
+				{ 6 , 2 , 0 , 5 , 0 , 0 , 0 , 6 },
+				{ 6 , 0 , 0 , 0 , 3 , 2 , 0 , 6 },
+				{ 6 , 3 , 3 , 0 , 0 , 0 , 1 , 6 },
 				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 3 , 0 , 0 , 4 , 0 , 0 , 6 },
-				{ 6 , 0 , 4 , 0 , 0 , 0 , 1 , 6 },
-				{ 6 , 0 , 0 , 0 , 0 , 0 , 0 , 6 },
-				{ 6 , 6 , 7 , 6 , 6 , 6 , 6 , 6 }
+				{ 6 , 0 , 0 , 0 , 2 , 0 , 1 , 6 },
+				{ 6 , 0 , 0 , 4 , 0 , 0 , 0 , 6 },
+				{ 6 , 6 , 6 , 7 , 6 , 6 , 6 , 6 }
 			};
 			break;
 
@@ -535,7 +540,9 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
 		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 45.0f), 10.0f);
 		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 60.0f), 10.0f);
-		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 75.0f), 10.0f);
+		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 90.0f), 10.0f);
+		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
+		
 		Engine::refreshAndSwapBuffers();
 
 		fc++;
