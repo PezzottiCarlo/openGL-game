@@ -61,7 +61,6 @@ static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
-bool cameraStartedRotating = false;
 
 std::string getSeparator(){
 	#ifdef _WIN32
@@ -527,6 +526,8 @@ int main(int argc, char* argv[])
 			break;
 	}
 
+	Engine::startTimer(rotateCamera, 10);
+
 	while (Engine::isRunning()) {
 		Engine::update();
 
@@ -536,11 +537,6 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 60.0f), 10.0f);
 		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 75.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
-
-		if (!cameraStartedRotating) {
-			Engine::startTimer(rotateCamera, 10);
-			cameraStartedRotating = true;
-		}
 
 		fc++;
 	}
