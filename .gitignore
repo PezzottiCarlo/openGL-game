@@ -1,6 +1,5 @@
 *.DS_Store*
 *.iml
-x64
 /ARM64
 /x64
 /client/Debug
