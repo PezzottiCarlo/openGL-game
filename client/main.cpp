@@ -118,6 +118,7 @@ int* getCarDataFromId(unsigned int id) {
  */
 void specialCallback(int key, int x, int y) {
 	// Retrieve data from selected car
+	if (pickedObject == nullptr) return;
 	int* carData = getCarDataFromId(pickedObject->getId());
 	if (carData == nullptr) return;
 
@@ -126,8 +127,6 @@ void specialCallback(int key, int x, int y) {
 	int j = carData[1];
 	int d = carData[2];
 	int carSize = (d == 1 || d == 2 || d == 5) ? 2 : 3;
-
-	std::cout << "i: " << i << " j: " << j << " direction: " << d << " carSize: " << carSize << std::endl;
 
 	// Define if car can move vertically or horizontally
 	bool canMoveVertical = (d == 1 || d == 3 || d == 5);
