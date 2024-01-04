@@ -21,6 +21,12 @@
 #include <iostream>
 #include <fstream>
 #include <glm/gtx/string_cast.hpp>
+// Libs to use sleep function
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 // Constants:
 #define PLAYGROUND_SIZE 6
@@ -185,7 +191,20 @@ void specialCallback(int key, int x, int y) {
 		break;
 	case 103:	// Down
 		if (canMoveVertical) {
-			if (!positioningMatrix[i + carSize][j]) {
+
+			// Check if red car is pointing towards exit -> win
+			// Exit block is [5][3] (in game coords. [4][2])
+			if (pickedObject->getName() == "Car" && i == 5 && j == 3) {
+
+				// Move camera
+				Engine::setActiveCamera(1);
+				Engine::refreshAndSwapBuffers();
+
+				// Start animation
+				Engine::startTimer(moveWinningCar, 10);
+
+
+			} else if (!positioningMatrix[i + carSize][j]) {
 				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
 				matrix[i][j].second = 0;
 				matrix[i + 1][j].first = matrix[i][j].first;
@@ -327,7 +346,7 @@ void rotateCamera(int value) {
 	static bool rotationSense = false;
 	static float angle = 0.0f;
 	glm::mat4 currentTransform = cameras[2]->getTransform();
-	float rotation = (rotationSense) ? -0.001f : 0.001f;
+	float rotation = (rotationSense) ? -0.002f : 0.002f;
 
 	currentTransform = glm::rotate_slow(currentTransform, rotation, glm::vec3(0.0f, 1.0f, 0.0f));
 	cameras[2]->setTransform(currentTransform);
@@ -340,6 +359,14 @@ void rotateCamera(int value) {
 
 	// Restart timer
 	Engine::startTimer(rotateCamera, 10);
+}
+
+void moveWinningCar(int value) {
+	glm::mat4 currentTransform = glm::translate(pickedObject->getTransform(), glm::vec3(-BLOCK_SIZE / 25, 0.0f, 0.0f));
+	pickedObject->setTransform(currentTransform);
+	Engine::postWindowRedisplay();
+	Engine::refreshAndSwapBuffers();
+	Engine::startTimer(moveWinningCar, 10);
 }
 
 void loadCars() {
