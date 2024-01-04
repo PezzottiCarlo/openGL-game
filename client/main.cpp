@@ -60,6 +60,7 @@ static float range = .5f;
 static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
+bool blinkerTimerStarted = false;
 
 std::string getSeparator(){
 	#ifdef _WIN32
@@ -118,6 +119,7 @@ void specialCallback(int key, int x, int y) {
 	// Retrieve data from selected car
 	int* carData = getCarDataFromId(pickedObject->getId());
 	if (carData == nullptr) return;
+
 	//convert to int array
 	int i = carData[0];
 	int j = carData[1];
@@ -428,9 +430,7 @@ void makeObjectBlink(Node* obj) {
 
 	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
 
-	//scale step base on fps for a smooth animation TODO: fix this
-	//step = 0.1f * (8.0f / (float)fps);
-	step = 0.1f;
+	step = 0.01f;
 
 	if (blink) {
 		blinkStep += step;
@@ -446,6 +446,11 @@ void makeObjectBlink(Node* obj) {
 	((Mesh*)obj)->getMaterial()->setEmission(glm::vec4(blinkStep, blinkStep, blinkStep, 1.0f));
 }
 
+void updateBlinking(int value) {
+	makeObjectBlink(pickedObject);
+	Engine::startTimer(updateBlinking, 10);
+}
+
 void getPickedObject(Node* n,bool mousePressed) {
 	if (n != nullptr && mousePressed) {
 		if (pickedObject != nullptr) {
@@ -453,6 +458,11 @@ void getPickedObject(Node* n,bool mousePressed) {
 		}
 		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
 		pickedObject = n;
+		// Start blinker timer if it isn't already running
+		if (!blinkerTimerStarted) {
+			Engine::startTimer(updateBlinking, 10);
+			blinkerTimerStarted = true;
+		}
 	}
 }
 
@@ -516,9 +526,6 @@ int main(int argc, char* argv[])
 
 	while (Engine::isRunning()) {
 		Engine::update();
-		if (pickedObject != nullptr) {
-			makeObjectBlink(pickedObject);
-		}
 
 		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height-15.0f), 10.0f);
 		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 30.0f), 10.0f);
