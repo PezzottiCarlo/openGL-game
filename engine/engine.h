@@ -11,7 +11,7 @@
 
 #include "lib.h"
 #include "list.h"
-#include "ovoreader.h"
+#include "ovoReader.h"
 #include "camera.h"
 
 
@@ -75,7 +75,7 @@ public: //
 	//Timer
 	static void startTimer(void (*func)(int), int);
 
-	//List 
+	//List
 	static List* getList();
 
 	///////////
