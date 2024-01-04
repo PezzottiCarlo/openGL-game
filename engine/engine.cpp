@@ -252,8 +252,21 @@ void LIB_API Engine::addNode(Node node)
     list.addEntry(_node);
 }
 
-void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, float fontSize)
+void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, int textType)
 {
+    /*
+        Text types:
+
+        1:  GLUT_BITMAP_8_BY_13
+        2:  GLUT_BITMAP_9_BY_15
+        3:  GLUT_BITMAP_TIMES_ROMAN_10
+        4:  GLUT_BITMAP_TIMES_ROMAN_24
+        5:  GLUT_BITMAP_HELVETICA_10
+        6:  GLUT_BITMAP_HELVETICA_12
+        7:  GLUT_BITMAP_HELVETICA_18
+    
+    */
+
     // 2D
     // Set orthographic projection:
     glMatrixMode(GL_PROJECTION);
@@ -265,7 +278,30 @@ void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 
     glDisable(GL_LIGHTING);
     glColor3f(color.x, color.y, color.z);
     glRasterPos2f(coord.x, coord.y);
-    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
+
+    switch (textType) {
+        case 1:
+            glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
+            break;
+        case 2:
+            glutBitmapString(GLUT_BITMAP_9_BY_15, (unsigned char*)text.c_str());
+            break;
+        case 3:
+            glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_10, (unsigned char*)text.c_str());
+            break;
+        case 4:
+            glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text.c_str());
+            break;
+        case 5:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_10, (unsigned char*)text.c_str());
+            break;
+        case 6:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_12, (unsigned char*)text.c_str());
+            break;
+        case 7:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text.c_str());
+            break;
+    }
 
     // Re-enable lighting
     glEnable(GL_LIGHTING);

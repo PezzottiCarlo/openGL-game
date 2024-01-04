@@ -70,7 +70,7 @@ public: //
 	static void addNode(Node);
 
 	//Write on screen
-	static void writeOnScreen(std::string, glm::vec3, glm::vec2, float);
+	static void writeOnScreen(std::string, glm::vec3, glm::vec2, int);
 
 	//Timer
 	static void startTimer(void (*func)(int), int);

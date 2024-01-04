@@ -614,20 +614,20 @@ int main(int argc, char* argv[])
 	while (Engine::isRunning()) {
 		Engine::update();
 
-		Engine::writeOnScreen("Commands:", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 15.0f), 10.0f);
-		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 30.0f), 10.0f);
-		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 45.0f), 10.0f);
-		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 60.0f), 10.0f);
-		Engine::writeOnScreen("[Arrows]: Move selected car", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 75.0f), 10.0f);
+		Engine::writeOnScreen("Commands:", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 15.0f), 6);
+		Engine::writeOnScreen("[1]: Top view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 30.0f), 6);
+		Engine::writeOnScreen("[2]: Side view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 45.0f), 6);
+		Engine::writeOnScreen("[3]: Dynamic view", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 60.0f), 6);
+		Engine::writeOnScreen("[Arrows]: Move selected car", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(20.0f, height - 75.0f), 6);
 
-		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 10.0f);
-		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 10.0f);
-		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 135.0f), 10.0f);
+		Engine::writeOnScreen("FPS: " + std::to_string(fps), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 105.0f), 6);
+		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 120.0f), 6);
+		Engine::writeOnScreen("Number of moves: " + std::to_string(numberOfMoves), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 135.0f), 6);
 
 		if (gameFinished) {
 			// Display string on screen
-			Engine::writeOnScreen("You won!", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 -40.f, height - height / 2 + 15.0f), 50.0f);
-			Engine::writeOnScreen("To start a new game press [n]", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 - 100.f, height - height / 2 - 15.0f), 30.0f);
+			Engine::writeOnScreen("You won!", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 -60.f, height - height / 2 + 15.0f), 7);
+			Engine::writeOnScreen("To start a new game press [n]", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 - 100.f, height - height / 2 - 15.0f), 7);
 			Engine::refreshAndSwapBuffers();
 		}
 
