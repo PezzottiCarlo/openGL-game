@@ -61,6 +61,7 @@ static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
+bool cameraStartedRotating = false;
 
 std::string getSeparator(){
 	#ifdef _WIN32
@@ -305,7 +306,7 @@ void loadCameras() {
 	Camera* c2 = new Camera("camera2");
 	c2->setUserTransform(-20.0f, 5.0f, 5.0f, 0, -75.0f, 0);
 	Camera* c3 = new Camera("camera3");
-	c3->setUserTransform(0.0f, 5.0f, 10.0f, 0, -75.0f, 0);
+	c3->setUserTransform(0.0f, 5.0f, 10.0f, 0, -45.0f, 0);
 
 	Engine::addCamera(c1);
 	Engine::addCamera(c2);
@@ -318,22 +319,24 @@ void loadCameras() {
 	Engine::setActiveCamera(0);
 }
 
-
-void rotateCamera() {
+void rotateCamera(int value) {
 	static bool rotationSense = false;
 	static float angle = 0.0f;
 	glm::mat4 currentTransform = cameras[2]->getTransform();
-	float rotation = (rotationSense) ? -0.005f : 0.005f;
+	float rotation = (rotationSense) ? -0.001f : 0.001f;
+
 	currentTransform = glm::rotate_slow(currentTransform,rotation, glm::vec3(0.0f, 1.0f, 0.0f));
 	cameras[2]->setTransform(currentTransform);
+
 	if (angle > 1.5) 
 		rotationSense = true;
 	else if (angle < 0.0f)
 		rotationSense = false;
 	angle += rotation;
+
+	// Restart timer
+	Engine::startTimer(rotateCamera, 10);
 }
-
-
 
 void loadCars(){
 
@@ -534,7 +537,11 @@ int main(int argc, char* argv[])
 		Engine::writeOnScreen("Game difficulty: " + difficultyStr, glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(10.0f, height - 75.0f), 10.0f);
 		Engine::refreshAndSwapBuffers();
 
-		rotateCamera();
+		if (!cameraStartedRotating) {
+			Engine::startTimer(rotateCamera, 10);
+			cameraStartedRotating = true;
+		}
+
 		fc++;
 	}
 
