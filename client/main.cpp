@@ -626,8 +626,8 @@ int main(int argc, char* argv[])
 
 		if (gameFinished) {
 			// Display string on screen
-			Engine::writeOnScreen("You won!", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 -60.f, height - height / 2 + 15.0f), 7);
-			Engine::writeOnScreen("To start a new game press [n]", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 - 100.f, height - height / 2 - 15.0f), 7);
+			Engine::writeOnScreen("You won!", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 -50.f, height - height / 2 + 15.0f), 7);
+			Engine::writeOnScreen("To start a new game press [n]", glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(width - width / 2 - 130.f, height - height / 2 - 15.0f), 7);
 			Engine::refreshAndSwapBuffers();
 		}
 
