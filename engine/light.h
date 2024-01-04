@@ -24,6 +24,7 @@ public:
 	void setConstantAttenuation(float constantAttenuation);
 	void setLinearAttenuation(float linearAttenuation);
 	void setQuadraticAttenuation(float quadraticAttenuation);
+	void setIntensity(float intensity);
 
 	static int test();
 
@@ -38,6 +39,7 @@ private:
 	float constantAttenuation = 1.0f;
 	float linearAttenuation = 0.0f;
 	float quadraticAttenuation = 0.0f;
+	float intesity = 7.0f;
 };
 
 #endif 

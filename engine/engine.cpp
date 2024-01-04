@@ -276,6 +276,11 @@ void LIB_API Engine::startTimer(void(*func)(int), int time)
     glutTimerFunc(time, func, 0);
 }
 
+List LIB_API* Engine::getList()
+{
+    return &list;
+}
+
 
 
 

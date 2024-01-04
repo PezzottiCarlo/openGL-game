@@ -66,7 +66,12 @@ void LIB_API Light::setQuadraticAttenuation(float quadraticAttenuation) {
 	this->quadraticAttenuation = quadraticAttenuation;
 }
 
-float intesity = 7.0f;
+void LIB_API Light::setIntensity(float i)
+{
+	this->intesity = i;
+}
+
+
 bool LIB_API Light::render(glm::mat4 matrix, void* ptr) {
 	glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
 

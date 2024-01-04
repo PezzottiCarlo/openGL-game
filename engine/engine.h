@@ -74,6 +74,9 @@ public: //
 	//Timer
 	static void startTimer(void (*func)(int), int);
 
+	//List 
+	static List* getList();
+
 	///////////
 private: //
 	///////////
