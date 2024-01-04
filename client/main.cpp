@@ -21,33 +21,12 @@
 #include <iostream>
 #include <fstream>
 #include <glm/gtx/string_cast.hpp>
-// Libs to use sleep function
-#ifdef _WIN32
-#include <windows.h>
-#else
-#include <unistd.h>
-#endif
 
 // Constants:
 #define PLAYGROUND_SIZE 6
 #define BLOCK_SIZE 2.25f
 
-
-/*
-
-Playing field where:
-0 -> indicates empty space
-1 -> indicates car presence at 0 degrees with lenght 2
-2 -> indicates car presence at 90 degrees with lenght 2
-3 -> indicates car presence at 0 degrees with lenght 3
-4 -> indicates car presence at 90 degrees with lenght 3
-5 -> indicates the target car
-
-6 -> indicates the wall
-7 -> indicates the exit
-
-*/
-
+// Matrixes
 std::pair<int, unsigned int> matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
 bool positioningMatrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
 
@@ -57,9 +36,9 @@ int gameDifficulty = -1;
 Camera* cameras[3];
 
 // Fps calculation
-int fc;
-int fps;
-int numberOfMoves = 0;
+int fc; 
+int fps; 
+int numberOfMoves = 0; 
 
 // Object blinking vars
 Node* pickedObject = nullptr;
@@ -69,6 +48,8 @@ static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
+
+// Other vars
 int winningAnimationCounter = 0;
 bool gameFinished = false;
 
@@ -453,51 +434,58 @@ void loadCars() {
 				glm::mat4 m = glm::mat4(1.0f);
 				m = glm::translate(m, glm::vec3(-8.0f + (2.265f * (PLAYGROUND_SIZE + 1 - i)), 1.0f, -7.25f + (2.25f * j)));
 
+				/*
 
-				/*	1->indicates car presence at 0 degrees with lenght 2		|
-					2->indicates car presence at 90 degrees with lenght 2		-
-					3->indicates car presence at 0 degrees with lenght 3		|
-					4->indicates car presence at 90 degrees with lenght 3		-
-					5->indicates the target car	at 0 degrees					|
+				Playing field where:
+
+				0 -> indicates empty space
+				1 -> indicates car presence at 0 degrees with lenght 2
+				2 -> indicates car presence at 90 degrees with lenght 2
+				3 -> indicates car presence at 0 degrees with lenght 3
+				4 -> indicates car presence at 90 degrees with lenght 3
+				5 -> indicates the target car
+				6 -> indicates the wall
+				7 -> indicates the exit
+
 				*/
 
 				switch (initialMatrix[i][j])
 				{
-				case 1: case 5:
-					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
-					car.getChildAt(0)->setScale(1.1f);
-					// Add car to positioning matrix
-					positioningMatrix[i][j] = true;
-					positioningMatrix[i + 1][j] = true;
-					break;
-				case 2:
-					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					car.getChildAt(0)->setScale(1.1f);
-					// Add car to positioning matrix
-					positioningMatrix[i][j] = true;
-					positioningMatrix[i][j + 1] = true;
-					break;
-				case 3:
-					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
-					car.getChildAt(0)->setScale(1.0f);
-					// Add car to positioning matrix
-					positioningMatrix[i][j] = true;
-					positioningMatrix[i + 1][j] = true;
-					positioningMatrix[i + 2][j] = true;
-					break;
-				case 4:
-					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-					m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
-					car.getChildAt(0)->setScale(1.0f);
-					// Add car to positioning matrix
-					positioningMatrix[i][j] = true;
-					positioningMatrix[i][j + 1] = true;
-					positioningMatrix[i][j + 2] = true;
-					break;
-				default:
-					break;
+					case 1: case 5:
+						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
+						car.getChildAt(0)->setScale(1.1f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i + 1][j] = true;
+						break;
+					case 2:
+						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						car.getChildAt(0)->setScale(1.1f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i][j + 1] = true;
+						break;
+					case 3:
+						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
+						car.getChildAt(0)->setScale(1.0f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i + 1][j] = true;
+						positioningMatrix[i + 2][j] = true;
+						break;
+					case 4:
+						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+						m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
+						car.getChildAt(0)->setScale(1.0f);
+						// Add car to positioning matrix
+						positioningMatrix[i][j] = true;
+						positioningMatrix[i][j + 1] = true;
+						positioningMatrix[i][j + 2] = true;
+						break;
+					default:
+						break;
 				}
 
 				car.getChildAt(0)->setTransform(m);
@@ -593,7 +581,6 @@ void init(int argc, char* argv[]) {
 	Engine::startTimer(updateFPS, 1000);
 	Engine::startTimer(blinkLight, 500);
 }
-
 
 /**
  * Application entry point.

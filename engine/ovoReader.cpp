@@ -15,13 +15,20 @@
 #include "spotLight.h"
 #pragma warning(disable : 4996)
 
+std::string getSeparator() {
+#ifdef _WIN32
+	return "\\";
+#else
+	return "/";
+#endif
+}
+
 LIB_API OvoReader::OvoReader() {}
 
 OvoReader::~OvoReader() {
 	materials.clear();
 	tempVertices.clear();
 }
-
 
 std::string _path;
 Node* OvoReader::readFile(const char* path) {
@@ -115,7 +122,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		material->setTexture(texture);
 
 		if (textureName_str != "[none]") {
-			texture->setTextureId(_path.substr(0, _path.find_last_of("\\/")) + "\\" + textureName_str);
+			texture->setTextureId(_path.substr(0, _path.find_last_of("\\/")) + getSeparator() + textureName_str);
 		}
 
 		return recursiveLoad(dat);

@@ -1,7 +1,5 @@
 #include "vertex.h"
 
-// TO-DO: Comment
-
 Vertex::Vertex(glm::vec3 position, glm::vec3 normal) :
 	position(position), normal(normal), textureCoordinates(glm::vec2(0.0f)) {}
 

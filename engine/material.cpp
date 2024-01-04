@@ -72,23 +72,6 @@ void LIB_API Material::setTexture(Texture* texture) {
 	this->texture = texture;
 }
 
-
-/*glm::vec4 getAmbientFromAlbedo(glm::vec4 albedo) {
-	return albedo * 0.2f;
-}
-
-glm::vec4 getSpecularFromAlbedo(glm::vec4 albedo) {
-	return albedo * 0.4f;
-}
-
-glm::vec4 getDiffuseFromAlbedo(glm::vec4 albedo) {
-	return albedo * 0.6f;
-}
-
-float getShininessFromRoughness(float roughness) {
-	return (1 - sqrt(roughness)) * 128.0f;
-}*/
-
 // Render the material
 bool LIB_API Material::render(glm::mat4 matrix, void* ptr) {
 
