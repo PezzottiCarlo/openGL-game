@@ -15,16 +15,13 @@
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../dependencies/glm" />
-					<Add directory="../dependencies/freeglut/include" />
-					<Add directory="../dependencies/freeimage/include" />
 				</Compiler>
 				<Linker>
-					<Add option="-DFREEGLUT_STATIC" />
-					<Add option="-DFREEIMAGE_LIB" />
-					<Add library="../dependencies/freeglut/lib/x64/Debug/freeglut_staticd.lib" />
-					<Add library="../dependencies/freeimage/lib/x64/Debug/FreeImageLib.lib" />
+					<Add library="libglut.a" />
+					<Add library="GLU" />
+					<Add library="libfreeimage" />
 					<Add directory="../dependencies/freeglut/lib/x64/Debug" />
+					<Add directory="../dependencies/freeimage/lib/x64/Debug" />
 				</Linker>
 			</Target>
 			<Target title="Release">

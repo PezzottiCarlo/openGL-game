@@ -13,8 +13,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../dependencies/glm" />
-					<Add directory="../engine" />
 				</Compiler>
 				<Linker>
 					<Add library="engine" />
