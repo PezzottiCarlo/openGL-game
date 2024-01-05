@@ -122,7 +122,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		material->setTexture(texture);
 
 		if (textureName_str != "[none]") {
-			texture->setTextureId(_path.substr(0, _path.find_last_of("\\/")) + getSeparator() + textureName_str);
+			texture->setTextureId(_path.substr(0, _path.find_last_of(getSeparator())) + getSeparator() + textureName_str);
 		}
 
 		return recursiveLoad(dat);

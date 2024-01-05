@@ -189,8 +189,6 @@ void specialCallback(int key, int x, int y) {
 				// Start animation
 				Engine::startTimer(moveWinningCar, 10);
 
-				gameFinished = true;
-
 			} else if (!positioningMatrix[i + carSize][j]) {
 				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
 				matrix[i][j].second = 0;
@@ -255,20 +253,39 @@ void keyboardCallback(unsigned char key, int x, int y) {
 			numberOfMoves = 0;
 			winningAnimationCounter = 0;
 			pickedObject = nullptr;
-			blink = false;
+			//blink = true;
 
 			// Refill matrixes and other elements
 			for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
 				for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
-					//matrix[i][j] = std::make_pair(initialMatrix[i][j], car.getChildAt(0)->getId());;
 					positioningMatrix[i][j] = false;
 				}
 			}
 
 			fillInitialPositioningMatrix();
-			loadCameras();
-			loadScene(".." + getSeparator() + "scene" + getSeparator() + "scene.ovo");
 			loadCars();
+			Engine::setActiveCamera(0);
+			Engine::startTimer(updateBlinking, 10);
+
+			std::cout << "Positioning matrix" << std::endl;
+
+			for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+				for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+					std::cout << positioningMatrix[i][j];
+				}
+				std::cout << std::endl;
+			}
+
+			std::cout << "Matrix" << std::endl;
+
+			for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+				for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+					std::cout << matrix[i][j].first << ":" << matrix[i][j].second << "\t";
+				}
+				std::cout << std::endl;
+			}
+
+
 		}
 		break;*/
 	}
@@ -402,6 +419,9 @@ void moveWinningCar(int value) {
 		Engine::startTimer(moveWinningCar, 10);
 		winningAnimationCounter++;
 	}
+	else {
+		gameFinished = true;
+	}
 }
 
 void loadCars() {
@@ -523,10 +543,8 @@ void makeObjectBlink(Node* obj) {
 }
 
 void updateBlinking(int value) {
-	if (blink) {
-		makeObjectBlink(pickedObject);
-		Engine::startTimer(updateBlinking, 10);
-	}
+	makeObjectBlink(pickedObject);
+	Engine::startTimer(updateBlinking, 10);
 }
 
 void handleWindowResize(int w, int h) {
