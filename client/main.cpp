@@ -10,50 +10,6 @@
  //////////////
 
 #include "main.h"
-// Library header:
-
-#include "engine.h"
-#include "node.h"
-#include <mesh.h>
-#include <light.h>
-
-// C/C++:
-#include <iostream>
-#include <fstream>
-#include <glm/gtx/string_cast.hpp>
-
-// Constants:
-#define PLAYGROUND_SIZE 6
-#define BLOCK_SIZE 2.25f
-
-// Matrixes
-std::pair<int, unsigned int> matrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
-bool positioningMatrix[PLAYGROUND_SIZE + 2][PLAYGROUND_SIZE + 2];
-
-int width = 640;
-int height = 480;
-int gameDifficulty = -1;
-Camera* cameras[3];
-
-// Fps calculation
-int fc;
-int fps;
-int numberOfMoves = 0;
-
-// Object blinking vars
-Node* pickedObject = nullptr;
-glm::vec4 lastObjectEmission;
-static float range = .5f;
-static float step = .01f;
-static float blinkStep = 0.0f;
-bool blink = false;
-bool blinkerTimerStarted = false;
-int numberOfCars = 0;
-
-// Other vars
-int winningAnimationCounter = 0;
-bool gameFinished = false;
-bool canMove = true;
 
 std::string getSeparator() {
 #ifdef _WIN32
@@ -63,51 +19,27 @@ std::string getSeparator() {
 #endif
 }
 
-void fillInitialPositioningMatrix() {
-	// Put borders to "true" value
-	for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
-		for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
-			if (i == 0 || i == PLAYGROUND_SIZE + 1) {
-				positioningMatrix[i][j] = true;
-			}
-			else if (j == 0 || j == PLAYGROUND_SIZE + 1) {
-				positioningMatrix[i][j] = true;
-			}
+
+//////////
+// MAIN //
+//////////
+
+//CALLBACKS
+void getPickedObject(Node* n, bool mousePressed) {
+	if (n != nullptr && mousePressed) {
+		if (pickedObject != nullptr) {
+			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
+		}
+		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
+		pickedObject = n;
+
+		// Start blinker timer if it isn't already running
+		if (!blinkerTimerStarted) {
+			Engine::startTimer(updateBlinking, 10);
+			blinkerTimerStarted = true;
 		}
 	}
 }
-
-std::vector<int> getCarDataFromId(unsigned int id) {
-
-    std::vector<int> results(3, 0);
-
-	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
-		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
-			if (matrix[i][j].second == id) {
-				// 0: i
-				// 1: j
-				// 2: direction code
-				results[0] = i;
-				results[1] = j;
-				results[2] = matrix[i][j].first;
-				return results;
-			}
-		}
-	}
-
-	return {};
-}
-
-///////////////
-// CALLBACKS //
-///////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * This callback gets invoked when a special character on the keyboard gets pressed.
- * @param key pressed keyboard key as integer
- * @param x mouse x position relative to the window when the key gets pressed
- * @param y mouse y position relative to the window when the key gets pressed
- */
 void specialCallback(int key, int x, int y) {
 	if (canMove) {
 		// Retrieve data from selected car
@@ -213,30 +145,6 @@ void specialCallback(int key, int x, int y) {
 		Engine::postWindowRedisplay();
 	}
 }
-
-void getPickedObject(Node* n, bool mousePressed) {
-	if (n != nullptr && mousePressed) {
-		if (pickedObject != nullptr) {
-			((Mesh*)pickedObject)->getMaterial()->setEmission(lastObjectEmission);
-		}
-		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
-		pickedObject = n;
-
-		// Start blinker timer if it isn't already running
-		if (!blinkerTimerStarted) {
-			Engine::startTimer(updateBlinking, 10);
-			blinkerTimerStarted = true;
-		}
-	}
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * This callback gets invoked when a regular character on the keyboard gets pressed.
- * @param key pressed keyboard character
- * @param x mouse x position relative to the window when the key gets pressed
- * @param y mouse y position relative to the window when the key gets pressed
- */
 void keyboardCallback(unsigned char key, int x, int y) {
 	switch (key) {
 	case '1':
@@ -285,11 +193,14 @@ void keyboardCallback(unsigned char key, int x, int y) {
 	}
 	Engine::postWindowRedisplay();
 }
+void handleWindowResize(int w, int h) {
+	width = w;
+	height = h;
+	Engine::reshapeCallback(w, h);
+}
 
-//////////
-// MAIN //
-//////////
 
+//SCENE
 std::vector<std::vector<int>> loadGameDifficulty() {
 	std::string text;
 	int diff = 1;
@@ -358,11 +269,25 @@ std::vector<std::vector<int>> loadGameDifficulty() {
 
 	return initialMatrix;
 }
-
 void loadScene(std::string pathName) {
 	Engine::loadScene(pathName);
 }
+void fillInitialPositioningMatrix() {
+	// Put borders to "true" value
+	for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
+		for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
+			if (i == 0 || i == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+			else if (j == 0 || j == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+		}
+	}
+}
 
+
+//CAMERA
 void loadCameras() {
 
 	Camera* c1 = new Camera("camera1");
@@ -382,7 +307,6 @@ void loadCameras() {
 
 	Engine::setActiveCamera(0);
 }
-
 void rotateCamera(int value) {
 	static bool rotationSense = false;
 	static float angle = 0.0f;
@@ -402,6 +326,16 @@ void rotateCamera(int value) {
 	Engine::startTimer(rotateCamera, 10);
 }
 
+
+//FPS
+void updateFPS(int value) {
+	fps = fc;
+	fc = 0;
+	Engine::startTimer(updateFPS, 1000);
+}
+
+
+//CARS METHODS
 void moveWinningCar(int value) {
 	glm::mat4 currentTransform = glm::translate(pickedObject->getTransform(), glm::vec3(-BLOCK_SIZE / 25, 0.0f, 0.0f));
 	pickedObject->setTransform(currentTransform);
@@ -418,7 +352,6 @@ void moveWinningCar(int value) {
 		gameFinished = true;
 	}
 }
-
 void loadCars() {
 
 	// Populate initialMatrix
@@ -467,41 +400,41 @@ void loadCars() {
 
 				switch (initialMatrix[i][j])
 				{
-					case 1: case 5:
-						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
-						car.getChildAt(0)->setScale(1.1f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i + 1][j] = true;
-						break;
-					case 2:
-						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						car.getChildAt(0)->setScale(1.1f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i][j + 1] = true;
-						break;
-					case 3:
-						m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
-						car.getChildAt(0)->setScale(1.0f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i + 1][j] = true;
-						positioningMatrix[i + 2][j] = true;
-						break;
-					case 4:
-						m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-						m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
-						car.getChildAt(0)->setScale(1.0f);
-						// Add car to positioning matrix
-						positioningMatrix[i][j] = true;
-						positioningMatrix[i][j + 1] = true;
-						positioningMatrix[i][j + 2] = true;
-						break;
-					default:
-						break;
+				case 1: case 5:
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-0.6f, 0.0f, -0.6f));
+					car.getChildAt(0)->setScale(1.1f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i + 1][j] = true;
+					break;
+				case 2:
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					car.getChildAt(0)->setScale(1.1f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i][j + 1] = true;
+					break;
+				case 3:
+					m = glm::rotate(m, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-1.2f, 0.0f, -0.6f));
+					car.getChildAt(0)->setScale(1.0f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i + 1][j] = true;
+					positioningMatrix[i + 2][j] = true;
+					break;
+				case 4:
+					m = glm::rotate(m, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+					m = glm::translate(m, glm::vec3(-0.4f, 0.0f, 0.1f));
+					car.getChildAt(0)->setScale(1.0f);
+					// Add car to positioning matrix
+					positioningMatrix[i][j] = true;
+					positioningMatrix[i][j + 1] = true;
+					positioningMatrix[i][j + 2] = true;
+					break;
+				default:
+					break;
 				}
 
 				car.getChildAt(0)->setTransform(m);
@@ -517,7 +450,6 @@ void loadCars() {
 		}
 	}
 }
-
 void makeObjectBlink(Node* obj) {
 
 	if (!(obj->getName().substr(0, 3) == "Car" || obj->getName().substr(0, 9) == "Limousine" || obj->getName().substr(0, 6) == "Police")) return;
@@ -537,24 +469,10 @@ void makeObjectBlink(Node* obj) {
 
 	((Mesh*)obj)->getMaterial()->setEmission(glm::vec4(blinkStep, blinkStep, blinkStep, 1.0f));
 }
-
 void updateBlinking(int value) {
 	makeObjectBlink(pickedObject);
 	Engine::startTimer(updateBlinking, 10);
 }
-
-void handleWindowResize(int w, int h) {
-	width = w;
-	height = h;
-	Engine::reshapeCallback(w, h);
-}
-
-void updateFPS(int value) {
-	fps = fc;
-	fc = 0;
-	Engine::startTimer(updateFPS, 1000);
-}
-
 void blinkLight(int value) {
 	static bool blink = false;
 	static Mesh* lamp_parent = (Mesh*)(Engine::getList()->getObject(1)->getParent());
@@ -575,7 +493,28 @@ void blinkLight(int value) {
 	int random = rand() % 2500 + 500;
 	Engine::startTimer(blinkLight, random);
 }
+std::vector<int> getCarDataFromId(unsigned int id) {
 
+	std::vector<int> results(3, 0);
+
+	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+			if (matrix[i][j].second == id) {
+				// 0: i
+				// 1: j
+				// 2: direction code
+				results[0] = i;
+				results[1] = j;
+				results[2] = matrix[i][j].first;
+				return results;
+			}
+		}
+	}
+
+	return {};
+}
+
+// INIT
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
@@ -596,35 +535,15 @@ void init(int argc, char* argv[]) {
 	Engine::startTimer(blinkLight, 500);
 }
 
-/**
- * Application entry point.
- * @param argc number of command-line arguments passed
- * @param argv array containing up to argc passed arguments
- * @return error code (0 on success, error code otherwise)
- */
+
+//MAIN
 int main(int argc, char* argv[])
 {
 	init(argc, argv);
 
-	std::string difficultyStr;
-
-	switch (gameDifficulty) {
-	case 1:
-		difficultyStr = "Easy";
-		break;
-	case 2:
-		difficultyStr = "Medium";
-		break;
-	case 3:
-		difficultyStr = "Hard";
-		break;
-	default:
-		difficultyStr = "Undefined";
-		break;
-	}
+	std::string difficultyStr = (gameDifficulty == 1) ? "Easy" : (gameDifficulty == 2) ? "Medium" : (gameDifficulty == 3) ? "Hard" : "Undefined";
 
 	Engine::startTimer(rotateCamera, 10);
-
 	while (Engine::isRunning()) {
 		Engine::update();
 
