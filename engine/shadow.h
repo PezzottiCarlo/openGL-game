@@ -2,7 +2,7 @@
  * @file	mesh.h
  * @brief	Simple mesh class
  *
- * @author	Jari Nser (C) SUPSI [jari.naeser@student.supsi.ch]
+ * @author	Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
@@ -13,11 +13,13 @@
  ////////////////
 #include <memory>
 #include <glm/glm.hpp>
+#include <gl/freeglut.h>
 
+#include "object.h"
 #include "node.h"
+#include "mesh.h"
 #include "vertex.h"
-#include "material.h"
-#include "texture.h"
+
 
 
 
@@ -37,7 +39,7 @@ class Node;
 class LIB_API Shadow : public Node {
     //////////
 public: //
-    Shadow(std::string name);
+    Shadow(Mesh* mesh);
 
     // Destructor
     ~Shadow();
@@ -49,5 +51,6 @@ public:
 private: //
     ///////////
     float getDeepestPoint();
+    Mesh* meshToShadow;
     std::vector<Vertex*> vertices;
 };

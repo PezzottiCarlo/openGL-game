@@ -41,9 +41,6 @@ Node* OvoReader::readFile(const char* path) {
 		return nullptr;
 	}
 
-	Material* shadow_material = new Material("shadow_material", glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), 0.0f);
-	materials.insert(std::pair<std::string, Material*>(shadow_material->getName(), shadow_material));
-
 	_path = path;
 
 	Node* root = recursiveLoad(dat);
@@ -345,17 +342,24 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				}
 			}
 
+			//if the first 4 char are Tree cast a shadow or "streetlamp_body"
+			if (thisMesh->getName().substr(0, 4) == "Tree") {
+				std::cout << "Shadow of tree" << std::endl;
+				Shadow* shadow = new Shadow(thisMesh);
+				thisMesh->addChild(shadow);
+			}
+
 			tempVertices.clear();
 		}
 
 		// Go recursive when child nodes are avaialble:
-		if (nrOfChildren){
+		if (nrOfChildren) {
 			while (thisMesh->getNumberOfChildren() < nrOfChildren)
 			{
 				Node* childNode = recursiveLoad(dat);
 				thisMesh->addChild(childNode);
 			}
-        }
+		}
 
 		// Done:
 		return thisMesh;

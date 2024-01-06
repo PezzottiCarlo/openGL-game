@@ -355,6 +355,7 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePre
         glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
 
         list.render(cameras.at(activeCamera)->getInverseCameraMat(), (void*)true);
+        
 
         unsigned char pixel[4];
         glReadPixels(x, glutGet(GLUT_WINDOW_HEIGHT) - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
