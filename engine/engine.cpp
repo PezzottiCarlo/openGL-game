@@ -317,6 +317,12 @@ List LIB_API* Engine::getList()
     return &list;
 }
 
+bool LIB_API Engine::clearList() {
+    list.clear();
+    return true;
+}
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * This callback connects the given function handler with the glutKeyboardFunc function.

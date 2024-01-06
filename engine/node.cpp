@@ -62,11 +62,11 @@ bool LIB_API Node::addChild(Node* nodeToAdd) {
 bool LIB_API Node::removeChild(Node* nodeToRemove) {
 	auto child = std::find(children.begin(), children.end(), nodeToRemove);
 	if (child != children.end()) {
+		// Delete the node before erasing it from the vector
+		// delete *child;
+
+		// Erase the node from the vector
 		children.erase(child);
-
-		// child -> TO BE DELETED
-
-		//delete* child; // Fix the deletion line
 		return true;
 	}
 	return false;

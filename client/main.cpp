@@ -108,13 +108,8 @@ std::vector<int> getCarDataFromId(unsigned int id) {
  */
 void specialCallback(int key, int x, int y) {
 
-    std::cout << "Inside of specialCallback: " << key << std::endl;
-
 	// Retrieve data from selected car
 	if (pickedObject == nullptr) return;
-
-	std::cout << "Picked object ID: " << pickedObject->getId() << std::endl;
-
 
 	std::vector<int> carData = getCarDataFromId(pickedObject->getId());
 	if (carData.empty()) return;
@@ -131,10 +126,7 @@ void specialCallback(int key, int x, int y) {
 
 	glm::mat4 currentTransform = pickedObject->getTransform();
 
-	std::cout << "Pressed key: " << key << std::endl;
-
 	switch (key) {
-
 	case 100:	// Left
 		if (canMoveHorizontal) {
 			// Check if cells on the left are empty
@@ -252,7 +244,7 @@ void keyboardCallback(unsigned char key, int x, int y) {
 	case '3':
 		Engine::setActiveCamera(2);
 		break;
-	/*case 'n':
+	case 'n':
 		if (gameFinished) {
 			// Start new game
 			gameFinished = false;
@@ -263,8 +255,6 @@ void keyboardCallback(unsigned char key, int x, int y) {
 			// Reset variables
 			numberOfMoves = 0;
 			winningAnimationCounter = 0;
-			pickedObject = nullptr;
-			//blink = true;
 
 			// Refill matrixes and other elements
 			for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
@@ -273,32 +263,17 @@ void keyboardCallback(unsigned char key, int x, int y) {
 				}
 			}
 
+			// Clear list
+			//Engine::clearList();
+
+			// Reload elements
+			//loadScene(".." + getSeparator() + "scene" + getSeparator() + "scene.ovo");
 			fillInitialPositioningMatrix();
 			loadCars();
 			Engine::setActiveCamera(0);
 			Engine::startTimer(updateBlinking, 10);
-
-			std::cout << "Positioning matrix" << std::endl;
-
-			for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
-				for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
-					std::cout << positioningMatrix[i][j];
-				}
-				std::cout << std::endl;
-			}
-
-			std::cout << "Matrix" << std::endl;
-
-			for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
-				for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
-					std::cout << matrix[i][j].first << ":" << matrix[i][j].second << "\t";
-				}
-				std::cout << std::endl;
-			}
-
-
 		}
-		break;*/
+		break;
 	}
 	Engine::postWindowRedisplay();
 }

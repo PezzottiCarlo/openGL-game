@@ -77,6 +77,7 @@ public: //
 
 	//List
 	static List* getList();
+	static bool clearList();
 
 	///////////
 private: //
