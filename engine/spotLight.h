@@ -13,7 +13,7 @@
 #define SPOT_LIGHT
 
 #include "lib.h"
-#include "pointlight.h"
+#include "pointLight.h"
 
  /**
   * @brief SpotLight class derived from the PointLight class.

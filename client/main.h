@@ -21,7 +21,7 @@ std::string getSeparator();
 /**
  * @brief   Fill the initial positioning matrix.
  */
-void fillInitialPositioningMatrix(); 
+void fillInitialPositioningMatrix();
 
 /**
  * @brief   Get car data based on the provided ID.
@@ -104,7 +104,7 @@ void updateBlinking(int value);
  * @param   w The new width of the window.
  * @param   h The new height of the window.
  */
-void handleWindowResize(int w, int h);
+void handleWindowResize(int, int);
 
 /**
  * @brief   Update the frames per second (FPS) display.

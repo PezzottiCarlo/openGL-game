@@ -76,7 +76,7 @@ std::vector<int> getCarDataFromId(unsigned int id) {
 	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
 		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
 			if (matrix[i][j].second == id) {
-				results[0] = i;					
+				results[0] = i;
 				results[1] = j;
 				results[2] = matrix[i][j].first;	// Direction code
 				return results;
@@ -211,7 +211,7 @@ void moveWinningCar(int value) {
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void specialCallback(int key, int x, int y) {
-	if (canMove) { 
+	if (canMove) {
 		// Retrieve data from selected car
 		if (pickedObject == nullptr) return;
 
@@ -355,11 +355,6 @@ void keyboardCallback(unsigned char key, int x, int y) {
 			break;
 	}
 	Engine::postWindowRedisplay();
-}
-void handleWindowResize(int w, int h) {
-	width = w;
-	height = h;
-	Engine::reshapeCallback(w, h);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -571,27 +566,6 @@ void loadCars() {
 			}
 		}
 	}
-}
-
-std::vector<int> getCarDataFromId(unsigned int id) {
-
-	std::vector<int> results(3, 0);
-
-	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
-		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
-			if (matrix[i][j].second == id) {
-				// 0: i
-				// 1: j
-				// 2: direction code
-				results[0] = i;
-				results[1] = j;
-				results[2] = matrix[i][j].first;
-				return results;
-			}
-		}
-	}
-
-	return {};
 }
 
 void init(int argc, char* argv[]) {

@@ -50,8 +50,8 @@
 		<Unit filename="engine-tests-runner.h" />
 		<Unit filename="engine.cpp" />
 		<Unit filename="engine.h" />
-		<Unit filename="fakeShadow.cpp" />
-		<Unit filename="fakeShadow.h" />
+		<Unit filename="shadow.cpp" />
+		<Unit filename="shadow.h" />
 		<Unit filename="lib.h" />
 		<Unit filename="light.cpp" />
 		<Unit filename="light.h" />
