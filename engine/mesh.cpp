@@ -56,8 +56,8 @@ void Mesh::addVertex(Vertex* v, int lod) {
         vertices.at(lod).push_back(v);
 }
 
-std::vector<Vertex*> Mesh::getVertices(int lod) {
-    return vertices.at(lod);
+std::vector<std::vector<Vertex*>> Mesh::getVertices(int lod) {
+    return vertices;
 }
 
 bool LIB_API Mesh::render(glm::mat4 matrix,void* ptr) {

@@ -47,7 +47,7 @@ class LIB_API Node : public Object{
 		bool removeChild(Node*);
 		std::vector<Node*> getChildren();
 		void setChildren(std::vector<Node*>);
-		int getNumberOfChildren();
+		unsigned int getNumberOfChildren();
 
 		// Parent
 		Node* getParent();

@@ -29,6 +29,7 @@
 Node::Node(std::string name) {
 	Object::setId(Object::getNextId());
 	Object::setName(name);
+	this->setParent(nullptr);
 	scale = 1.0f;
 }
 
@@ -54,17 +55,17 @@ bool LIB_API Node::addChild(Node* nodeToAdd) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Removes a given node from the children vector 
+ * Removes a given node from the children vector
  * @param nodeToRemove Node to remove
- * @return true if operation has been completed without any errors (also if node has not been found). 
+ * @return true if operation has been completed without any errors (also if node has not been found).
  */
 bool LIB_API Node::removeChild(Node* nodeToRemove) {
 	auto child = std::find(children.begin(), children.end(), nodeToRemove);
 	if (child != children.end()) {
 		children.erase(child);
-		
+
 		// child -> TO BE DELETED
-		
+
 		//delete* child; // Fix the deletion line
 		return true;
 	}
@@ -194,7 +195,7 @@ void LIB_API Node::setWorldPosition(glm::vec3 position) {
  * Returns the number of children
  * @return Number of children
  */
-int LIB_API Node::getNumberOfChildren() {
+unsigned int LIB_API Node::getNumberOfChildren() {
 	return getChildren().size();
 }
 

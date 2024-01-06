@@ -140,7 +140,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 	position += sizeof(glm::mat4);
 
 	// Nr. of children nodes:
-	unsigned int nrOfChildren;
+	unsigned int nrOfChildren = 0;
 	memcpy(&nrOfChildren, data + position, sizeof(unsigned int));
 	position += sizeof(unsigned int);
 
@@ -349,13 +349,13 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		}
 
 		// Go recursive when child nodes are avaialble:
-		if (nrOfChildren)
+		if (nrOfChildren){
 			while (thisMesh->getNumberOfChildren() < nrOfChildren)
 			{
 				Node* childNode = recursiveLoad(dat);
 				thisMesh->addChild(childNode);
 			}
-
+        }
 
 		// Done:
 		return thisMesh;
@@ -450,4 +450,5 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		return thisLight;
 	}
 	}
+	delete[] data;
 }

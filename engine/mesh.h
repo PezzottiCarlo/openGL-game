@@ -47,7 +47,7 @@ public:
     // Add a vertex to the mesh
     void addVertex(Vertex* v, int lod);
     // Get vertices
-    std::vector<Vertex*> getVertices(int lod);
+    std::vector<std::vector<Vertex*>> getVertices(int lod);
     // Set LOD
     virtual bool render(glm::mat4, void*) override;
     // Get material

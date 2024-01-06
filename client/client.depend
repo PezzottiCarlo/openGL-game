@@ -1,11 +1,23 @@
 # depslib dependency file v1.0
-1696855247 source:/home/parallels/Desktop/Grafica/Gruppo01/client/main.cpp
+1704474495 source:/home/parallels/Desktop/Grafica/Gruppo01/client/main.cpp
+	"main.h"
 	"engine.h"
+	"node.h"
+	<mesh.h>
+	<light.h>
 	<iostream>
+	<fstream>
+	<glm/gtx/string_cast.hpp>
 
 1696929336 
 
-1696855247 /home/parallels/Desktop/Grafica/Gruppo01/engine/engine.h
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/engine.h
+	<vector>
+	<string>
+	"lib.h"
+	"list.h"
+	"ovoReader.h"
+	"camera.h"
 
 1704385575 source:/home/parallels/Desktop/Grafica/Progetto/Gruppo01/client/main.cpp
 	"main.h"
@@ -1025,4 +1037,62 @@
 1699275051 /home/parallels/Desktop/Grafica/Progetto/Gruppo01/dependencies/glm/glm/gtx/string_cast.inl
 	<cstdarg>
 	<cstdio>
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/client/main.h
+	<string>
+	<glm/glm.hpp>
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/lib.h
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/list.h
+	<list>
+	"object.h"
+	"node.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/object.h
+	<string>
+	<glm/glm.hpp>
+	"lib.h"
+
+1704526304 /home/parallels/Desktop/Grafica/Gruppo01/engine/node.h
+	<vector>
+	"object.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/ovoReader.h
+	<string>
+	<map>
+	"lib.h"
+	"node.h"
+	"material.h"
+	"vertex.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/material.h
+	<string>
+	"object.h"
+	"texture.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/texture.h
+	<string>
+	"object.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/vertex.h
+	"lib.h"
+	<glm/glm.hpp>
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/camera.h
+	"lib.h"
+	"node.h"
+
+1704530284 /home/parallels/Desktop/Grafica/Gruppo01/engine/mesh.h
+	<memory>
+	<glm/glm.hpp>
+	"node.h"
+	"vertex.h"
+	"material.h"
+	"texture.h"
+
+1704474495 /home/parallels/Desktop/Grafica/Gruppo01/engine/light.h
+	"node.h"
+
+1704474495 source:/home/parallels/Desktop/Grafica/Gruppo01/client/rush-hour-test-runner.cpp
 
