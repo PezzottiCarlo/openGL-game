@@ -8,8 +8,14 @@
 /engine/Debug
 /engine/Release
 /engine/x64
+/engine/engine-tests-runner
+/engine/*.o
 /client/bin
 /engine/bin
+/client/*.o
+/client/rush-hour
+/client/rush-hour-tests-runner
+/client/rush-hour.tar.gz
 .vscode
 /client/obj
 /engine/obj
