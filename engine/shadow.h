@@ -13,7 +13,7 @@
  ////////////////
 #include <memory>
 #include <glm/glm.hpp>
-#include <gl/freeglut.h>
+#include <GL/freeglut.h>
 
 #include "object.h"
 #include "node.h"
