@@ -69,19 +69,6 @@ std::string getSeparator() {
 #endif
 }
 
-void fillInitialPositioningMatrix() {
-	// Put borders to "true" value
-	for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
-		for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
-			if (i == 0 || i == PLAYGROUND_SIZE + 1) {
-				positioningMatrix[i][j] = true;
-			}
-			else if (j == 0 || j == PLAYGROUND_SIZE + 1) {
-				positioningMatrix[i][j] = true;
-			}
-		}
-	}
-}
 
 std::vector<int> getCarDataFromId(unsigned int id) {
     std::vector<int> results(3, 0);
@@ -96,8 +83,6 @@ std::vector<int> getCarDataFromId(unsigned int id) {
 			}
 		}
 	}
-
-	return {};
 }
 
 void getPickedObject(Node* n, bool mousePressed) {
@@ -369,12 +354,18 @@ void keyboardCallback(unsigned char key, int x, int y) {
 	}
 	Engine::postWindowRedisplay();
 }
+void handleWindowResize(int w, int h) {
+	width = w;
+	height = h;
+	Engine::reshapeCallback(w, h);
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////
 // LOADING FUNCTIONS //
 ///////////////////////
 
+//SCENE
 std::vector<std::vector<int>> loadGameDifficulty() {
 	std::string text;
 	int diff = 1;
@@ -443,11 +434,25 @@ std::vector<std::vector<int>> loadGameDifficulty() {
 
 	return initialMatrix;
 }
-
 void loadScene(std::string pathName) {
 	Engine::loadScene(pathName);
 }
+void fillInitialPositioningMatrix() {
+	// Put borders to "true" value
+	for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
+		for (int j = 0; j < PLAYGROUND_SIZE + 2; j++) {
+			if (i == 0 || i == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+			else if (j == 0 || j == PLAYGROUND_SIZE + 1) {
+				positioningMatrix[i][j] = true;
+			}
+		}
+	}
+}
 
+
+//CAMERA
 void loadCameras() {
 
 	Camera* c1 = new Camera("camera1");
@@ -566,7 +571,28 @@ void loadCars() {
 		}
 	}
 }
+std::vector<int> getCarDataFromId(unsigned int id) {
 
+	std::vector<int> results(3, 0);
+
+	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
+		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
+			if (matrix[i][j].second == id) {
+				// 0: i
+				// 1: j
+				// 2: direction code
+				results[0] = i;
+				results[1] = j;
+				results[2] = matrix[i][j].first;
+				return results;
+			}
+		}
+	}
+
+	return {};
+}
+
+// INIT
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
@@ -602,25 +628,9 @@ int main(int argc, char* argv[])
 {
 	init(argc, argv);
 
-	std::string difficultyStr;
-
-	switch (gameDifficulty) {
-	case 1:
-		difficultyStr = "Easy";
-		break;
-	case 2:
-		difficultyStr = "Medium";
-		break;
-	case 3:
-		difficultyStr = "Hard";
-		break;
-	default:
-		difficultyStr = "Undefined";
-		break;
-	}
+	std::string difficultyStr = (gameDifficulty == 1) ? "Easy" : (gameDifficulty == 2) ? "Medium" : (gameDifficulty == 3) ? "Hard" : "Undefined";
 
 	Engine::startTimer(rotateCamera, 10);
-
 	while (Engine::isRunning()) {
 		Engine::update();
 
