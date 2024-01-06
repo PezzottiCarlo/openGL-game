@@ -1,7 +1,7 @@
 ﻿/**
  * @brief   A simple graphical engine library
  *
- * @author  Jari N�ser (C) SUPSI [jari.naeser@student.supsi.ch]
+ * @author  Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
@@ -83,6 +83,8 @@ std::vector<int> getCarDataFromId(unsigned int id) {
 			}
 		}
 	}
+
+	return {};
 }
 
 void getPickedObject(Node* n, bool mousePressed) {
@@ -365,7 +367,6 @@ void handleWindowResize(int w, int h) {
 // LOADING FUNCTIONS //
 ///////////////////////
 
-//SCENE
 std::vector<std::vector<int>> loadGameDifficulty() {
 	std::string text;
 	int diff = 1;
@@ -571,6 +572,7 @@ void loadCars() {
 		}
 	}
 }
+
 std::vector<int> getCarDataFromId(unsigned int id) {
 
 	std::vector<int> results(3, 0);
@@ -592,7 +594,6 @@ std::vector<int> getCarDataFromId(unsigned int id) {
 	return {};
 }
 
-// INIT
 void init(int argc, char* argv[]) {
 	Engine::setZBufferUsage(true);
 	Engine::init(argc, argv, "RushHour Game", width, height);
