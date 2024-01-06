@@ -6,7 +6,6 @@
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
-
  //////////////
  // #INCLUDE //
  //////////////
@@ -21,15 +20,11 @@
 #include <vector>
 #include <glm/gtx/string_cast.hpp>
 
-
 #include "mesh.h"
 #include "node.h"
 #include "material.h"
 #include "texture.h"
 #include "vertex.h"
-
-
-
 
  ///////////////////////
 // BODY OF CLASS Mesh //
@@ -42,9 +37,7 @@ Mesh::Mesh(std::string name, Material material) : Node(name) {
 }
 
 //destructor
-Mesh::~Mesh() {
-
-}
+Mesh::~Mesh() {}
 
 void Mesh::addVertex(Vertex* v, int lod) {
     if (vertices.size() <= lod) {

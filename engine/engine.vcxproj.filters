@@ -57,7 +57,7 @@
     <ClInclude Include="spotLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fakeShadow.h">
+    <ClInclude Include="shadow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="list.h">
@@ -134,7 +134,7 @@
     <ClCompile Include="spotLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fakeShadow.cpp">
+    <ClCompile Include="shadow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="list.cpp">

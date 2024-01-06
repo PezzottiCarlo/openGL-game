@@ -9,11 +9,19 @@
 #include "ovLight.h"
 #include "ovObject.h"
 #include <glm/gtc/packing.hpp>
-#include "fakeShadow.h"
+#include "shadow.h"
 #include "directionalLight.h"
 #include "pointLight.h"
 #include "spotLight.h"
 #pragma warning(disable : 4996)
+
+std::string getSeparator() {
+#ifdef _WIN32
+	return "\\";
+#else
+	return "/";
+#endif
+}
 
 LIB_API OvoReader::OvoReader() {}
 
@@ -21,7 +29,6 @@ OvoReader::~OvoReader() {
 	materials.clear();
 	tempVertices.clear();
 }
-
 
 std::string _path;
 Node* OvoReader::readFile(const char* path) {
@@ -33,9 +40,6 @@ Node* OvoReader::readFile(const char* path) {
 		std::cout << "ERROR: unable to open file '" << path << "'" << std::endl;
 		return nullptr;
 	}
-
-	Material* shadow_material = new Material("shadow_material", glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), glm::vec4(glm::vec3(0.0f), 1.0f), 0.0f);
-	materials.insert(std::pair<std::string, Material*>(shadow_material->getName(), shadow_material));
 
 	_path = path;
 
@@ -115,7 +119,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		material->setTexture(texture);
 
 		if (textureName_str != "[none]") {
-			texture->setTextureId(_path.substr(0, _path.find_last_of("\\/")) + "\\" + textureName_str);
+			texture->setTextureId(_path.substr(0, _path.find_last_of(getSeparator())) + getSeparator() + textureName_str);
 		}
 
 		return recursiveLoad(dat);
@@ -133,7 +137,7 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 	position += sizeof(glm::mat4);
 
 	// Nr. of children nodes:
-	unsigned int nrOfChildren;
+	unsigned int nrOfChildren = 0;
 	memcpy(&nrOfChildren, data + position, sizeof(unsigned int));
 	position += sizeof(unsigned int);
 
@@ -338,17 +342,24 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 				}
 			}
 
+			//if the first 4 char are Tree cast a shadow or "streetlamp_body"
+			if (thisMesh->getName().substr(0, 4) == "Tree") {
+				std::cout << "Shadow of tree" << std::endl;
+				Shadow* shadow = new Shadow(thisMesh);
+				thisMesh->addChild(shadow);
+			}
+
 			tempVertices.clear();
 		}
 
 		// Go recursive when child nodes are avaialble:
-		if (nrOfChildren)
+		if (nrOfChildren) {
 			while (thisMesh->getNumberOfChildren() < nrOfChildren)
 			{
 				Node* childNode = recursiveLoad(dat);
 				thisMesh->addChild(childNode);
 			}
-
+		}
 
 		// Done:
 		return thisMesh;
@@ -443,4 +454,5 @@ Node* OvoReader::recursiveLoad(FILE* dat)
 		return thisLight;
 	}
 	}
+	delete[] data;
 }

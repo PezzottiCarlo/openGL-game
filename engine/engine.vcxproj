@@ -30,7 +30,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="directionalLight.h" />
     <ClInclude Include="engine.h" />
-    <ClInclude Include="fakeShadow.h" />
+    <ClInclude Include="shadow.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />
@@ -50,7 +50,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="directionalLight.cpp" />
     <ClCompile Include="engine.cpp" />
-    <ClCompile Include="fakeShadow.cpp" />
+    <ClCompile Include="shadow.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_test.cpp" />
     <ClCompile Include="list.cpp" />

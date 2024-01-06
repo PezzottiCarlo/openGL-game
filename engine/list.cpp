@@ -32,6 +32,10 @@ void LIB_API List::addEntry(Node* root) {
     }
 }
 
+void LIB_API List::popEntry() {
+    objectsList.pop_back();
+}
+
 bool List::render(glm::mat4 cameraMatrix,void* ptr) {
     std::list<Node*>::iterator it;
 

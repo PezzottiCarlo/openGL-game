@@ -96,8 +96,6 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 }
 #endif
 
-
-
 //////////////////////////
 // BODY OF CLASS Engine //
 //////////////////////////
@@ -115,8 +113,6 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  /////////////////
  // FOR TESTING //
  /////////////////
-
-
 
 bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height) {
 
@@ -217,10 +213,50 @@ void LIB_API Engine::displayCallback()
     //disable texturing
     glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
+}
 
-    // Force rendering refresh
+void LIB_API Engine::loadScene(std::string pathName)
+{
+    Node* root = reader.readFile(pathName.c_str());
+    list.addEntry(root);
+}
 
-    // Swap this context's buffer:
+void LIB_API  Engine::addCamera(Camera* camera) {
+    cameras.push_back(camera);
+}
+
+void LIB_API Engine::setActiveCamera(int num)
+{
+    activeCamera = num;
+}
+
+Node LIB_API Engine::loadNode(std::string pathName)
+{
+    Node* _car = reader.readFile(pathName.c_str());
+    Node car = *_car;
+    return car;
+}
+
+void LIB_API Engine::addNode(Node node)
+{
+    Node* _node = new Node(node);
+    list.addEntry(_node);
+}
+
+void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, int textType)
+{
+    /*
+        Text types:
+
+        1:  GLUT_BITMAP_8_BY_13
+        2:  GLUT_BITMAP_9_BY_15
+        3:  GLUT_BITMAP_TIMES_ROMAN_10
+        4:  GLUT_BITMAP_TIMES_ROMAN_24
+        5:  GLUT_BITMAP_HELVETICA_10
+        6:  GLUT_BITMAP_HELVETICA_12
+        7:  GLUT_BITMAP_HELVETICA_18
+    
+    */
 
 }
 
@@ -265,7 +301,30 @@ void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 
     glDisable(GL_LIGHTING);
     glColor3f(color.x, color.y, color.z);
     glRasterPos2f(coord.x, coord.y);
-    glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
+
+    switch (textType) {
+        case 1:
+            glutBitmapString(GLUT_BITMAP_8_BY_13, (unsigned char*)text.c_str());
+            break;
+        case 2:
+            glutBitmapString(GLUT_BITMAP_9_BY_15, (unsigned char*)text.c_str());
+            break;
+        case 3:
+            glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_10, (unsigned char*)text.c_str());
+            break;
+        case 4:
+            glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text.c_str());
+            break;
+        case 5:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_10, (unsigned char*)text.c_str());
+            break;
+        case 6:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_12, (unsigned char*)text.c_str());
+            break;
+        case 7:
+            glutBitmapString(GLUT_BITMAP_HELVETICA_18, (unsigned char*)text.c_str());
+            break;
+    }
 
     // Re-enable lighting
     glEnable(GL_LIGHTING);
@@ -276,7 +335,15 @@ void LIB_API Engine::startTimer(void(*func)(int), int time)
     glutTimerFunc(time, func, 0);
 }
 
+List LIB_API* Engine::getList()
+{
+    return &list;
+}
 
+bool LIB_API Engine::clearList() {
+    list.clear();
+    return true;
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -291,6 +358,10 @@ void LIB_API Engine::setKeyboardCallback(void (*func)(unsigned char key, int x, 
     glutKeyboardFunc(func);
 }
 
+void LIB_API Engine::removeObjectPickedCallback() {
+    // Disables the generation of mouse callbacks
+    glutMouseFunc(NULL);
+}
 
 void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePressed)) {
     static std::function<void(int, int)> lambdaWrapper = [func](int x, int y) {
@@ -307,6 +378,7 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePre
         glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
 
         list.render(cameras.at(activeCamera)->getInverseCameraMat(), (void*)true);
+        
 
         unsigned char pixel[4];
         glReadPixels(x, glutGet(GLUT_WINDOW_HEIGHT) - y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
@@ -331,7 +403,7 @@ void LIB_API Engine::setObjectPickedCallback(void (*func)(Node* n, bool mousePre
         if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
             lambdaWrapper(-1, -1);
         }
-        });
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
