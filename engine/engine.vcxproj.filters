@@ -134,7 +134,7 @@
     <ClCompile Include="spotLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fakeShadow.cpp">
+    <ClCompile Include="shadow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="list.cpp">

@@ -9,7 +9,7 @@
 #include "ovLight.h"
 #include "ovObject.h"
 #include <glm/gtc/packing.hpp>
-#include "fakeShadow.h"
+#include "shadow.h"
 #include "directionalLight.h"
 #include "pointLight.h"
 #include "spotLight.h"

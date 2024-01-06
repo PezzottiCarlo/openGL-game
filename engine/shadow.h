@@ -2,7 +2,7 @@
  * @file	mesh.h
  * @brief	Simple mesh class
  *
- * @author	Jari Näser (C) SUPSI [jari.naeser@student.supsi.ch]
+ * @author	Jari Nser (C) SUPSI [jari.naeser@student.supsi.ch]
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 

@@ -50,7 +50,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="directionalLight.cpp" />
     <ClCompile Include="engine.cpp" />
-    <ClCompile Include="fakeShadow.cpp" />
+    <ClCompile Include="shadow.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_test.cpp" />
     <ClCompile Include="list.cpp" />
