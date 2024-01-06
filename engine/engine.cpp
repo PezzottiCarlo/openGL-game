@@ -215,14 +215,14 @@ void LIB_API Engine::displayCallback()
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
 }
 
+void LIB_API  Engine::addCamera(Camera* camera) {
+    cameras.push_back(camera);
+}
+
 void LIB_API Engine::loadScene(std::string pathName)
 {
     Node* root = reader.readFile(pathName.c_str());
     list.addEntry(root);
-}
-
-void LIB_API  Engine::addCamera(Camera* camera) {
-    cameras.push_back(camera);
 }
 
 void LIB_API Engine::setActiveCamera(int num)
@@ -244,51 +244,6 @@ void LIB_API Engine::addNode(Node node)
 }
 
 void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, int textType)
-{
-    /*
-        Text types:
-
-        1:  GLUT_BITMAP_8_BY_13
-        2:  GLUT_BITMAP_9_BY_15
-        3:  GLUT_BITMAP_TIMES_ROMAN_10
-        4:  GLUT_BITMAP_TIMES_ROMAN_24
-        5:  GLUT_BITMAP_HELVETICA_10
-        6:  GLUT_BITMAP_HELVETICA_12
-        7:  GLUT_BITMAP_HELVETICA_18
-    
-    */
-
-}
-
-void LIB_API Engine::loadScene(std::string pathName)
-{
-    Node* root = reader.readFile(pathName.c_str());
-    list.addEntry(root);
-}
-
-void LIB_API  Engine::addCamera(Camera* camera) {
-    cameras.push_back(camera);
-}
-
-void LIB_API Engine::setActiveCamera(int num)
-{
-    activeCamera = num;
-}
-
-Node LIB_API Engine::loadNode(std::string pathName)
-{
-    Node* _car = reader.readFile(pathName.c_str());
-    Node car = *_car;
-    return car;
-}
-
-void LIB_API Engine::addNode(Node node)
-{
-    Node* _node = new Node(node);
-    list.addEntry(_node);
-}
-
-void LIB_API Engine::writeOnScreen(std::string text, glm::vec3 color, glm::vec2 coord, float fontSize)
 {
     // 2D
     // Set orthographic projection:
