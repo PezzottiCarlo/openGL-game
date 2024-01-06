@@ -1,0 +1,378 @@
+\doxysection{Light Class Reference}
+\hypertarget{class_light}{}\label{class_light}\index{Light@{Light}}
+
+
+\doxylink{class_light}{Light} class.  
+
+
+
+
+{\ttfamily \#include $<$light.\+h$>$}
+
+Inheritance diagram for Light\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_light}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_light_a4108d6f1bbdc10273ef137866b56d8aa}{Light}} (const std\+::string name, const int light\+Number, const glm\+::vec4 ambient, const glm\+::vec4 diffuse, const glm\+::vec4 specular)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_light_ad0e59fad13bb6cfadc25b2c477e9ddc7}\label{class_light_ad0e59fad13bb6cfadc25b2c477e9ddc7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Light} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_light_a7f659b7e2d8e59ea62ca3023dc7a0e30}{get\+Light\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Get the light number associated with the light. \end{DoxyCompactList}\item 
+\Hypertarget{class_light_aa0cc18ee7ed2722617d1973459b53ca7}\label{class_light_aa0cc18ee7ed2722617d1973459b53ca7} 
+void {\bfseries set\+Position} ()
+\begin{DoxyCompactList}\small\item\em Set the position of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a589aeaae4691f87565b3377808194c18}{set\+Position}} (glm\+::vec4 pos)
+\begin{DoxyCompactList}\small\item\em Set the position of the light. \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_light_a6b40df3530ecec54ad8f871a0197e946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Get the position of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_aa0797b28775a626e0dd3ff1114c263ce}{get\+Constant\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the constant attenuation coefficient of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_ab7a1501a54cdcc3d1efbe83a3e999356}{get\+Linear\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the linear attenuation coefficient of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_a155124d5b7717cfd1df7c56b5763ce0e}{get\+Quadratic\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the quadratic attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a07815264fbbbeb450c9a5a8b0267a51c}{set\+Constant\+Attenuation}} (float constant\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the constant attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a43c40a216490aaa266af88bf02d5fabc}{set\+Linear\+Attenuation}} (float linear\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the linear attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_ac8101566a36dd60fee59e8cf3505ea9f}{set\+Quadratic\+Attenuation}} (float quadratic\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the quadratic attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a1434418c5518150147bfab3aef452c56}{set\+Intensity}} (float intensity)
+\begin{DoxyCompactList}\small\item\em Set the intensity of the light. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_light_af36b1774c17bce05b715752103b97318}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the light. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_light_acb8e224b5be6b469cdd7e8fbf1a0e28d}{set\+Transform}} (glm\+::mat4 transform) override
+\begin{DoxyCompactList}\small\item\em Set the transformation matrix for the light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_afceb8877cfab44e0eda5ae3a88513242}{Node}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_aa0840c3cb5c7159be6d992adecd2097c}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a5a2d3cd10105226987ec39d8d51677a3}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transformation matrix of the node. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_ae3bd9ae43520317f77dfb28a891f1795}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the final transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aada1397339f3a5de376daf5570357ae2}{get\+Child\+At}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the child node at a specific index. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_node_ae684551babfcbeb33b5d872bb7be74bc}{get\+World\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the world position of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a564d75e881574cac5ebc32a0eef4e7a9}{set\+World\+Position}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set the world position of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_adbba3537a9ffcfba9d30f073968c1f8a}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a88ff627aa1bd77f9df447ced1a973455}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from the node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_ac8374e0f12a4e7aad097cae98b274c7e}{get\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of child nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ada66d18cbe2d572a4504cd502f9b39ee}{set\+Children}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ children)
+\begin{DoxyCompactList}\small\item\em Set the vector of child nodes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}{get\+Number\+Of\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of child nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a220a8d64cb0df1cce083ed38c1260615}{get\+Parent}} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Set the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ad15309e777ffd0ff1526b85693942ea2}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em Set the scale factor of the node. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_ac9926440d4edab1020d348a2b950307c}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Get the scale factor of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_light_a93e2d5057b42a388de2bd74248f0952c}{get\+Next\+Light\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available light number. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_light_a438c82efb6a6265f146d532a39c5cc57}{test}} ()
+\begin{DoxyCompactList}\small\item\em Perform a test operation for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_node_a2855e7379723958c28e0c133865a4876}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_light}{Light} class. 
+
+This class represents a light source in a scene. It inherits from the base \doxylink{class_node}{Node} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_light_a4108d6f1bbdc10273ef137866b56d8aa}\label{class_light_a4108d6f1bbdc10273ef137866b56d8aa} 
+\index{Light@{Light}!Light@{Light}}
+\index{Light@{Light}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{Light()}{Light()}}
+{\footnotesize\ttfamily LIB\+\_\+\+API Light\+::\+Light (\begin{DoxyParamCaption}\item[{const std\+::string}]{name,  }\item[{const int}]{light\+Number,  }\item[{const glm\+::vec4}]{ambient,  }\item[{const glm\+::vec4}]{diffuse,  }\item[{const glm\+::vec4}]{specular }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_light}{Light} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the light. \\
+\hline
+{\em light\+Number} & The light number associated with the light. \\
+\hline
+{\em ambient} & The ambient color of the light. \\
+\hline
+{\em diffuse} & The diffuse color of the light. \\
+\hline
+{\em specular} & The specular color of the light. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_light_aa0797b28775a626e0dd3ff1114c263ce}\label{class_light_aa0797b28775a626e0dd3ff1114c263ce} 
+\index{Light@{Light}!getConstantAttenuation@{getConstantAttenuation}}
+\index{getConstantAttenuation@{getConstantAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getConstantAttenuation()}{getConstantAttenuation()}}
+{\footnotesize\ttfamily float LIB\+\_\+\+API Light\+::get\+Constant\+Attenuation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the constant attenuation coefficient of the light. 
+
+\begin{DoxyReturn}{Returns}
+The constant attenuation coefficient. 
+\end{DoxyReturn}
+\Hypertarget{class_light_a7f659b7e2d8e59ea62ca3023dc7a0e30}\label{class_light_a7f659b7e2d8e59ea62ca3023dc7a0e30} 
+\index{Light@{Light}!getLightNumber@{getLightNumber}}
+\index{getLightNumber@{getLightNumber}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getLightNumber()}{getLightNumber()}}
+{\footnotesize\ttfamily int Light\+::get\+Light\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the light number associated with the light. 
+
+\begin{DoxyReturn}{Returns}
+The light number. 
+\end{DoxyReturn}
+\Hypertarget{class_light_ab7a1501a54cdcc3d1efbe83a3e999356}\label{class_light_ab7a1501a54cdcc3d1efbe83a3e999356} 
+\index{Light@{Light}!getLinearAttenuation@{getLinearAttenuation}}
+\index{getLinearAttenuation@{getLinearAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getLinearAttenuation()}{getLinearAttenuation()}}
+{\footnotesize\ttfamily float LIB\+\_\+\+API Light\+::get\+Linear\+Attenuation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the linear attenuation coefficient of the light. 
+
+\begin{DoxyReturn}{Returns}
+The linear attenuation coefficient. 
+\end{DoxyReturn}
+\Hypertarget{class_light_a93e2d5057b42a388de2bd74248f0952c}\label{class_light_a93e2d5057b42a388de2bd74248f0952c} 
+\index{Light@{Light}!getNextLightNumber@{getNextLightNumber}}
+\index{getNextLightNumber@{getNextLightNumber}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getNextLightNumber()}{getNextLightNumber()}}
+{\footnotesize\ttfamily int LIB\+\_\+\+API Light\+::get\+Next\+Light\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the next available light number. 
+
+\begin{DoxyReturn}{Returns}
+The next available light number. 
+\end{DoxyReturn}
+\Hypertarget{class_light_a6b40df3530ecec54ad8f871a0197e946}\label{class_light_a6b40df3530ecec54ad8f871a0197e946} 
+\index{Light@{Light}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily glm\+::vec4 LIB\+\_\+\+API Light\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the position of the light. 
+
+\begin{DoxyReturn}{Returns}
+The position of the light. 
+\end{DoxyReturn}
+\Hypertarget{class_light_a155124d5b7717cfd1df7c56b5763ce0e}\label{class_light_a155124d5b7717cfd1df7c56b5763ce0e} 
+\index{Light@{Light}!getQuadraticAttenuation@{getQuadraticAttenuation}}
+\index{getQuadraticAttenuation@{getQuadraticAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{getQuadraticAttenuation()}{getQuadraticAttenuation()}}
+{\footnotesize\ttfamily float LIB\+\_\+\+API Light\+::get\+Quadratic\+Attenuation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the quadratic attenuation coefficient of the light. 
+
+\begin{DoxyReturn}{Returns}
+The quadratic attenuation coefficient. 
+\end{DoxyReturn}
+\Hypertarget{class_light_af36b1774c17bce05b715752103b97318}\label{class_light_af36b1774c17bce05b715752103b97318} 
+\index{Light@{Light}!render@{render}}
+\index{render@{render}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Light\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the light. 
+
+This function renders the light based on the given transformation matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the light. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{Node}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_directional_light_ac2c96ca8870974948a440f70a4b690b9}{Directional\+Light}}, \mbox{\hyperlink{class_point_light_a14fa66cb1e08ae566f293829e77eaefd}{Point\+Light}}, and \mbox{\hyperlink{class_spot_light_ac85b7f1ae61c013f6b2a32df08f6dc30}{Spot\+Light}}.
+
+\Hypertarget{class_light_a07815264fbbbeb450c9a5a8b0267a51c}\label{class_light_a07815264fbbbeb450c9a5a8b0267a51c} 
+\index{Light@{Light}!setConstantAttenuation@{setConstantAttenuation}}
+\index{setConstantAttenuation@{setConstantAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setConstantAttenuation()}{setConstantAttenuation()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Light\+::set\+Constant\+Attenuation (\begin{DoxyParamCaption}\item[{float}]{constant\+Attenuation }\end{DoxyParamCaption})}
+
+
+
+Set the constant attenuation coefficient of the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em constant\+Attenuation} & The new constant attenuation coefficient. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_a1434418c5518150147bfab3aef452c56}\label{class_light_a1434418c5518150147bfab3aef452c56} 
+\index{Light@{Light}!setIntensity@{setIntensity}}
+\index{setIntensity@{setIntensity}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setIntensity()}{setIntensity()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Light\+::set\+Intensity (\begin{DoxyParamCaption}\item[{float}]{intensity }\end{DoxyParamCaption})}
+
+
+
+Set the intensity of the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em intensity} & The new intensity of the light. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_a43c40a216490aaa266af88bf02d5fabc}\label{class_light_a43c40a216490aaa266af88bf02d5fabc} 
+\index{Light@{Light}!setLinearAttenuation@{setLinearAttenuation}}
+\index{setLinearAttenuation@{setLinearAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setLinearAttenuation()}{setLinearAttenuation()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Light\+::set\+Linear\+Attenuation (\begin{DoxyParamCaption}\item[{float}]{linear\+Attenuation }\end{DoxyParamCaption})}
+
+
+
+Set the linear attenuation coefficient of the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em linear\+Attenuation} & The new linear attenuation coefficient. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_a589aeaae4691f87565b3377808194c18}\label{class_light_a589aeaae4691f87565b3377808194c18} 
+\index{Light@{Light}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily void Light\+::set\+Position (\begin{DoxyParamCaption}\item[{glm\+::vec4}]{pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The new position of the light. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_ac8101566a36dd60fee59e8cf3505ea9f}\label{class_light_ac8101566a36dd60fee59e8cf3505ea9f} 
+\index{Light@{Light}!setQuadraticAttenuation@{setQuadraticAttenuation}}
+\index{setQuadraticAttenuation@{setQuadraticAttenuation}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setQuadraticAttenuation()}{setQuadraticAttenuation()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Light\+::set\+Quadratic\+Attenuation (\begin{DoxyParamCaption}\item[{float}]{quadratic\+Attenuation }\end{DoxyParamCaption})}
+
+
+
+Set the quadratic attenuation coefficient of the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quadratic\+Attenuation} & The new quadratic attenuation coefficient. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_light_acb8e224b5be6b469cdd7e8fbf1a0e28d}\label{class_light_acb8e224b5be6b469cdd7e8fbf1a0e28d} 
+\index{Light@{Light}!setTransform@{setTransform}}
+\index{setTransform@{setTransform}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{setTransform()}{setTransform()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Light\+::set\+Transform (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the transformation matrix for the light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The new transformation matrix for the light. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a2c01ffbac3ab86bdf4385a4d796228a4}{Node}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_directional_light_ad2dceb453e8038e59c971d5b683fd651}{Directional\+Light}}.
+
+\Hypertarget{class_light_a438c82efb6a6265f146d532a39c5cc57}\label{class_light_a438c82efb6a6265f146d532a39c5cc57} 
+\index{Light@{Light}!test@{test}}
+\index{test@{test}!Light@{Light}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily int Light\+::test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Perform a test operation for the \doxylink{class_light}{Light} class. 
+
+\begin{DoxyReturn}{Returns}
+An integer indicating the result of the test. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{light_8h}{light.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/light.\+cpp\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/light\+\_\+test.\+cpp\end{DoxyCompactItemize}

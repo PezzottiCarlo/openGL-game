@@ -1,0 +1,29 @@
+\doxysection{spot\+Light.\+h}
+\hypertarget{spot_light_8h_source}{}\label{spot_light_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/spotLight.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/spotLight.h}}
+\mbox{\hyperlink{spot_light_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ SPOT\_LIGHT}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SPOT\_LIGHT}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}lib.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{point_light_8h}{pointLight.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }LIB\_API\ \mbox{\hyperlink{class_spot_light}{SpotLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_point_light}{PointLight}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_spot_light}{SpotLight}}(\textcolor{keyword}{const}\ std::string\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ lightNumber,\ \textcolor{keyword}{const}\ glm::vec4\ ambient,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\ diffuse,\ \textcolor{keyword}{const}\ glm::vec4\ specular,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ cutOff,\ \textcolor{keyword}{const}\ glm::vec3\ direction);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_spot_light_aa16b741d73aa198c203ce40a066a115c}{\string~SpotLight}}()\ \{\};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_point_light_a14fa66cb1e08ae566f293829e77eaefd}{render}}(glm::mat4\ transform,\ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ glm::vec3\ direction;}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

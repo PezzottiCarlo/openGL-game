@@ -1,0 +1,312 @@
+\doxysection{C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/client/main.h File Reference}
+\hypertarget{main_8h}{}\label{main_8h}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/client/main.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/client/main.h}}
+
+
+Header file for the main class.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$node.\+h$>$}\newline
+{\ttfamily \#include $<$glm/glm.\+hpp$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{main_8h_a11c9ebd6c61919361f74a10863c83f4a}{get\+Separator}} ()
+\begin{DoxyCompactList}\small\item\em Get the separator string. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a9617a04c140048cf80640e5ce8af6769}\label{main_8h_a9617a04c140048cf80640e5ce8af6769} 
+void {\bfseries fill\+Initial\+Positioning\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Fill the initial positioning matrix. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{main_8h_a233e303ca25dba68c49249ef8297e469}{get\+Car\+Data\+From\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Get car data based on the provided ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_ac83cd8167196272436d156f148654095}{special\+Callback}} (int key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Callback function for special keys. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a034614e6b817f98d8c58bdb4e9ebccc3}{get\+Picked\+Object}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}n, bool mouse\+Pressed)
+\begin{DoxyCompactList}\small\item\em Perform actions based on picked object and mouse state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_aabe40237e86373b52cf2a259f7c8ce89}{keyboard\+Callback}} (unsigned char key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Callback function for regular keyboard keys. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{main_8h_a218077422830bf88a377d59365a38ad6}{load\+Game\+Difficulty}} ()
+\begin{DoxyCompactList}\small\item\em Load game difficulty data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a69e5798583ce62fcf35b4fb53d19e7c7}{load\+Scene}} (std\+::string path\+Name)
+\begin{DoxyCompactList}\small\item\em Load a scene from the specified path. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a98b6108d51860c7bb7fd19202551aadc}\label{main_8h_a98b6108d51860c7bb7fd19202551aadc} 
+void {\bfseries load\+Cameras} ()
+\begin{DoxyCompactList}\small\item\em Load camera configurations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_adad4addcdf386897fe250a09c2bd4cc0}{rotate\+Camera}} (int value)
+\begin{DoxyCompactList}\small\item\em Rotate the camera based on the given value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a273579696b7d8c7fed2db263514a2e0d}{move\+Winning\+Car}} (int value)
+\begin{DoxyCompactList}\small\item\em Move the winning car based on the given value. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_aba36054aea213b7a4a25a1b1ca58fb53}\label{main_8h_aba36054aea213b7a4a25a1b1ca58fb53} 
+void {\bfseries load\+Cars} ()
+\begin{DoxyCompactList}\small\item\em Load car configurations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a2c1829df1074752357df097890598080}{make\+Object\+Blink}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}obj)
+\begin{DoxyCompactList}\small\item\em Make an object blink. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a17ba1f023464e5900f74c3ea25ba847a}{update\+Blinking}} (int value)
+\begin{DoxyCompactList}\small\item\em Update the blinking effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_af942459fff2c36542e80e2caf5b3118f}{handle\+Window\+Resize}} (int, int)
+\begin{DoxyCompactList}\small\item\em Handle window resize events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_ae65c58da9004dab19acf5351515ecc02}{update\+FPS}} (int value)
+\begin{DoxyCompactList}\small\item\em Update the frames per second (FPS) display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a490afaed687341d5d0a4d6f88e174574}{blink\+Light}} (int value)
+\begin{DoxyCompactList}\small\item\em Blink a light source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_affd62fa776a4c348f499ce73ecf397c3}{init}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Initialize the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the main class. 
+
+\begin{DoxyAuthor}{Author}
+Jari Näser (C) SUPSI \mbox{[}\href{mailto:jari.naeser@student.supsi.ch}{\texttt{ jari.\+naeser@student.\+supsi.\+ch}}\mbox{]} 
+
+Carlo pezzotti (C) SUPSI \mbox{[}\href{mailto:carlo.pezzotti@student.supsi.ch}{\texttt{ carlo.\+pezzotti@student.\+supsi.\+ch}}\mbox{]} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8h_a490afaed687341d5d0a4d6f88e174574}\label{main_8h_a490afaed687341d5d0a4d6f88e174574} 
+\index{main.h@{main.h}!blinkLight@{blinkLight}}
+\index{blinkLight@{blinkLight}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{blinkLight()}{blinkLight()}}
+{\footnotesize\ttfamily void blink\+Light (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Blink a light source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The blink effect value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a233e303ca25dba68c49249ef8297e469}\label{main_8h_a233e303ca25dba68c49249ef8297e469} 
+\index{main.h@{main.h}!getCarDataFromId@{getCarDataFromId}}
+\index{getCarDataFromId@{getCarDataFromId}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{getCarDataFromId()}{getCarDataFromId()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ get\+Car\+Data\+From\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get car data based on the provided ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the car. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing car data. 
+\end{DoxyReturn}
+\Hypertarget{main_8h_a034614e6b817f98d8c58bdb4e9ebccc3}\label{main_8h_a034614e6b817f98d8c58bdb4e9ebccc3} 
+\index{main.h@{main.h}!getPickedObject@{getPickedObject}}
+\index{getPickedObject@{getPickedObject}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{getPickedObject()}{getPickedObject()}}
+{\footnotesize\ttfamily void get\+Picked\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{n,  }\item[{bool}]{mouse\+Pressed }\end{DoxyParamCaption})}
+
+
+
+Perform actions based on picked object and mouse state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The picked node. \\
+\hline
+{\em mouse\+Pressed} & The state of the mouse button. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a11c9ebd6c61919361f74a10863c83f4a}\label{main_8h_a11c9ebd6c61919361f74a10863c83f4a} 
+\index{main.h@{main.h}!getSeparator@{getSeparator}}
+\index{getSeparator@{getSeparator}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{getSeparator()}{getSeparator()}}
+{\footnotesize\ttfamily std\+::string get\+Separator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the separator string. 
+
+\begin{DoxyReturn}{Returns}
+The separator string. 
+\end{DoxyReturn}
+\Hypertarget{main_8h_af942459fff2c36542e80e2caf5b3118f}\label{main_8h_af942459fff2c36542e80e2caf5b3118f} 
+\index{main.h@{main.h}!handleWindowResize@{handleWindowResize}}
+\index{handleWindowResize@{handleWindowResize}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{handleWindowResize()}{handleWindowResize()}}
+{\footnotesize\ttfamily void handle\+Window\+Resize (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+
+
+Handle window resize events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & The new width of the window. \\
+\hline
+{\em h} & The new height of the window. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_affd62fa776a4c348f499ce73ecf397c3}\label{main_8h_affd62fa776a4c348f499ce73ecf397c3} 
+\index{main.h@{main.h}!init@{init}}
+\index{init@{init}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void init (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Initialize the application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command line arguments. \\
+\hline
+{\em argv} & The array of command line arguments. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_aabe40237e86373b52cf2a259f7c8ce89}\label{main_8h_aabe40237e86373b52cf2a259f7c8ce89} 
+\index{main.h@{main.h}!keyboardCallback@{keyboardCallback}}
+\index{keyboardCallback@{keyboardCallback}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{keyboardCallback()}{keyboardCallback()}}
+{\footnotesize\ttfamily void keyboard\+Callback (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Callback function for regular keyboard keys. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em x} & The x-\/coordinate of the mouse. \\
+\hline
+{\em y} & The y-\/coordinate of the mouse. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a218077422830bf88a377d59365a38ad6}\label{main_8h_a218077422830bf88a377d59365a38ad6} 
+\index{main.h@{main.h}!loadGameDifficulty@{loadGameDifficulty}}
+\index{loadGameDifficulty@{loadGameDifficulty}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{loadGameDifficulty()}{loadGameDifficulty()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ int $>$ $>$ load\+Game\+Difficulty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Load game difficulty data. 
+
+\begin{DoxyReturn}{Returns}
+A 2D vector containing game difficulty information. 
+\end{DoxyReturn}
+\Hypertarget{main_8h_a69e5798583ce62fcf35b4fb53d19e7c7}\label{main_8h_a69e5798583ce62fcf35b4fb53d19e7c7} 
+\index{main.h@{main.h}!loadScene@{loadScene}}
+\index{loadScene@{loadScene}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{loadScene()}{loadScene()}}
+{\footnotesize\ttfamily void load\+Scene (\begin{DoxyParamCaption}\item[{std\+::string}]{path\+Name }\end{DoxyParamCaption})}
+
+
+
+Load a scene from the specified path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+Name} & The path to the scene. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a2c1829df1074752357df097890598080}\label{main_8h_a2c1829df1074752357df097890598080} 
+\index{main.h@{main.h}!makeObjectBlink@{makeObjectBlink}}
+\index{makeObjectBlink@{makeObjectBlink}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{makeObjectBlink()}{makeObjectBlink()}}
+{\footnotesize\ttfamily void make\+Object\+Blink (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{obj }\end{DoxyParamCaption})}
+
+
+
+Make an object blink. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to blink. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a273579696b7d8c7fed2db263514a2e0d}\label{main_8h_a273579696b7d8c7fed2db263514a2e0d} 
+\index{main.h@{main.h}!moveWinningCar@{moveWinningCar}}
+\index{moveWinningCar@{moveWinningCar}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{moveWinningCar()}{moveWinningCar()}}
+{\footnotesize\ttfamily void move\+Winning\+Car (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Move the winning car based on the given value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The movement value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_adad4addcdf386897fe250a09c2bd4cc0}\label{main_8h_adad4addcdf386897fe250a09c2bd4cc0} 
+\index{main.h@{main.h}!rotateCamera@{rotateCamera}}
+\index{rotateCamera@{rotateCamera}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{rotateCamera()}{rotateCamera()}}
+{\footnotesize\ttfamily void rotate\+Camera (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Rotate the camera based on the given value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The rotation value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_ac83cd8167196272436d156f148654095}\label{main_8h_ac83cd8167196272436d156f148654095} 
+\index{main.h@{main.h}!specialCallback@{specialCallback}}
+\index{specialCallback@{specialCallback}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{specialCallback()}{specialCallback()}}
+{\footnotesize\ttfamily void special\+Callback (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Callback function for special keys. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The pressed key. \\
+\hline
+{\em x} & The x-\/coordinate of the mouse. \\
+\hline
+{\em y} & The y-\/coordinate of the mouse.\\
+\hline
+\end{DoxyParams}
+This callback gets invoked when a special character on the keyboard gets pressed. 
+\begin{DoxyParams}{Parameters}
+{\em key} & pressed keyboard key as integer \\
+\hline
+{\em x} & mouse x position relative to the window when the key gets pressed \\
+\hline
+{\em y} & mouse y position relative to the window when the key gets pressed \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a17ba1f023464e5900f74c3ea25ba847a}\label{main_8h_a17ba1f023464e5900f74c3ea25ba847a} 
+\index{main.h@{main.h}!updateBlinking@{updateBlinking}}
+\index{updateBlinking@{updateBlinking}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{updateBlinking()}{updateBlinking()}}
+{\footnotesize\ttfamily void update\+Blinking (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Update the blinking effect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The update value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_ae65c58da9004dab19acf5351515ecc02}\label{main_8h_ae65c58da9004dab19acf5351515ecc02} 
+\index{main.h@{main.h}!updateFPS@{updateFPS}}
+\index{updateFPS@{updateFPS}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{updateFPS()}{updateFPS()}}
+{\footnotesize\ttfamily void update\+FPS (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Update the frames per second (FPS) display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The update value. \\
+\hline
+\end{DoxyParams}

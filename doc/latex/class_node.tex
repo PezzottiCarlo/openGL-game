@@ -1,0 +1,457 @@
+\doxysection{Node Class Reference}
+\hypertarget{class_node}{}\label{class_node}\index{Node@{Node}}
+
+
+Simple node class.  
+
+
+
+
+{\ttfamily \#include $<$node.\+h$>$}
+
+Inheritance diagram for Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_node}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_afceb8877cfab44e0eda5ae3a88513242}{Node}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_aa0840c3cb5c7159be6d992adecd2097c}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a5a2d3cd10105226987ec39d8d51677a3}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transformation matrix of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a2c01ffbac3ab86bdf4385a4d796228a4}{set\+Transform}} (glm\+::mat4 transform)
+\begin{DoxyCompactList}\small\item\em Set the transformation matrix of the node. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_ae3bd9ae43520317f77dfb28a891f1795}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the final transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aada1397339f3a5de376daf5570357ae2}{get\+Child\+At}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the child node at a specific index. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_node_ae684551babfcbeb33b5d872bb7be74bc}{get\+World\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the world position of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a564d75e881574cac5ebc32a0eef4e7a9}{set\+World\+Position}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set the world position of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_adbba3537a9ffcfba9d30f073968c1f8a}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a88ff627aa1bd77f9df447ced1a973455}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from the node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_ac8374e0f12a4e7aad097cae98b274c7e}{get\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of child nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ada66d18cbe2d572a4504cd502f9b39ee}{set\+Children}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ children)
+\begin{DoxyCompactList}\small\item\em Set the vector of child nodes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}{get\+Number\+Of\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of child nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a220a8d64cb0df1cce083ed38c1260615}{get\+Parent}} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Set the parent node. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ad15309e777ffd0ff1526b85693942ea2}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em Set the scale factor of the node. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_ac9926440d4edab1020d348a2b950307c}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Get the scale factor of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_node_a2855e7379723958c28e0c133865a4876}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple node class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_node_afceb8877cfab44e0eda5ae3a88513242}\label{class_node_afceb8877cfab44e0eda5ae3a88513242} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_node}{Node} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the node.\\
+\hline
+\end{DoxyParams}
+Constructor of node class 
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the node object \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_aa0840c3cb5c7159be6d992adecd2097c}\label{class_node_aa0840c3cb5c7159be6d992adecd2097c} 
+\index{Node@{Node}!````~Node@{\texorpdfstring{$\sim$}{\string~}Node}}
+\index{````~Node@{\texorpdfstring{$\sim$}{\string~}Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Node()}{\string~Node()}}
+{\footnotesize\ttfamily Node\+::\texorpdfstring{$\sim$}{\string~}\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{class_node}{Node} class. 
+
+Destructor of node class 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_node_adbba3537a9ffcfba9d30f073968c1f8a}\label{class_node_adbba3537a9ffcfba9d30f073968c1f8a} 
+\index{Node@{Node}!addChild@{addChild}}
+\index{addChild@{addChild}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{addChild()}{addChild()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Node\+::add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Add a child node to the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & The child node to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of adding the child.
+\end{DoxyReturn}
+Adds a given node to the children vector 
+\begin{DoxyParams}{Parameters}
+{\em node\+To\+Add} & \doxylink{class_node}{Node} to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if operation has been completed without any errors. 
+\end{DoxyReturn}
+\Hypertarget{class_node_aada1397339f3a5de376daf5570357ae2}\label{class_node_aada1397339f3a5de376daf5570357ae2} 
+\index{Node@{Node}!getChildAt@{getChildAt}}
+\index{getChildAt@{getChildAt}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getChildAt()}{getChildAt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Node\+::get\+Child\+At (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Get the child node at a specific index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the child node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The child node at the specified index. 
+\end{DoxyReturn}
+\Hypertarget{class_node_ac8374e0f12a4e7aad097cae98b274c7e}\label{class_node_ac8374e0f12a4e7aad097cae98b274c7e} 
+\index{Node@{Node}!getChildren@{getChildren}}
+\index{getChildren@{getChildren}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getChildren()}{getChildren()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ LIB\+\_\+\+API Node\+::get\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the vector of child nodes. 
+
+\begin{DoxyReturn}{Returns}
+The vector of child nodes.
+\end{DoxyReturn}
+Getter of the children vector \begin{DoxyReturn}{Returns}
+children vector 
+\end{DoxyReturn}
+\Hypertarget{class_node_ae3bd9ae43520317f77dfb28a891f1795}\label{class_node_ae3bd9ae43520317f77dfb28a891f1795} 
+\index{Node@{Node}!getFinalMatrix@{getFinalMatrix}}
+\index{getFinalMatrix@{getFinalMatrix}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getFinalMatrix()}{getFinalMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 LIB\+\_\+\+API Node\+::get\+Final\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the final transformation matrix of the node. 
+
+\begin{DoxyReturn}{Returns}
+The final transformation matrix.
+\end{DoxyReturn}
+Getter of the final matrix, which is the matrix of the node multiplied by the matrices of its parents \begin{DoxyReturn}{Returns}
+final matrix 
+\end{DoxyReturn}
+\Hypertarget{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}\label{class_node_aeb85a90439b7f5c7fdf5bef6499845f0} 
+\index{Node@{Node}!getNumberOfChildren@{getNumberOfChildren}}
+\index{getNumberOfChildren@{getNumberOfChildren}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getNumberOfChildren()}{getNumberOfChildren()}}
+{\footnotesize\ttfamily unsigned int LIB\+\_\+\+API Node\+::get\+Number\+Of\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the number of child nodes. 
+
+\begin{DoxyReturn}{Returns}
+The number of child nodes.
+\end{DoxyReturn}
+Returns the number of children \begin{DoxyReturn}{Returns}
+Number of children 
+\end{DoxyReturn}
+\Hypertarget{class_node_a220a8d64cb0df1cce083ed38c1260615}\label{class_node_a220a8d64cb0df1cce083ed38c1260615} 
+\index{Node@{Node}!getParent@{getParent}}
+\index{getParent@{getParent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getParent()}{getParent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Node\+::get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the parent node. 
+
+\begin{DoxyReturn}{Returns}
+The parent node.
+\end{DoxyReturn}
+Getter of the parent node \begin{DoxyReturn}{Returns}
+Parent node 
+\end{DoxyReturn}
+\Hypertarget{class_node_ac9926440d4edab1020d348a2b950307c}\label{class_node_ac9926440d4edab1020d348a2b950307c} 
+\index{Node@{Node}!getScale@{getScale}}
+\index{getScale@{getScale}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getScale()}{getScale()}}
+{\footnotesize\ttfamily float Node\+::get\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the scale factor of the node. 
+
+\begin{DoxyReturn}{Returns}
+The scale factor. 
+\end{DoxyReturn}
+\Hypertarget{class_node_a5a2d3cd10105226987ec39d8d51677a3}\label{class_node_a5a2d3cd10105226987ec39d8d51677a3} 
+\index{Node@{Node}!getTransform@{getTransform}}
+\index{getTransform@{getTransform}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getTransform()}{getTransform()}}
+{\footnotesize\ttfamily glm\+::mat4 LIB\+\_\+\+API Node\+::get\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the transformation matrix of the node. 
+
+\begin{DoxyReturn}{Returns}
+The transformation matrix.
+\end{DoxyReturn}
+Getter of the transform matrix \begin{DoxyReturn}{Returns}
+transform matrix 
+\end{DoxyReturn}
+\Hypertarget{class_node_ae684551babfcbeb33b5d872bb7be74bc}\label{class_node_ae684551babfcbeb33b5d872bb7be74bc} 
+\index{Node@{Node}!getWorldPosition@{getWorldPosition}}
+\index{getWorldPosition@{getWorldPosition}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getWorldPosition()}{getWorldPosition()}}
+{\footnotesize\ttfamily glm\+::vec3 LIB\+\_\+\+API Node\+::get\+World\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the world position of the node. 
+
+\begin{DoxyReturn}{Returns}
+The world position of the node.
+\end{DoxyReturn}
+Getter of the world position of the node \begin{DoxyReturn}{Returns}
+world position 
+\end{DoxyReturn}
+\Hypertarget{class_node_a88ff627aa1bd77f9df447ced1a973455}\label{class_node_a88ff627aa1bd77f9df447ced1a973455} 
+\index{Node@{Node}!removeChild@{removeChild}}
+\index{removeChild@{removeChild}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{removeChild()}{removeChild()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Node\+::remove\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node\+To\+Remove }\end{DoxyParamCaption})}
+
+
+
+Remove a child node from the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & The child node to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of removing the child.
+\end{DoxyReturn}
+Removes a given node from the children vector 
+\begin{DoxyParams}{Parameters}
+{\em node\+To\+Remove} & \doxylink{class_node}{Node} to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if operation has been completed without any errors (also if node has not been found). 
+\end{DoxyReturn}
+\Hypertarget{class_node_a946d3aff43488f47b28bdfae51240938}\label{class_node_a946d3aff43488f47b28bdfae51240938} 
+\index{Node@{Node}!render@{render}}
+\index{render@{render}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Node\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{mat,  }\item[{void \texorpdfstring{$\ast$}{*}}]{attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the node. 
+
+This function renders the node based on the given transformation matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the node. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation.
+\end{DoxyReturn}
+Render method that renders a given object through its matrix 
+\begin{DoxyParams}{Parameters}
+{\em mat} & matrix \\
+\hline
+{\em attr} & additional attributes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false value 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_directional_light_ac2c96ca8870974948a440f70a4b690b9}{Directional\+Light}}, \mbox{\hyperlink{class_light_af36b1774c17bce05b715752103b97318}{Light}}, \mbox{\hyperlink{class_mesh_afe1b6d1b86418c8de2ec34d126abf48a}{Mesh}}, \mbox{\hyperlink{class_point_light_a14fa66cb1e08ae566f293829e77eaefd}{Point\+Light}}, \mbox{\hyperlink{class_shadow_a76105d0c4e5624643e72870a3364babc}{Shadow}}, and \mbox{\hyperlink{class_spot_light_ac85b7f1ae61c013f6b2a32df08f6dc30}{Spot\+Light}}.
+
+\Hypertarget{class_node_ada66d18cbe2d572a4504cd502f9b39ee}\label{class_node_ada66d18cbe2d572a4504cd502f9b39ee} 
+\index{Node@{Node}!setChildren@{setChildren}}
+\index{setChildren@{setChildren}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setChildren()}{setChildren()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Node\+::set\+Children (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$}]{new\+Children }\end{DoxyParamCaption})}
+
+
+
+Set the vector of child nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em children} & The new vector of child nodes.\\
+\hline
+\end{DoxyParams}
+Setter of the children structure 
+\begin{DoxyParams}{Parameters}
+{\em new\+Children} & New children vector \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}\label{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f} 
+\index{Node@{Node}!setParent@{setParent}}
+\index{setParent@{setParent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setParent()}{setParent()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Node\+::set\+Parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{new\+Parent }\end{DoxyParamCaption})}
+
+
+
+Set the parent node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The new parent node.\\
+\hline
+\end{DoxyParams}
+Setter of the parent node 
+\begin{DoxyParams}{Parameters}
+{\em new\+Parent} & New parent node \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_ad15309e777ffd0ff1526b85693942ea2}\label{class_node_ad15309e777ffd0ff1526b85693942ea2} 
+\index{Node@{Node}!setScale@{setScale}}
+\index{setScale@{setScale}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Node\+::set\+Scale (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Set the scale factor of the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & The new scale factor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a2c01ffbac3ab86bdf4385a4d796228a4}\label{class_node_a2c01ffbac3ab86bdf4385a4d796228a4} 
+\index{Node@{Node}!setTransform@{setTransform}}
+\index{setTransform@{setTransform}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setTransform()}{setTransform()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Node\+::set\+Transform (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the transformation matrix of the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The new transformation matrix.\\
+\hline
+\end{DoxyParams}
+Setter of the transform matrix 
+\begin{DoxyParams}{Parameters}
+{\em transform} & New transform matrix \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_directional_light_ad2dceb453e8038e59c971d5b683fd651}{Directional\+Light}}, and \mbox{\hyperlink{class_light_acb8e224b5be6b469cdd7e8fbf1a0e28d}{Light}}.
+
+\Hypertarget{class_node_a564d75e881574cac5ebc32a0eef4e7a9}\label{class_node_a564d75e881574cac5ebc32a0eef4e7a9} 
+\index{Node@{Node}!setWorldPosition@{setWorldPosition}}
+\index{setWorldPosition@{setWorldPosition}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setWorldPosition()}{setWorldPosition()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Node\+::set\+World\+Position (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the world position of the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The new world position.\\
+\hline
+\end{DoxyParams}
+Setter of the world position of the node 
+\begin{DoxyParams}{Parameters}
+{\em position} & New world position \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_node_a2855e7379723958c28e0c133865a4876}\label{class_node_a2855e7379723958c28e0c133865a4876} 
+\index{Node@{Node}!test@{test}}
+\index{test@{test}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily int Node\+::test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Test method for the \doxylink{class_node}{Node} class. 
+
+\begin{DoxyReturn}{Returns}
+An integer indicating the result of the test. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{node_8h}{node.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{node_8cpp}{node.\+cpp}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/node\+\_\+test.\+cpp\end{DoxyCompactItemize}

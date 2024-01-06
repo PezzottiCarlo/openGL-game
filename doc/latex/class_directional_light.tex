@@ -1,0 +1,209 @@
+\doxysection{Directional\+Light Class Reference}
+\hypertarget{class_directional_light}{}\label{class_directional_light}\index{DirectionalLight@{DirectionalLight}}
+
+
+Directional \doxylink{class_light}{Light} class.  
+
+
+
+
+{\ttfamily \#include $<$directional\+Light.\+h$>$}
+
+Inheritance diagram for Directional\+Light\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_directional_light}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_directional_light_ab0d2319a0fcda539591552a1faf08c6e}{Directional\+Light}} (const std\+::string name, const int light\+Number, const glm\+::vec4 ambient, const glm\+::vec4 diffuse, const glm\+::vec4 specular)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_directional_light}{Directional\+Light} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_directional_light_ac4aca6c806e752c65ffea9b2f237b245}\label{class_directional_light_ac4aca6c806e752c65ffea9b2f237b245} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Directional\+Light} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_directional_light}{Directional\+Light} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_directional_light_ac2c96ca8870974948a440f70a4b690b9}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the directional light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_directional_light_ad2dceb453e8038e59c971d5b683fd651}{set\+Transform}} (glm\+::mat4 transform) override
+\begin{DoxyCompactList}\small\item\em Set the transformation matrix for the directional light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_light_a4108d6f1bbdc10273ef137866b56d8aa}{Light}} (const std\+::string name, const int light\+Number, const glm\+::vec4 ambient, const glm\+::vec4 diffuse, const glm\+::vec4 specular)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Light} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_light_a7f659b7e2d8e59ea62ca3023dc7a0e30}{get\+Light\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Get the light number associated with the light. \end{DoxyCompactList}\item 
+void {\bfseries set\+Position} ()
+\begin{DoxyCompactList}\small\item\em Set the position of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a589aeaae4691f87565b3377808194c18}{set\+Position}} (glm\+::vec4 pos)
+\begin{DoxyCompactList}\small\item\em Set the position of the light. \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_light_a6b40df3530ecec54ad8f871a0197e946}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Get the position of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_aa0797b28775a626e0dd3ff1114c263ce}{get\+Constant\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the constant attenuation coefficient of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_ab7a1501a54cdcc3d1efbe83a3e999356}{get\+Linear\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the linear attenuation coefficient of the light. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_light_a155124d5b7717cfd1df7c56b5763ce0e}{get\+Quadratic\+Attenuation}} ()
+\begin{DoxyCompactList}\small\item\em Get the quadratic attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a07815264fbbbeb450c9a5a8b0267a51c}{set\+Constant\+Attenuation}} (float constant\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the constant attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a43c40a216490aaa266af88bf02d5fabc}{set\+Linear\+Attenuation}} (float linear\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the linear attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_ac8101566a36dd60fee59e8cf3505ea9f}{set\+Quadratic\+Attenuation}} (float quadratic\+Attenuation)
+\begin{DoxyCompactList}\small\item\em Set the quadratic attenuation coefficient of the light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_light_a1434418c5518150147bfab3aef452c56}{set\+Intensity}} (float intensity)
+\begin{DoxyCompactList}\small\item\em Set the intensity of the light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_afceb8877cfab44e0eda5ae3a88513242}{Node}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_aa0840c3cb5c7159be6d992adecd2097c}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a5a2d3cd10105226987ec39d8d51677a3}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transformation matrix of the node. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_ae3bd9ae43520317f77dfb28a891f1795}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the final transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aada1397339f3a5de376daf5570357ae2}{get\+Child\+At}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the child node at a specific index. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_node_ae684551babfcbeb33b5d872bb7be74bc}{get\+World\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the world position of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a564d75e881574cac5ebc32a0eef4e7a9}{set\+World\+Position}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set the world position of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_adbba3537a9ffcfba9d30f073968c1f8a}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a88ff627aa1bd77f9df447ced1a973455}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from the node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_ac8374e0f12a4e7aad097cae98b274c7e}{get\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of child nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ada66d18cbe2d572a4504cd502f9b39ee}{set\+Children}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ children)
+\begin{DoxyCompactList}\small\item\em Set the vector of child nodes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}{get\+Number\+Of\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of child nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a220a8d64cb0df1cce083ed38c1260615}{get\+Parent}} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Set the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ad15309e777ffd0ff1526b85693942ea2}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em Set the scale factor of the node. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_ac9926440d4edab1020d348a2b950307c}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Get the scale factor of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_light}{Light}}}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_light_a93e2d5057b42a388de2bd74248f0952c}{get\+Next\+Light\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available light number. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{class_light_a438c82efb6a6265f146d532a39c5cc57}{test}} ()
+\begin{DoxyCompactList}\small\item\em Perform a test operation for the \doxylink{class_light}{Light} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_node_a2855e7379723958c28e0c133865a4876}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Directional \doxylink{class_light}{Light} class. 
+
+This class represents a directional light source in a scene. It inherits from the base \doxylink{class_light}{Light} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_directional_light_ab0d2319a0fcda539591552a1faf08c6e}\label{class_directional_light_ab0d2319a0fcda539591552a1faf08c6e} 
+\index{DirectionalLight@{DirectionalLight}!DirectionalLight@{DirectionalLight}}
+\index{DirectionalLight@{DirectionalLight}!DirectionalLight@{DirectionalLight}}
+\doxysubsubsection{\texorpdfstring{DirectionalLight()}{DirectionalLight()}}
+{\footnotesize\ttfamily LIB\+\_\+\+API Directional\+Light\+::\+Directional\+Light (\begin{DoxyParamCaption}\item[{const std\+::string}]{name,  }\item[{const int}]{light\+Number,  }\item[{const glm\+::vec4}]{ambient,  }\item[{const glm\+::vec4}]{diffuse,  }\item[{const glm\+::vec4}]{specular }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_directional_light}{Directional\+Light} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the directional light. \\
+\hline
+{\em light\+Number} & The light number associated with the directional light. \\
+\hline
+{\em ambient} & The ambient color of the directional light. \\
+\hline
+{\em diffuse} & The diffuse color of the directional light. \\
+\hline
+{\em specular} & The specular color of the directional light. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_directional_light_ac2c96ca8870974948a440f70a4b690b9}\label{class_directional_light_ac2c96ca8870974948a440f70a4b690b9} 
+\index{DirectionalLight@{DirectionalLight}!render@{render}}
+\index{render@{render}!DirectionalLight@{DirectionalLight}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Directional\+Light\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the directional light. 
+
+This function renders the directional light based on the given transformation matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the light. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_light_af36b1774c17bce05b715752103b97318}{Light}}.
+
+\Hypertarget{class_directional_light_ad2dceb453e8038e59c971d5b683fd651}\label{class_directional_light_ad2dceb453e8038e59c971d5b683fd651} 
+\index{DirectionalLight@{DirectionalLight}!setTransform@{setTransform}}
+\index{setTransform@{setTransform}!DirectionalLight@{DirectionalLight}}
+\doxysubsubsection{\texorpdfstring{setTransform()}{setTransform()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Directional\+Light\+::set\+Transform (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the transformation matrix for the directional light. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The new transformation matrix for the directional light. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_light_acb8e224b5be6b469cdd7e8fbf1a0e28d}{Light}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{directional_light_8h}{directional\+Light.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/directional\+Light.\+cpp\end{DoxyCompactItemize}

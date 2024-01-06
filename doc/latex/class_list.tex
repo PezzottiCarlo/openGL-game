@@ -1,0 +1,162 @@
+\doxysection{List Class Reference}
+\hypertarget{class_list}{}\label{class_list}\index{List@{List}}
+
+
+\doxylink{class_list}{List} class.  
+
+
+
+
+{\ttfamily \#include $<$list.\+h$>$}
+
+Inheritance diagram for List\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_list}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_list_a64d878a92d11f7c63c70cbe4e7dd4176}\label{class_list_a64d878a92d11f7c63c70cbe4e7dd4176} 
+{\bfseries List} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{class_list}{List} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_list_aab67810760fe3dc82149711ab55fed4a}{add\+Entry}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Add a \doxylink{class_node}{Node} to the list. \end{DoxyCompactList}\item 
+\Hypertarget{class_list_a535e4e6a3c72a1fd65d1c09751bedc40}\label{class_list_a535e4e6a3c72a1fd65d1c09751bedc40} 
+void {\bfseries pop\+Entry} ()
+\item 
+bool \mbox{\hyperlink{class_list_a509b5cf5b88f6c85a2cafaf2a19588f7}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the list of objects. \end{DoxyCompactList}\item 
+\Hypertarget{class_list_a3fad6292bd5126eeb437317383338cea}\label{class_list_a3fad6292bd5126eeb437317383338cea} 
+void {\bfseries clear} ()
+\begin{DoxyCompactList}\small\item\em Clear the list of objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_a86368431e8a8e480a1a556dbe54a7258}{get\+Object}} (int index)
+\begin{DoxyCompactList}\small\item\em Get a \doxylink{class_node}{Node} from the list based on its index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_list_a4d9f0fbcf567cdea52166bc84230067d}{get\+Object\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Get a \doxylink{class_node}{Node} from the list based on its ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_list_ad6abd04d5e9d686ebbedd3cf676bfb8a}{size}} ()
+\begin{DoxyCompactList}\small\item\em Get the size of the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_list}{List} class. 
+
+This class represents a list of \doxylink{class_node}{Node} objects. It inherits from the base \doxylink{class_object}{Object} class and is used for managing a collection of nodes in a scene. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_list_aab67810760fe3dc82149711ab55fed4a}\label{class_list_aab67810760fe3dc82149711ab55fed4a} 
+\index{List@{List}!addEntry@{addEntry}}
+\index{addEntry@{addEntry}!List@{List}}
+\doxysubsubsection{\texorpdfstring{addEntry()}{addEntry()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API List\+::add\+Entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node }\end{DoxyParamCaption})}
+
+
+
+Add a \doxylink{class_node}{Node} to the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The \doxylink{class_node}{Node} to be added to the list. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_list_a86368431e8a8e480a1a556dbe54a7258}\label{class_list_a86368431e8a8e480a1a556dbe54a7258} 
+\index{List@{List}!getObject@{getObject}}
+\index{getObject@{getObject}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getObject()}{getObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} LIB\+\_\+\+API \texorpdfstring{$\ast$}{*} List\+::get\+Object (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Get a \doxylink{class_node}{Node} from the list based on its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the \doxylink{class_node}{Node} in the list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxylink{class_node}{Node} at the specified index. 
+\end{DoxyReturn}
+\Hypertarget{class_list_a4d9f0fbcf567cdea52166bc84230067d}\label{class_list_a4d9f0fbcf567cdea52166bc84230067d} 
+\index{List@{List}!getObjectById@{getObjectById}}
+\index{getObjectById@{getObjectById}!List@{List}}
+\doxysubsubsection{\texorpdfstring{getObjectById()}{getObjectById()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} LIB\+\_\+\+API \texorpdfstring{$\ast$}{*} List\+::get\+Object\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get a \doxylink{class_node}{Node} from the list based on its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the \doxylink{class_node}{Node} to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxylink{class_node}{Node} with the specified ID. 
+\end{DoxyReturn}
+\Hypertarget{class_list_a509b5cf5b88f6c85a2cafaf2a19588f7}\label{class_list_a509b5cf5b88f6c85a2cafaf2a19588f7} 
+\index{List@{List}!render@{render}}
+\index{render@{render}!List@{List}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool List\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the list of objects. 
+
+This function renders all the nodes in the list based on the given transformation matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the list. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{Object}}.
+
+\Hypertarget{class_list_ad6abd04d5e9d686ebbedd3cf676bfb8a}\label{class_list_ad6abd04d5e9d686ebbedd3cf676bfb8a} 
+\index{List@{List}!size@{size}}
+\index{size@{size}!List@{List}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int LIB\+\_\+\+API List\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the size of the list. 
+
+\begin{DoxyReturn}{Returns}
+The number of Nodes in the list. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{list_8h}{list.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/list.\+cpp\end{DoxyCompactItemize}

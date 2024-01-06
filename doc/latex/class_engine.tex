@@ -1,0 +1,505 @@
+\doxysection{Engine Class Reference}
+\hypertarget{class_engine}{}\label{class_engine}\index{Engine@{Engine}}
+
+
+Simple static class example.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_engine_ab5aa05cbe7811b366ca22588c93788e6}{init}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv, const char \texorpdfstring{$\ast$}{*}window\+Title, int window\+Width, int window\+Height)
+\begin{DoxyCompactList}\small\item\em Initialize the graphical engine. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_engine_a8b6af1eeae9fb7dc360be846f68d5541}{free}} ()
+\begin{DoxyCompactList}\small\item\em Free resources and terminate the graphical engine. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a6621cb5f51e750a185a987e4a224b73e}{set\+ZBuffer\+Usage}} (bool use\+ZBuffer)
+\begin{DoxyCompactList}\small\item\em Set whether to use Z-\/buffer for rendering. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a848a4d7b50651c0485433b306e999efe}{set\+Background\+Color}} (float r, float g, float b, float a)
+\begin{DoxyCompactList}\small\item\em Set the background color of the graphical window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a63575580374d9d9a934c406ecb07e751}{set\+Window\+Resize\+Handler}} (void(\texorpdfstring{$\ast$}{*}func)(int, int))
+\begin{DoxyCompactList}\small\item\em Set the window resize handler function. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_engine_a949c9fb1ca964cfcc9d29ed553c559ff}{is\+Running}} ()
+\begin{DoxyCompactList}\small\item\em Check if the graphical engine is running. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a77f8ad3c29c773e0318f311b99f9662b}{clear\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Clear the graphical window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a0544e301002dd8af6958796fee18430e}{swap\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Swap the front and back buffers of the graphical window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_ac2482c9e057b6a85bd752d4ba4d6b668}{start}} ()
+\begin{DoxyCompactList}\small\item\em Start the main loop of the graphical engine. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a27a8c09cce75dfbb7db1a41b7ed1fcdb}{reshape\+Callback}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Callback function for reshaping the graphical window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_ad614d51c0479b1a8b3407171f15fe14c}{post\+Window\+Redisplay}} ()
+\begin{DoxyCompactList}\small\item\em Force redisplay of the window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_afe172a61e10e2e38f828c97e331daefc}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the graphical engine. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a901f2fa7c66e4faf70bc3d6865a85532}\label{class_engine_a901f2fa7c66e4faf70bc3d6865a85532} 
+static void {\bfseries execute\+Tests} ()
+\begin{DoxyCompactList}\small\item\em Execute tests for the graphical engine. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a0911bd5bc38201c7c9e3af94c1feeb94}\label{class_engine_a0911bd5bc38201c7c9e3af94c1feeb94} 
+static void {\bfseries refresh\+And\+Swap\+Buffers} ()
+\begin{DoxyCompactList}\small\item\em Refresh and swap buffers of the graphical window. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_aee6574cd5ab3fcebf22b8f98e096d3ef}{set\+Keyboard\+Callback}} (void(\texorpdfstring{$\ast$}{*}func)(unsigned char, int, int))
+\begin{DoxyCompactList}\small\item\em Set the keyboard callback function. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a5be5849967ab38b7f7aeaa1cd8c8cd23}{set\+Special\+Callback}} (void(\texorpdfstring{$\ast$}{*}func)(int, int, int))
+\begin{DoxyCompactList}\small\item\em Set the special key callback function. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ab7b9d91c847be5204a6ceeb61dbd8f60}\label{class_engine_ab7b9d91c847be5204a6ceeb61dbd8f60} 
+static void {\bfseries remove\+Object\+Picked\+Callback} ()
+\begin{DoxyCompactList}\small\item\em Remove the object picked callback function. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a79193816d3bd9903fb1a89e4534d305c}{set\+Object\+Picked\+Callback}} (void(\texorpdfstring{$\ast$}{*}func)(\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}, bool))
+\begin{DoxyCompactList}\small\item\em Set the object picked callback function. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_ae85b872feefbc5957c496b1a50729f97}{load\+Scene}} (std\+::string scene\+File)
+\begin{DoxyCompactList}\small\item\em Load a scene from a file. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a872daf9da782709f0e28a7adc1d61355}{set\+Active\+Camera}} (int index)
+\begin{DoxyCompactList}\small\item\em Set the active camera. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a6b16d671f757c567391a984aafb731bf}{add\+Camera}} (\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}camera)
+\begin{DoxyCompactList}\small\item\em Add a camera to the graphical engine. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_node}{Node}} \mbox{\hyperlink{class_engine_ae21214887a095e8fed30697bb2cf0988}{load\+Node}} (std\+::string node\+File)
+\begin{DoxyCompactList}\small\item\em Load a node from a file. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_abeeeb27ae907196c07d65744e612ddb2}{add\+Node}} (\mbox{\hyperlink{class_node}{Node}} node)
+\begin{DoxyCompactList}\small\item\em Add a \doxylink{class_node}{Node} to the graphical engine. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a91796f90b4b9f7de736d4befd99415a8}{write\+On\+Screen}} (std\+::string text, glm\+::vec3 color, glm\+::vec2 coord, int text\+Type)
+\begin{DoxyCompactList}\small\item\em Write text on the screen. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_engine_a86dead5b5bf535a622254739d9d3636d}{start\+Timer}} (void(\texorpdfstring{$\ast$}{*}func)(int), int duration)
+\begin{DoxyCompactList}\small\item\em Start a timer. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_list}{List}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_engine_a5c6981aaad12474d67ecb1c154049327}{get\+List}} ()
+\begin{DoxyCompactList}\small\item\em Get the \doxylink{class_list}{List} associated with the graphical engine. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_engine_a39029ba73c18e7ce1f54886bf72e6427}{clear\+List}} ()
+\begin{DoxyCompactList}\small\item\em Clear the \doxylink{class_list}{List} associated with the graphical engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple static class example. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_engine_a6b16d671f757c567391a984aafb731bf}\label{class_engine_a6b16d671f757c567391a984aafb731bf} 
+\index{Engine@{Engine}!addCamera@{addCamera}}
+\index{addCamera@{addCamera}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{addCamera()}{addCamera()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::add\+Camera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_camera}{Camera}} \texorpdfstring{$\ast$}{*}}]{camera }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add a camera to the graphical engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & The camera to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_abeeeb27ae907196c07d65744e612ddb2}\label{class_engine_abeeeb27ae907196c07d65744e612ddb2} 
+\index{Engine@{Engine}!addNode@{addNode}}
+\index{addNode@{addNode}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::add\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}}}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Add a \doxylink{class_node}{Node} to the graphical engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The \doxylink{class_node}{Node} to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a39029ba73c18e7ce1f54886bf72e6427}\label{class_engine_a39029ba73c18e7ce1f54886bf72e6427} 
+\index{Engine@{Engine}!clearList@{clearList}}
+\index{clearList@{clearList}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{clearList()}{clearList()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Engine\+::clear\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Clear the \doxylink{class_list}{List} associated with the graphical engine. 
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of clearing the \doxylink{class_list}{List}. 
+\end{DoxyReturn}
+\Hypertarget{class_engine_a77f8ad3c29c773e0318f311b99f9662b}\label{class_engine_a77f8ad3c29c773e0318f311b99f9662b} 
+\index{Engine@{Engine}!clearWindow@{clearWindow}}
+\index{clearWindow@{clearWindow}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{clearWindow()}{clearWindow()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::clear\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Clear the graphical window. 
+
+This function clears the contents off the frame leaving the background color. \Hypertarget{class_engine_a8b6af1eeae9fb7dc360be846f68d5541}\label{class_engine_a8b6af1eeae9fb7dc360be846f68d5541} 
+\index{Engine@{Engine}!free@{free}}
+\index{free@{free}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Engine\+::free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Free resources and terminate the graphical engine. 
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of freeing resources.
+\end{DoxyReturn}
+Deinitialization method. \begin{DoxyReturn}{Returns}
+true on success, false on error 
+\end{DoxyReturn}
+\Hypertarget{class_engine_a5c6981aaad12474d67ecb1c154049327}\label{class_engine_a5c6981aaad12474d67ecb1c154049327} 
+\index{Engine@{Engine}!getList@{getList}}
+\index{getList@{getList}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{getList()}{getList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_list}{List}} LIB\+\_\+\+API \texorpdfstring{$\ast$}{*} Engine\+::get\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the \doxylink{class_list}{List} associated with the graphical engine. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{class_list}{List}. 
+\end{DoxyReturn}
+\Hypertarget{class_engine_ab5aa05cbe7811b366ca22588c93788e6}\label{class_engine_ab5aa05cbe7811b366ca22588c93788e6} 
+\index{Engine@{Engine}!init@{init}}
+\index{init@{init}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Engine\+::init (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{window\+Title,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialize the graphical engine. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command-\/line arguments. \\
+\hline
+{\em argv} & The array of command-\/line arguments. \\
+\hline
+{\em window\+Title} & The title of the graphical window. \\
+\hline
+{\em window\+Width} & The width of the graphical window. \\
+\hline
+{\em window\+Height} & The height of the graphical window. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the initialization.
+\end{DoxyReturn}
+Initialization method. Call this before any other Eureka function. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & argument count \\
+\hline
+{\em argv} & array containing arguments \\
+\hline
+{\em title} & Free\+Glut window title \\
+\hline
+{\em width} & window width \\
+\hline
+{\em height} & window height \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true on success, false on error 
+\end{DoxyReturn}
+\Hypertarget{class_engine_a949c9fb1ca964cfcc9d29ed553c559ff}\label{class_engine_a949c9fb1ca964cfcc9d29ed553c559ff} 
+\index{Engine@{Engine}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{isRunning()}{isRunning()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Engine\+::is\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Check if the graphical engine is running. 
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating whether the engine is running.
+\end{DoxyReturn}
+This function defines if the engine is still running. \begin{DoxyReturn}{Returns}
+true on running status, false on stop status 
+\end{DoxyReturn}
+\Hypertarget{class_engine_ae21214887a095e8fed30697bb2cf0988}\label{class_engine_ae21214887a095e8fed30697bb2cf0988} 
+\index{Engine@{Engine}!loadNode@{loadNode}}
+\index{loadNode@{loadNode}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{loadNode()}{loadNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} LIB\+\_\+\+API Engine\+::load\+Node (\begin{DoxyParamCaption}\item[{std\+::string}]{node\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load a node from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+File} & The file path of the node to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The loaded \doxylink{class_node}{Node}. 
+\end{DoxyReturn}
+\Hypertarget{class_engine_ae85b872feefbc5957c496b1a50729f97}\label{class_engine_ae85b872feefbc5957c496b1a50729f97} 
+\index{Engine@{Engine}!loadScene@{loadScene}}
+\index{loadScene@{loadScene}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{loadScene()}{loadScene()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::load\+Scene (\begin{DoxyParamCaption}\item[{std\+::string}]{scene\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load a scene from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+File} & The file path of the scene to load. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_ad614d51c0479b1a8b3407171f15fe14c}\label{class_engine_ad614d51c0479b1a8b3407171f15fe14c} 
+\index{Engine@{Engine}!postWindowRedisplay@{postWindowRedisplay}}
+\index{postWindowRedisplay@{postWindowRedisplay}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{postWindowRedisplay()}{postWindowRedisplay()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::post\+Window\+Redisplay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Force redisplay of the window. 
+
+This function forces a rendering refresh. \Hypertarget{class_engine_a27a8c09cce75dfbb7db1a41b7ed1fcdb}\label{class_engine_a27a8c09cce75dfbb7db1a41b7ed1fcdb} 
+\index{Engine@{Engine}!reshapeCallback@{reshapeCallback}}
+\index{reshapeCallback@{reshapeCallback}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{reshapeCallback()}{reshapeCallback()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::reshape\+Callback (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback function for reshaping the graphical window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The new width of the window. \\
+\hline
+{\em height} & The new height of the window.\\
+\hline
+\end{DoxyParams}
+This callback is invoked each time the window gets resized (and once also when created). 
+\begin{DoxyParams}{Parameters}
+{\em width} & new window width \\
+\hline
+{\em height} & new window height \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a872daf9da782709f0e28a7adc1d61355}\label{class_engine_a872daf9da782709f0e28a7adc1d61355} 
+\index{Engine@{Engine}!setActiveCamera@{setActiveCamera}}
+\index{setActiveCamera@{setActiveCamera}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setActiveCamera()}{setActiveCamera()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+Active\+Camera (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the active camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the camera to set as active. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a848a4d7b50651c0485433b306e999efe}\label{class_engine_a848a4d7b50651c0485433b306e999efe} 
+\index{Engine@{Engine}!setBackgroundColor@{setBackgroundColor}}
+\index{setBackgroundColor@{setBackgroundColor}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setBackgroundColor()}{setBackgroundColor()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+Background\+Color (\begin{DoxyParamCaption}\item[{float}]{r,  }\item[{float}]{g,  }\item[{float}]{b,  }\item[{float}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the background color of the graphical window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Red component of the background color. \\
+\hline
+{\em g} & Green component of the background color. \\
+\hline
+{\em b} & Blue component of the background color. \\
+\hline
+{\em a} & Alpha component of the background color.\\
+\hline
+\end{DoxyParams}
+This function sets the frames background color. 
+\begin{DoxyParams}{Parameters}
+{\em r} & red rgba color component \\
+\hline
+{\em g} & green rgba color component \\
+\hline
+{\em b} & blue rgba color component \\
+\hline
+{\em a} & alpha rgba color component \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_aee6574cd5ab3fcebf22b8f98e096d3ef}\label{class_engine_aee6574cd5ab3fcebf22b8f98e096d3ef} 
+\index{Engine@{Engine}!setKeyboardCallback@{setKeyboardCallback}}
+\index{setKeyboardCallback@{setKeyboardCallback}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setKeyboardCallback()}{setKeyboardCallback()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+Keyboard\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(unsigned char, int, int)}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the keyboard callback function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to be called on keyboard input.\\
+\hline
+\end{DoxyParams}
+This callback connects the given function handler with the glut\+Keyboard\+Func function. 
+\begin{DoxyParams}{Parameters}
+{\em func} & function handler \\
+\hline
+{\em key} & pressed key character \\
+\hline
+{\em x} & mouse x position relative to the window when the key gets pressed \\
+\hline
+{\em y} & mouse y position relative to the window when the key gets pressed \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a79193816d3bd9903fb1a89e4534d305c}\label{class_engine_a79193816d3bd9903fb1a89e4534d305c} 
+\index{Engine@{Engine}!setObjectPickedCallback@{setObjectPickedCallback}}
+\index{setObjectPickedCallback@{setObjectPickedCallback}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setObjectPickedCallback()}{setObjectPickedCallback()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+Object\+Picked\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}, bool)}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the object picked callback function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to be called when an object is picked. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a5be5849967ab38b7f7aeaa1cd8c8cd23}\label{class_engine_a5be5849967ab38b7f7aeaa1cd8c8cd23} 
+\index{Engine@{Engine}!setSpecialCallback@{setSpecialCallback}}
+\index{setSpecialCallback@{setSpecialCallback}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setSpecialCallback()}{setSpecialCallback()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+Special\+Callback (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(int, int, int)}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the special key callback function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to be called on special key input.\\
+\hline
+\end{DoxyParams}
+This callback connects the given function handler with the glut\+Special\+Func function. 
+\begin{DoxyParams}{Parameters}
+{\em func} & function handler \\
+\hline
+{\em key} & pressed key integer \\
+\hline
+{\em x} & mouse x position relative to the window when the key gets pressed \\
+\hline
+{\em y} & mouse y position relative to the window when the key gets pressed \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a63575580374d9d9a934c406ecb07e751}\label{class_engine_a63575580374d9d9a934c406ecb07e751} 
+\index{Engine@{Engine}!setWindowResizeHandler@{setWindowResizeHandler}}
+\index{setWindowResizeHandler@{setWindowResizeHandler}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setWindowResizeHandler()}{setWindowResizeHandler()}}
+{\footnotesize\ttfamily void Engine\+::set\+Window\+Resize\+Handler (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(int, int)}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set the window resize handler function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to be called when the window is resized. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a6621cb5f51e750a185a987e4a224b73e}\label{class_engine_a6621cb5f51e750a185a987e4a224b73e} 
+\index{Engine@{Engine}!setZBufferUsage@{setZBufferUsage}}
+\index{setZBufferUsage@{setZBufferUsage}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{setZBufferUsage()}{setZBufferUsage()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::set\+ZBuffer\+Usage (\begin{DoxyParamCaption}\item[{bool}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Set whether to use Z-\/buffer for rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\+ZBuffer} & A boolean indicating whether to use Z-\/buffer.\\
+\hline
+\end{DoxyParams}
+This function defines if the Z-\/buffer will be used. 
+\begin{DoxyParams}{Parameters}
+{\em status} & boolean that defines use\+ZBuffer\textquotesingle{}s value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_ac2482c9e057b6a85bd752d4ba4d6b668}\label{class_engine_ac2482c9e057b6a85bd752d4ba4d6b668} 
+\index{Engine@{Engine}!start@{start}}
+\index{start@{start}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start the main loop of the graphical engine. 
+
+This function starts the engine activating the glut\+Main\+Loop. \Hypertarget{class_engine_a86dead5b5bf535a622254739d9d3636d}\label{class_engine_a86dead5b5bf535a622254739d9d3636d} 
+\index{Engine@{Engine}!startTimer@{startTimer}}
+\index{startTimer@{startTimer}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{startTimer()}{startTimer()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::start\+Timer (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(int)}]{func,  }\item[{int}]{duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start a timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to be called when the timer expires. \\
+\hline
+{\em duration} & The duration of the timer in milliseconds. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a0544e301002dd8af6958796fee18430e}\label{class_engine_a0544e301002dd8af6958796fee18430e} 
+\index{Engine@{Engine}!swapBuffers@{swapBuffers}}
+\index{swapBuffers@{swapBuffers}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{swapBuffers()}{swapBuffers()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::swap\+Buffers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Swap the front and back buffers of the graphical window. 
+
+This function swaps the buffers to display. \Hypertarget{class_engine_afe172a61e10e2e38f828c97e331daefc}\label{class_engine_afe172a61e10e2e38f828c97e331daefc} 
+\index{Engine@{Engine}!update@{update}}
+\index{update@{update}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Update the graphical engine. 
+
+This function calls the glut\+Main\+Loop\+Event (instead of using glut\+Main\+Loop that blocks the whole program). \Hypertarget{class_engine_a91796f90b4b9f7de736d4befd99415a8}\label{class_engine_a91796f90b4b9f7de736d4befd99415a8} 
+\index{Engine@{Engine}!writeOnScreen@{writeOnScreen}}
+\index{writeOnScreen@{writeOnScreen}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{writeOnScreen()}{writeOnScreen()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Engine\+::write\+On\+Screen (\begin{DoxyParamCaption}\item[{std\+::string}]{text,  }\item[{glm\+::vec3}]{color,  }\item[{glm\+::vec2}]{coord,  }\item[{int}]{text\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Write text on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text to write. \\
+\hline
+{\em coord} & The position on the screen to write the text. \\
+\hline
+{\em color} & The color of the text. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{engine_8h}{engine.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

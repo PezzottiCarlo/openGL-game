@@ -1,0 +1,245 @@
+\doxysection{Mesh Class Reference}
+\hypertarget{class_mesh}{}\label{class_mesh}\index{Mesh@{Mesh}}
+
+
+Simple mesh class.  
+
+
+
+
+{\ttfamily \#include $<$mesh.\+h$>$}
+
+Inheritance diagram for Mesh\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_mesh}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mesh_a1f8125773c9d3a81674af0a472072791}{Mesh}} (std\+::string name, \mbox{\hyperlink{class_material}{Material}} material)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_mesh_a5efe4da1a4c0971cfb037bd70304c303}\label{class_mesh_a5efe4da1a4c0971cfb037bd70304c303} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Mesh} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mesh_ac85beb42e6c433f4d16fb3ed35b4edfa}{add\+Vertex}} (\mbox{\hyperlink{class_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}v, int \mbox{\hyperlink{class_mesh_a93d7754c2402cba26e522f2be3c0d66c}{lod}})
+\begin{DoxyCompactList}\small\item\em Add a vertex to the mesh at a specific Level of Detail (LOD). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_mesh_adc2cc01a0dee7f2d6bb35cee2a0d399f}{get\+Vertices}} (int \mbox{\hyperlink{class_mesh_a93d7754c2402cba26e522f2be3c0d66c}{lod}})
+\begin{DoxyCompactList}\small\item\em Get the vertices of the mesh at a specific Level of Detail (LOD). \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_mesh_afe1b6d1b86418c8de2ec34d126abf48a}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the mesh. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_mesh_acbd6f0fe34cc5b61439b2bcd580df590}{get\+Material}} ()
+\begin{DoxyCompactList}\small\item\em Get the material associated with the mesh. \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_mesh_a9d5a608537bc3867d28ba3b6b1dff312}{get\+Color\+Based\+On\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Get the color of the mesh based on a specific ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_afceb8877cfab44e0eda5ae3a88513242}{Node}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_aa0840c3cb5c7159be6d992adecd2097c}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a5a2d3cd10105226987ec39d8d51677a3}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transformation matrix of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a2c01ffbac3ab86bdf4385a4d796228a4}{set\+Transform}} (glm\+::mat4 transform)
+\begin{DoxyCompactList}\small\item\em Set the transformation matrix of the node. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_ae3bd9ae43520317f77dfb28a891f1795}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the final transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aada1397339f3a5de376daf5570357ae2}{get\+Child\+At}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the child node at a specific index. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_node_ae684551babfcbeb33b5d872bb7be74bc}{get\+World\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the world position of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a564d75e881574cac5ebc32a0eef4e7a9}{set\+World\+Position}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set the world position of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_adbba3537a9ffcfba9d30f073968c1f8a}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a88ff627aa1bd77f9df447ced1a973455}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from the node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_ac8374e0f12a4e7aad097cae98b274c7e}{get\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of child nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ada66d18cbe2d572a4504cd502f9b39ee}{set\+Children}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ children)
+\begin{DoxyCompactList}\small\item\em Set the vector of child nodes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}{get\+Number\+Of\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of child nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a220a8d64cb0df1cce083ed38c1260615}{get\+Parent}} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Set the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ad15309e777ffd0ff1526b85693942ea2}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em Set the scale factor of the node. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_ac9926440d4edab1020d348a2b950307c}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Get the scale factor of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_mesh_a59bde152c3cdf2d610d5e35fd7562873}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_mesh}{Mesh} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_node_a2855e7379723958c28e0c133865a4876}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_mesh_a93d7754c2402cba26e522f2be3c0d66c}\label{class_mesh_a93d7754c2402cba26e522f2be3c0d66c} 
+int {\bfseries lod} = 0
+\begin{DoxyCompactList}\small\item\em Level of Detail (LOD) of the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple mesh class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_mesh_a1f8125773c9d3a81674af0a472072791}\label{class_mesh_a1f8125773c9d3a81674af0a472072791} 
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}}
+{\footnotesize\ttfamily Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{\mbox{\hyperlink{class_material}{Material}}}]{material }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_mesh}{Mesh} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the mesh. \\
+\hline
+{\em material} & The material associated with the mesh. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_mesh_ac85beb42e6c433f4d16fb3ed35b4edfa}\label{class_mesh_ac85beb42e6c433f4d16fb3ed35b4edfa} 
+\index{Mesh@{Mesh}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily void Mesh\+::add\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}}]{v,  }\item[{int}]{lod }\end{DoxyParamCaption})}
+
+
+
+Add a vertex to the mesh at a specific Level of Detail (LOD). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The vertex to add. \\
+\hline
+{\em lod} & The Level of Detail at which to add the vertex. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_mesh_a9d5a608537bc3867d28ba3b6b1dff312}\label{class_mesh_a9d5a608537bc3867d28ba3b6b1dff312} 
+\index{Mesh@{Mesh}!getColorBasedOnId@{getColorBasedOnId}}
+\index{getColorBasedOnId@{getColorBasedOnId}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{getColorBasedOnId()}{getColorBasedOnId()}}
+{\footnotesize\ttfamily glm\+::vec4 Mesh\+::get\+Color\+Based\+On\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get the color of the mesh based on a specific ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID to retrieve the color for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color corresponding to the provided ID. 
+\end{DoxyReturn}
+\Hypertarget{class_mesh_acbd6f0fe34cc5b61439b2bcd580df590}\label{class_mesh_acbd6f0fe34cc5b61439b2bcd580df590} 
+\index{Mesh@{Mesh}!getMaterial@{getMaterial}}
+\index{getMaterial@{getMaterial}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{getMaterial()}{getMaterial()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_material}{Material}} \texorpdfstring{$\ast$}{*} Mesh\+::get\+Material (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the material associated with the mesh. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the material. 
+\end{DoxyReturn}
+\Hypertarget{class_mesh_adc2cc01a0dee7f2d6bb35cee2a0d399f}\label{class_mesh_adc2cc01a0dee7f2d6bb35cee2a0d399f} 
+\index{Mesh@{Mesh}!getVertices@{getVertices}}
+\index{getVertices@{getVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{getVertices()}{getVertices()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} \texorpdfstring{$\ast$}{*} $>$ Mesh\+::get\+Vertices (\begin{DoxyParamCaption}\item[{int}]{lod }\end{DoxyParamCaption})}
+
+
+
+Get the vertices of the mesh at a specific Level of Detail (LOD). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lod} & The Level of Detail. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vertices at the specified LOD. 
+\end{DoxyReturn}
+\Hypertarget{class_mesh_afe1b6d1b86418c8de2ec34d126abf48a}\label{class_mesh_afe1b6d1b86418c8de2ec34d126abf48a} 
+\index{Mesh@{Mesh}!render@{render}}
+\index{render@{render}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Mesh\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the mesh. 
+
+This function renders the mesh based on the given transformation matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the mesh. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{Node}}.
+
+\Hypertarget{class_mesh_a59bde152c3cdf2d610d5e35fd7562873}\label{class_mesh_a59bde152c3cdf2d610d5e35fd7562873} 
+\index{Mesh@{Mesh}!test@{test}}
+\index{test@{test}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily int Mesh\+::test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Test method for the \doxylink{class_mesh}{Mesh} class. 
+
+\begin{DoxyReturn}{Returns}
+An integer indicating the result of the test. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{mesh_8h}{mesh.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{mesh_8cpp}{mesh.\+cpp}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/mesh\+\_\+test.\+cpp\end{DoxyCompactItemize}

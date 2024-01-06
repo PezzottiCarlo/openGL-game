@@ -1,0 +1,28 @@
+\doxysection{point\+Light.\+h}
+\hypertarget{point_light_8h_source}{}\label{point_light_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/pointLight.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/pointLight.h}}
+\mbox{\hyperlink{point_light_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ POINT\_LIGHT}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ POINT\_LIGHT}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}lib.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{light_8h}{light.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }LIB\_API\ \mbox{\hyperlink{class_point_light}{PointLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_light}{Light}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_point_light}{PointLight}}(\textcolor{keyword}{const}\ std::string\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ lightNumber,\ \textcolor{keyword}{const}\ glm::vec4\ ambient,\ \textcolor{keyword}{const}\ glm::vec4\ diffuse,\ \textcolor{keyword}{const}\ glm::vec4\ specular,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ cutOff\ =\ 180.0f);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_point_light_aa12d9005d5372dbbe655a82231634341}{\string~PointLight}}()\ \{\};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_light_af36b1774c17bce05b715752103b97318}{render}}(glm::mat4\ transform,\ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{float}\ cutOff;}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

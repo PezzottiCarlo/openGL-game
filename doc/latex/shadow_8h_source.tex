@@ -1,0 +1,46 @@
+\doxysection{shadow.\+h}
+\hypertarget{shadow_8h_source}{}\label{shadow_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/shadow.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/shadow.h}}
+\mbox{\hyperlink{shadow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <GL/freeglut.h>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}lib.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{node_8h}{node.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mesh_8h}{mesh.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vertex_8h}{vertex.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ FORWARD\ DECLARATION\ //}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node}{Node}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ CLASSES\ //}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }LIB\_API\ \mbox{\hyperlink{class_shadow}{Shadow}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_node}{Node}}\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_shadow}{Shadow}}(\mbox{\hyperlink{class_mesh}{Mesh}}*\ mesh);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_shadow}{\string~Shadow}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ addVertex(\mbox{\hyperlink{class_vertex}{Vertex}}*\ v);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ std::vector<Vertex*>\ getVertices();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{render}}(glm::mat4\ transform,\ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{float}\ getDeepestPoint();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_mesh}{Mesh}}*\ meshToShadow;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ std::vector<Vertex*>\ vertices;}
+\DoxyCodeLine{00096\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,71 @@
+\doxysection{material.\+h}
+\hypertarget{material_8h_source}{}\label{material_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/material.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/material.h}}
+\mbox{\hyperlink{material_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string>}\ \ \ \ \ \textcolor{comment}{//\ Include\ for\ std::string}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}\ \ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{texture_8h}{texture.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ CLASSES\ //}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }LIB\_API\ \mbox{\hyperlink{class_material}{Material}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object}{Object}}\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_material}{Material}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_material}{Material}}(\textcolor{keyword}{const}\ std::string\ name,\ glm::vec4\ \_emission,\ glm::vec4\ \_ambient,\ glm::vec4\ \_diffuse,\ glm::vec4\ \_specular,\ \textcolor{keywordtype}{float}\ \_shininess);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_material}{\string~Material}}();}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Setter}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ setShininess(\textcolor{keywordtype}{float}\ shininess);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ setEmission(glm::vec4\ emission);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ setAmbient(glm::vec4\ ambient);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ setDiffuse(glm::vec4\ diffuse);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ setSpecular(glm::vec4\ specular);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ setTexture(\mbox{\hyperlink{class_texture}{Texture}}*\ texture);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ Getter}}
+\DoxyCodeLine{00102\ \ \ \ \ glm::vec4\ getEmission();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ glm::vec4\ getAmbient();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ glm::vec4\ getDiffuse();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \ \ \ \ glm::vec4\ getSpecular();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{float}\ getShininess();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{class_texture}{Texture}}*\ getTexture();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ Other}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{render}}(glm::mat4\ transform,\ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ Test\ method}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ test();}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{private}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Material\ settings}}
+\DoxyCodeLine{00158\ \ \ \ \ glm::vec4\ emission;\ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ glm::vec4\ ambient;\ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ glm::vec4\ diffuse;\ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ glm::vec4\ specular;\ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{float}\ shininess;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{class_texture}{Texture}}*\ texture;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \};}
+
+\end{DoxyCode}

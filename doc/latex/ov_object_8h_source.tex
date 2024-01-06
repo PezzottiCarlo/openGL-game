@@ -1,0 +1,50 @@
+\doxysection{ov\+Object.\+h}
+\hypertarget{ov_object_8h_source}{}\label{ov_object_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/ovObject.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/ovObject.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ov_object}{OvObject}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4}{Type}}\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a11f58e04c745cc93515b08afd8e93af2}{O\_OBJECT}}\ =\ 0,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a225c226150e902d224c96c9683aa781a}{O\_NODE}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4ad3e4dd53e183b082418562824f68c902}{O\_OBJECT2D}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a085b6241b164f4600562ee132a1dfbee}{O\_OBJECT3D}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4aab0dc7c8434022b5a8fe7efea20e0cb3}{O\_LIST}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Derived\ classes:}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a45eea837677ef8c3c61ff661ca6c223d}{O\_BUFFER}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a0bbf37e1888207dd5467d92696d26e4b}{O\_SHADER}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a736653972c44110f70ce7ff113610dd2}{O\_TEXTURE}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a9ae90988eee5db7d9a5a09eecbc181da}{O\_FILTER}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a2e7baf30ba53ad159ef58e6d966386b0}{O\_MATERIAL}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a67be7fd85276121f156e965182cc9765}{O\_FBO}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a4e44f0ff2d6ed0c30de8e537f92b2e11}{O\_QUAD}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a0e8f6f2bed8565fc1fde8731d14517cf}{O\_BOX}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4ace90d3e40c79b3ece2c62a3276dfb752}{O\_SKYBOX}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4ae8a5a1d556dc8b11ce47f1eaad1338ea}{O\_FONT}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4af81f3086c9fc702126cd25d771c2dccc}{O\_CAMERA}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4abe3a214a14a09dc091288aa5abf73a7a}{O\_LIGHT}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a1056abaf035235955bbfe943edfc01db}{O\_BONE}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a1053dc19dc9af8fd7959c4e94bd3804a}{O\_MESH}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a23b7c6d7bdba49d04159267ae739a48f}{O\_SKINNED}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a6eaddef3460bfe0ed088022abe12289f}{O\_INSTANCED}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4aa724189168d56e80d817a1c51bbee06c}{O\_PIPELINE}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a3d719f32c3c7115c06403d8247196521}{O\_EMITTER}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Animation\ type}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4aa4021672190b3bf87b60adf17adf46ff}{O\_ANIM}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Physics\ related:}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4a7e3b8a14c50287ed8e41654535db34ba}{O\_PHYSICS}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Terminator:}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ov_object_a43751fbd68ebd5f7f02cb452b11e01c4af6dad41c3cb5cba7e6e16e8aa6ada557}{O\_LAST}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ \};}
+
+\end{DoxyCode}

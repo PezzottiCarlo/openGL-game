@@ -1,0 +1,56 @@
+\doxysection{texture.\+h}
+\hypertarget{texture_8h_source}{}\label{texture_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/texture.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/texture.h}}
+\mbox{\hyperlink{texture_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \textcolor{comment}{//\ \#INCLUDE\ //}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}\ \ \ \ \ \textcolor{comment}{//\ Include\ for\ std::string}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}lib.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{object_8h}{object.h}}"{}}\ \ \textcolor{comment}{//\ Assuming\ you\ have\ an\ "{}object.h"{}\ header\ for\ the\ base\ class}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ OpenGL\ constants\ for\ texture\ anisotropy}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ GL\_TEXTURE\_MAX\_ANISOTROPY\_EXT\ \ \ \ \ \ \ \ 0x84FE}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ GL\_MAX\_TEXTURE\_MAX\_ANISOTROPY\_EXT\ \ \ \ 0x84FF}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ CLASSES\ //}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }LIB\_API\ \mbox{\hyperlink{class_texture}{Texture}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_object}{Object}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_texture}{Texture}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_texture}{\string~Texture}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadFromFile(\textcolor{keyword}{const}\ std::string\&\ filePath);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ setTextureSettings(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ setTextureId(std::string\ textureId);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{render}}(glm::mat4\ transform,\ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ getWidth();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ getHeight();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ test();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:\ \textcolor{comment}{//}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00108\ \ \ \ \ std::string\ filePath;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{int}\ width;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{int}\ height;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ texId\ =\ 0;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ bitmap\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}[256\ *\ 256\ *\ 3];}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ Add\ any\ other\ texture-\/related\ members\ here}}
+\DoxyCodeLine{00131\ \};}
+
+\end{DoxyCode}

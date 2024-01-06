@@ -1,0 +1,205 @@
+\doxysection{Texture Class Reference}
+\hypertarget{class_texture}{}\label{class_texture}\index{Texture@{Texture}}
+
+
+\doxylink{class_texture}{Texture} class, extends \doxylink{class_object}{Object}.  
+
+
+
+
+{\ttfamily \#include $<$texture.\+h$>$}
+
+Inheritance diagram for Texture\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_texture}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_texture_a23a5db9257ff41b2a4f47f83d232a2c5}{Texture}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_texture}{Texture}. \end{DoxyCompactList}\item 
+\Hypertarget{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a}\label{class_texture_a09c4bcb7462f64c1d20fa69dba3cee8a} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Texture} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_texture}{Texture}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_texture_a67c594160f66011b38d3e5a5b35dffdc}{load\+From\+File}} (const std\+::string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Load texture from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_texture_a95e257841ded1f244eee978d368e19df}{set\+Texture\+Settings}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Set texture settings (hypothetical example). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_texture_ab3eae12ee3a8f22f5983efea69570273}{set\+Texture\+Id}} (std\+::string texture\+Id)
+\begin{DoxyCompactList}\small\item\em Set texture ID. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_texture_acebb6897d2a8ae06ed036d228b27a1af}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the texture. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_texture_a91a6fd3355bc870194851514194daaab}{get\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Get the width of the texture. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_texture_a80e143905655b173df5994300088ce35}{get\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Get the height of the texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_texture_a7c6b0b76d187da35f4f95946c11b81ee}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_texture}{Texture} class, extends \doxylink{class_object}{Object}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_texture_a23a5db9257ff41b2a4f47f83d232a2c5}\label{class_texture_a23a5db9257ff41b2a4f47f83d232a2c5} 
+\index{Texture@{Texture}!Texture@{Texture}}
+\index{Texture@{Texture}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{Texture()}{Texture()}}
+{\footnotesize\ttfamily Texture\+::\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_texture}{Texture}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the texture. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_texture_a80e143905655b173df5994300088ce35}\label{class_texture_a80e143905655b173df5994300088ce35} 
+\index{Texture@{Texture}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily int Texture\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the height of the texture. 
+
+\begin{DoxyReturn}{Returns}
+The height of the texture. 
+\end{DoxyReturn}
+\Hypertarget{class_texture_a91a6fd3355bc870194851514194daaab}\label{class_texture_a91a6fd3355bc870194851514194daaab} 
+\index{Texture@{Texture}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily int Texture\+::get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the width of the texture. 
+
+\begin{DoxyReturn}{Returns}
+The width of the texture. 
+\end{DoxyReturn}
+\Hypertarget{class_texture_a67c594160f66011b38d3e5a5b35dffdc}\label{class_texture_a67c594160f66011b38d3e5a5b35dffdc} 
+\index{Texture@{Texture}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Texture\+::load\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Load texture from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & The file path of the texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of loading the texture. 
+\end{DoxyReturn}
+\Hypertarget{class_texture_acebb6897d2a8ae06ed036d228b27a1af}\label{class_texture_acebb6897d2a8ae06ed036d228b27a1af} 
+\index{Texture@{Texture}!render@{render}}
+\index{render@{render}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily bool LIB\+\_\+\+API Texture\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Render function for the texture. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the texture. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{Object}}.
+
+\Hypertarget{class_texture_ab3eae12ee3a8f22f5983efea69570273}\label{class_texture_ab3eae12ee3a8f22f5983efea69570273} 
+\index{Texture@{Texture}!setTextureId@{setTextureId}}
+\index{setTextureId@{setTextureId}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{setTextureId()}{setTextureId()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Texture\+::set\+Texture\+Id (\begin{DoxyParamCaption}\item[{std\+::string}]{texture\+Id }\end{DoxyParamCaption})}
+
+
+
+Set texture ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Id} & The texture ID. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_texture_a95e257841ded1f244eee978d368e19df}\label{class_texture_a95e257841ded1f244eee978d368e19df} 
+\index{Texture@{Texture}!setTextureSettings@{setTextureSettings}}
+\index{setTextureSettings@{setTextureSettings}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{setTextureSettings()}{setTextureSettings()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Texture\+::set\+Texture\+Settings (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Set texture settings (hypothetical example). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width of the texture. \\
+\hline
+{\em height} & The height of the texture. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_texture_a7c6b0b76d187da35f4f95946c11b81ee}\label{class_texture_a7c6b0b76d187da35f4f95946c11b81ee} 
+\index{Texture@{Texture}!test@{test}}
+\index{test@{test}!Texture@{Texture}}
+\doxysubsubsection{\texorpdfstring{test()}{test()}}
+{\footnotesize\ttfamily int Texture\+::test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Test method for the texture. 
+
+\begin{DoxyReturn}{Returns}
+An integer indicating the result of the test. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{texture_8h}{texture.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/texture.\+cpp\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/texture\+\_\+test.\+cpp\end{DoxyCompactItemize}

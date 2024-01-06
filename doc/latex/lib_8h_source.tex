@@ -1,0 +1,23 @@
+\doxysection{lib.\+h}
+\hypertarget{lib_8h_source}{}\label{lib_8h_source}\index{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/lib.h@{C:/Users/jarinaser/Desktop/Grafica/Progetto/Gruppo01/engine/lib.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Generic\ info:}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ LIB\_NAME\ \ \ \ \ \ "{}Engine\ Library\ v0.1a"{}\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ LIB\_VERSION\ \ \ 10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Export\ API:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Specifies\ i/o\ linkage\ (VC++\ spec):}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ ENGINE\_EXPORTS}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ LIB\_API\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ LIB\_API\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ Under\ Linux}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ LIB\_API\ \ }\textcolor{comment}{//\ Dummy\ declaration}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

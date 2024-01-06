@@ -1,0 +1,160 @@
+\doxysection{Camera Class Reference}
+\hypertarget{class_camera}{}\label{class_camera}\index{Camera@{Camera}}
+
+
+Simple camera class.  
+
+
+
+
+{\ttfamily \#include $<$camera.\+h$>$}
+
+Inheritance diagram for Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_camera}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_camera_a8ae63724d5c1e43576fad3ea49b1ef3d}{Camera}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_camera}{Camera} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_camera_ad1897942d0ccf91052386388a497349f}\label{class_camera_ad1897942d0ccf91052386388a497349f} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Camera} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_camera}{Camera} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_camera_afcd611084a86c1c767d4e8f1317d2ec7}{get\+Inverse\+Camera\+Mat}} ()
+\begin{DoxyCompactList}\small\item\em Get the inverse transformation matrix of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_camera_a1e681d1be0d660219a1047f17c1f9112}{set\+User\+Transform}} (float x, float y, float z, float rx, float ry, float rz)
+\begin{DoxyCompactList}\small\item\em Set user-\/defined transformation for the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_afceb8877cfab44e0eda5ae3a88513242}{Node}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_aa0840c3cb5c7159be6d992adecd2097c}{\texorpdfstring{$\sim$}{\string~}\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_a5a2d3cd10105226987ec39d8d51677a3}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transformation matrix of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a2c01ffbac3ab86bdf4385a4d796228a4}{set\+Transform}} (glm\+::mat4 transform)
+\begin{DoxyCompactList}\small\item\em Set the transformation matrix of the node. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{class_node_ae3bd9ae43520317f77dfb28a891f1795}{get\+Final\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the final transformation matrix of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_aada1397339f3a5de376daf5570357ae2}{get\+Child\+At}} (int index)
+\begin{DoxyCompactList}\small\item\em Get the child node at a specific index. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{class_node_ae684551babfcbeb33b5d872bb7be74bc}{get\+World\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the world position of the node. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_node_a564d75e881574cac5ebc32a0eef4e7a9}{set\+World\+Position}} (glm\+::vec3 position)
+\begin{DoxyCompactList}\small\item\em Set the world position of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_adbba3537a9ffcfba9d30f073968c1f8a}{add\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a88ff627aa1bd77f9df447ced1a973455}{remove\+Child}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}child)
+\begin{DoxyCompactList}\small\item\em Remove a child node from the node. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_node_ac8374e0f12a4e7aad097cae98b274c7e}{get\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of child nodes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ada66d18cbe2d572a4504cd502f9b39ee}{set\+Children}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ children)
+\begin{DoxyCompactList}\small\item\em Set the vector of child nodes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_node_aeb85a90439b7f5c7fdf5bef6499845f0}{get\+Number\+Of\+Children}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of child nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_node_a220a8d64cb0df1cce083ed38c1260615}{get\+Parent}} ()
+\begin{DoxyCompactList}\small\item\em Get the parent node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a6c1e8939341a89d0fcd1f4413ce0dd0f}{set\+Parent}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Set the parent node. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data) override
+\begin{DoxyCompactList}\small\item\em Render function for the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ad15309e777ffd0ff1526b85693942ea2}{set\+Scale}} (float scale)
+\begin{DoxyCompactList}\small\item\em Set the scale factor of the node. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_node_ac9926440d4edab1020d348a2b950307c}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Get the scale factor of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_node}{Node}}}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_node_a2855e7379723958c28e0c133865a4876}{test}} ()
+\begin{DoxyCompactList}\small\item\em Test method for the \doxylink{class_node}{Node} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_object}{Object}}}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple camera class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_camera_a8ae63724d5c1e43576fad3ea49b1ef3d}\label{class_camera_a8ae63724d5c1e43576fad3ea49b1ef3d} 
+\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily Camera\+::\+Camera (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the \doxylink{class_camera}{Camera} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the camera. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_camera_afcd611084a86c1c767d4e8f1317d2ec7}\label{class_camera_afcd611084a86c1c767d4e8f1317d2ec7} 
+\index{Camera@{Camera}!getInverseCameraMat@{getInverseCameraMat}}
+\index{getInverseCameraMat@{getInverseCameraMat}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{getInverseCameraMat()}{getInverseCameraMat()}}
+{\footnotesize\ttfamily glm\+::mat4 LIB\+\_\+\+API Camera\+::get\+Inverse\+Camera\+Mat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the inverse transformation matrix of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The inverse camera matrix. 
+\end{DoxyReturn}
+\Hypertarget{class_camera_a1e681d1be0d660219a1047f17c1f9112}\label{class_camera_a1e681d1be0d660219a1047f17c1f9112} 
+\index{Camera@{Camera}!setUserTransform@{setUserTransform}}
+\index{setUserTransform@{setUserTransform}!Camera@{Camera}}
+\doxysubsubsection{\texorpdfstring{setUserTransform()}{setUserTransform()}}
+{\footnotesize\ttfamily void Camera\+::set\+User\+Transform (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{rx,  }\item[{float}]{ry,  }\item[{float}]{rz }\end{DoxyParamCaption})}
+
+
+
+Set user-\/defined transformation for the camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Translation along the x-\/axis. \\
+\hline
+{\em y} & Translation along the y-\/axis. \\
+\hline
+{\em z} & Translation along the z-\/axis. \\
+\hline
+{\em rx} & Rotation around the x-\/axis (in degrees). \\
+\hline
+{\em ry} & Rotation around the y-\/axis (in degrees). \\
+\hline
+{\em rz} & Rotation around the z-\/axis (in degrees). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{camera_8h}{camera.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{camera_8cpp}{camera.\+cpp}}\end{DoxyCompactItemize}

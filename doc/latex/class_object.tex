@@ -1,0 +1,161 @@
+\doxysection{Object Class Reference}
+\hypertarget{class_object}{}\label{class_object}\index{Object@{Object}}
+
+
+Simple object class example.  
+
+
+
+
+{\ttfamily \#include $<$object.\+h$>$}
+
+Inheritance diagram for Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_object_a18bd04a6f1024040a6477fe8517095e6}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_ada156b53e7362783f31205616fc8efd9}{set\+Id}} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Set the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}{set\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the object. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_object_a1204b43ddce80707db1d6721e6cf8004}{render}} (glm\+::mat4 transform, void \texorpdfstring{$\ast$}{*}data)=0
+\begin{DoxyCompactList}\small\item\em Render function for the object. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_object_a7628075d7c23231f8f28213c2c3368c5}{get\+Next\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the next available ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_object_aef73d4aae8379ab0accf5f9077f1b9ff}\label{class_object_aef73d4aae8379ab0accf5f9077f1b9ff} 
+static unsigned int {\bfseries id\+Counter} = 1
+\begin{DoxyCompactList}\small\item\em Counter for generating unique IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple object class example. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_object_a18bd04a6f1024040a6477fe8517095e6}\label{class_object_a18bd04a6f1024040a6477fe8517095e6} 
+\index{Object@{Object}!getId@{getId}}
+\index{getId@{getId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily unsigned int Object\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the ID of the object. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the object.
+\end{DoxyReturn}
+Getter of id attribute \begin{DoxyReturn}{Returns}
+value of the id attribute 
+\end{DoxyReturn}
+\Hypertarget{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2}\label{class_object_ae1e7fb2c20cc0f3356de4538a81e5ad2} 
+\index{Object@{Object}!getName@{getName}}
+\index{getName@{getName}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string LIB\+\_\+\+API Object\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the name of the object. 
+
+\begin{DoxyReturn}{Returns}
+The name of the object.
+\end{DoxyReturn}
+Getter of name attribute \begin{DoxyReturn}{Returns}
+value of the name attribute 
+\end{DoxyReturn}
+\Hypertarget{class_object_a7628075d7c23231f8f28213c2c3368c5}\label{class_object_a7628075d7c23231f8f28213c2c3368c5} 
+\index{Object@{Object}!getNextId@{getNextId}}
+\index{getNextId@{getNextId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getNextId()}{getNextId()}}
+{\footnotesize\ttfamily unsigned int LIB\+\_\+\+API Object\+::get\+Next\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the next available ID. 
+
+\begin{DoxyReturn}{Returns}
+The next available ID. 
+\end{DoxyReturn}
+\Hypertarget{class_object_a1204b43ddce80707db1d6721e6cf8004}\label{class_object_a1204b43ddce80707db1d6721e6cf8004} 
+\index{Object@{Object}!render@{render}}
+\index{render@{render}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily virtual bool Object\+::render (\begin{DoxyParamCaption}\item[{glm\+::mat4}]{transform,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Render function for the object. 
+
+This function is a pure virtual function that must be implemented by derived classes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em transform} & The transformation matrix for rendering the object. \\
+\hline
+{\em data} & Additional data for rendering (optional). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the rendering operation. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_directional_light_ac2c96ca8870974948a440f70a4b690b9}{Directional\+Light}}, \mbox{\hyperlink{class_light_af36b1774c17bce05b715752103b97318}{Light}}, \mbox{\hyperlink{class_list_a509b5cf5b88f6c85a2cafaf2a19588f7}{List}}, \mbox{\hyperlink{class_material_a68da6c9bd7bb0e4e1d8e965ed36296f6}{Material}}, \mbox{\hyperlink{class_mesh_afe1b6d1b86418c8de2ec34d126abf48a}{Mesh}}, \mbox{\hyperlink{class_node_a946d3aff43488f47b28bdfae51240938}{Node}}, \mbox{\hyperlink{class_point_light_a14fa66cb1e08ae566f293829e77eaefd}{Point\+Light}}, \mbox{\hyperlink{class_shadow_a76105d0c4e5624643e72870a3364babc}{Shadow}}, \mbox{\hyperlink{class_spot_light_ac85b7f1ae61c013f6b2a32df08f6dc30}{Spot\+Light}}, and \mbox{\hyperlink{class_texture_acebb6897d2a8ae06ed036d228b27a1af}{Texture}}.
+
+\Hypertarget{class_object_ada156b53e7362783f31205616fc8efd9}\label{class_object_ada156b53e7362783f31205616fc8efd9} 
+\index{Object@{Object}!setId@{setId}}
+\index{setId@{setId}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily void Object\+::set\+Id (\begin{DoxyParamCaption}\item[{unsigned int}]{new\+Id }\end{DoxyParamCaption})}
+
+
+
+Set the ID of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The new ID for the object.\\
+\hline
+\end{DoxyParams}
+Setter of id attribute 
+\begin{DoxyParams}{Parameters}
+{\em new\+Id} & new id to assign \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e}\label{class_object_a2a28dc3681656f3bb2d08cffae7f2e5e} 
+\index{Object@{Object}!setName@{setName}}
+\index{setName@{setName}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily void LIB\+\_\+\+API Object\+::set\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{new\+Name }\end{DoxyParamCaption})}
+
+
+
+Set the name of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The new name for the object.\\
+\hline
+\end{DoxyParams}
+Setter of name attribute 
+\begin{DoxyParams}{Parameters}
+{\em new\+Name} & new name to assign to name attribute \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{object_8h}{object.\+h}}\item 
+C\+:/\+Users/jarinaser/\+Desktop/\+Grafica/\+Progetto/\+Gruppo01/engine/\mbox{\hyperlink{object_8cpp}{object.\+cpp}}\end{DoxyCompactItemize}
