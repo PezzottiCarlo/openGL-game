@@ -96,8 +96,6 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
 }
 #endif
 
-
-
 //////////////////////////
 // BODY OF CLASS Engine //
 //////////////////////////
@@ -115,8 +113,6 @@ int APIENTRY DllMain(HANDLE instDLL, DWORD reason, LPVOID _reserved)
  /////////////////
  // FOR TESTING //
  /////////////////
-
-
 
 bool LIB_API Engine::init(int argc, char* argv[], const char* title, int width, int height) {
 
@@ -217,11 +213,6 @@ void LIB_API Engine::displayCallback()
     //disable texturing
     glLoadMatrixf(glm::value_ptr(cameras.at(activeCamera)->getInverseCameraMat()));
     list.render(cameras.at(activeCamera)->getInverseCameraMat(), nullptr);
-
-    // Force rendering refresh
-
-    // Swap this context's buffer:
-
 }
 
 void LIB_API Engine::loadScene(std::string pathName)
@@ -321,7 +312,6 @@ bool LIB_API Engine::clearList() {
     list.clear();
     return true;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**

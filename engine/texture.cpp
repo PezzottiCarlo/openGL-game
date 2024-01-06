@@ -11,13 +11,10 @@
 Texture::Texture(const std::string& name) : width(0), height(0) {
     Object::setId(Object::getNextId());
     Object::setName(name);
-    //this->loadFromFile("default");
 }
 
 // Destructor
-Texture::~Texture() {
-    // Cleanup, if needed
-}
+Texture::~Texture() {}
 
 
 // Load texture from a file
@@ -77,7 +74,6 @@ void LIB_API Texture::setTextureSettings(int width, int height) {
 void LIB_API Texture::setTextureId(std::string filepath) {
     loadFromFile(filepath);
 }
-
 
 bool LIB_API Texture::render(glm::mat4 matrix, void* ptr) {
 

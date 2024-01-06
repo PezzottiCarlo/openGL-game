@@ -25,7 +25,6 @@ public:
         OMNI = 0,           ///< Omni light type.
         DIRECTIONAL,        ///< Directional light type.
         SPOT,               ///< Spot light type.
-
         LAST                ///< Terminator to indicate the last subtype.
     };
 };

@@ -6,29 +6,16 @@
  * @author  Carlo pezzotti (C) SUPSI [carlo.pezzotti@student.supsi.ch]
  */
 
-
  //////////////
  // #INCLUDE //
  //////////////
 
- // Library main include:
 #include "camera.h"
 #include <glm/ext/matrix_transform.hpp>
-
-//////////////////////////
-// BODY OF CLASS Camera //
-//////////////////////////
-
 
 Camera::~Camera() {
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Method that returns the inverse of the camera matrix
- * @return inversed camera matrix
- */
 glm::mat4 LIB_API Camera::getInverseCameraMat() {
 	// Returns inverse of a node's transform matrix
 	return glm::inverse(getTransform());

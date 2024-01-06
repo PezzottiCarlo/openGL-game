@@ -28,9 +28,7 @@ Material::Material(const std::string name, glm::vec4 _emission, glm::vec4 _ambie
 }
 
 // Destructor
-Material::~Material() {
-    // Cleanup, if needed
-}
+Material::~Material() {}
 
 
 glm::vec4 LIB_API Material::getEmission() {

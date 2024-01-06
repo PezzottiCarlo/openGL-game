@@ -71,7 +71,6 @@ void LIB_API Light::setIntensity(float i)
 	this->intensity = i;
 }
 
-
 bool LIB_API Light::render(glm::mat4 matrix, void* ptr) {
 	glLoadMatrixf(glm::value_ptr(matrix * getFinalMatrix()));
 

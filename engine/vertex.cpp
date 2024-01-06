@@ -8,12 +8,15 @@ Vertex::~Vertex() {}
 glm::vec3 Vertex::getPosition() {
 	return position;
 }
+
 glm::vec3 Vertex::getNormal() {
 	return normal;
 }
+
 glm::vec2 Vertex::getTextureCoordinates() {
 	return textureCoordinates;
 }
+
 void Vertex::setTextureCoordinates(glm::vec2 textCoord) {
 	textureCoordinates = textCoord;
 }

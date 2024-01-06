@@ -25,7 +25,6 @@ public:
         DEFAULT = 0,        ///< Default mesh type.
         NORMALMAPPED,       ///< Normal-mapped mesh type.
         TESSELLATED,        ///< Tessellated mesh type.
-
         LAST                ///< Terminator to indicate the last subtype.
     };
 };

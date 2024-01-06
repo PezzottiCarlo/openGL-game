@@ -14,7 +14,6 @@
 // Library main include:
 #include <iostream>
 #include <algorithm>
-
 #include "node.h"
 
 ////////////////////////
@@ -37,9 +36,7 @@ Node::Node(std::string name) {
 /**
  * Destructor of node class
  */
-Node::~Node() {
-
-}
+Node::~Node() {}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -203,5 +200,5 @@ Node* Node::getChildAt(int index) {
 	if (children.empty() || index >= (int)children.size())
 		return nullptr;
 
-	return children.at(index);//.get();
+	return children.at(index);
 }

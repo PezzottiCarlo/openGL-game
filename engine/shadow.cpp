@@ -10,9 +10,7 @@ LIB_API Shadow::Shadow(Mesh* mesh):Node("ShadowOf"+mesh->getName())
 	}
 }
 
-LIB_API Shadow::~Shadow()
-{
-}
+LIB_API Shadow::~Shadow(){}
 
 void Shadow::addVertex(Vertex* v)
 {
