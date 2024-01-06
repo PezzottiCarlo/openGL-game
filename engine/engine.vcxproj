@@ -30,7 +30,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="directionalLight.h" />
     <ClInclude Include="engine.h" />
-    <ClInclude Include="fakeShadow.h" />
+    <ClInclude Include="shadow.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="list.h" />
