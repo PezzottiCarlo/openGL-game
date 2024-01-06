@@ -38,6 +38,8 @@ public:
      */
     void addEntry(Node* node);
 
+    void popEntry();
+
     /**
      * @brief Render function for the list of objects.
      *

@@ -48,10 +48,12 @@ static float step = .01f;
 static float blinkStep = 0.0f;
 bool blink = false;
 bool blinkerTimerStarted = false;
+int numberOfCars = 0;
 
 // Other vars
 int winningAnimationCounter = 0;
 bool gameFinished = false;
+bool canMove = true;
 
 std::string getSeparator() {
 #ifdef _WIN32
@@ -107,107 +109,109 @@ std::vector<int> getCarDataFromId(unsigned int id) {
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void specialCallback(int key, int x, int y) {
+	if (canMove) {
+		// Retrieve data from selected car
+		if (pickedObject == nullptr) return;
 
-	// Retrieve data from selected car
-	if (pickedObject == nullptr) return;
+		std::vector<int> carData = getCarDataFromId(pickedObject->getId());
+		if (carData.empty()) return;
 
-	std::vector<int> carData = getCarDataFromId(pickedObject->getId());
-	if (carData.empty()) return;
+		//convert to int array
+		int i = carData[0];
+		int j = carData[1];
+		int d = carData[2];
+		int carSize = (d == 1 || d == 2 || d == 5) ? 2 : 3;
 
-	//convert to int array
-	int i = carData[0];
-	int j = carData[1];
-	int d = carData[2];
-	int carSize = (d == 1 || d == 2 || d == 5) ? 2 : 3;
+		// Define if car can move vertically or horizontally
+		bool canMoveVertical = (d == 1 || d == 3 || d == 5);
+		bool canMoveHorizontal = (d == 2 || d == 4);
 
-	// Define if car can move vertically or horizontally
-	bool canMoveVertical = (d == 1 || d == 3 || d == 5);
-	bool canMoveHorizontal = (d == 2 || d == 4);
+		glm::mat4 currentTransform = pickedObject->getTransform();
 
-	glm::mat4 currentTransform = pickedObject->getTransform();
+		switch (key) {
+		case 100:	// Left
+			if (canMoveHorizontal) {
+				// Check if cells on the left are empty
+				if (!positioningMatrix[i][j - 1]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i][j - 1].first = matrix[i][j].first;
+					matrix[i][j - 1].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i][j - 1] = true;
+					positioningMatrix[i][j + carSize - 1] = false;
+					numberOfMoves++;
+				}
 
-	switch (key) {
-	case 100:	// Left
-		if (canMoveHorizontal) {
-			// Check if cells on the left are empty
-			if (!positioningMatrix[i][j - 1]) {
-				currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-				matrix[i][j].second = 0;
-				matrix[i][j - 1].first = matrix[i][j].first;
-				matrix[i][j - 1].second = pickedObject->getId();
-				matrix[i][j].first = 0;
-				// Move position matrix elements
-				positioningMatrix[i][j - 1] = true;
-				positioningMatrix[i][j + carSize - 1] = false;
-				numberOfMoves++;
 			}
-
-		}
-		break;
-	case 102:	// Right
-		if (canMoveHorizontal) {
-			if (!positioningMatrix[i][j + carSize]) {
-				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-				matrix[i][j].second = 0;
-				matrix[i][j + 1].first = matrix[i][j].first;
-				matrix[i][j + 1].second = pickedObject->getId();
-				matrix[i][j].first = 0;
-				// Move position matrix elements
-				positioningMatrix[i][j + carSize] = true;
-				positioningMatrix[i][j] = false;
-				numberOfMoves++;
+			break;
+		case 102:	// Right
+			if (canMoveHorizontal) {
+				if (!positioningMatrix[i][j + carSize]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i][j + 1].first = matrix[i][j].first;
+					matrix[i][j + 1].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i][j + carSize] = true;
+					positioningMatrix[i][j] = false;
+					numberOfMoves++;
+				}
 			}
-		}
-		break;
-	case 101:	// Up
-		if (canMoveVertical) {
-			if (!positioningMatrix[i - 1][j]) {
-				currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
-				matrix[i][j].second = 0;
-				matrix[i - 1][j].first = matrix[i][j].first;
-				matrix[i - 1][j].second = pickedObject->getId();
-				matrix[i][j].first = 0;
-				// Move position matrix elements
-				positioningMatrix[i - 1][j] = true;
-				positioningMatrix[i + carSize - 1][j] = false;
-				numberOfMoves++;
+			break;
+		case 101:	// Up
+			if (canMoveVertical) {
+				if (!positioningMatrix[i - 1][j]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i - 1][j].first = matrix[i][j].first;
+					matrix[i - 1][j].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i - 1][j] = true;
+					positioningMatrix[i + carSize - 1][j] = false;
+					numberOfMoves++;
+				}
 			}
-		}
-		break;
-	case 103:	// Down
-		if (canMoveVertical) {
+			break;
+		case 103:	// Down
+			if (canMoveVertical) {
 
-			// Check if red car is pointing towards exit -> win
-			// Exit block is [5][3] (in game coords. [4][2])
-			if (pickedObject->getName() == "Car" && i == 5 && j == 3) {
+				// Check if red car is pointing towards exit -> win
+				// Exit block is [5][3] (in game coords. [4][2])
+				if (pickedObject->getName() == "Car" && i == 5 && j == 3) {
 
-				// Disable mouse
-				Engine::removeObjectPickedCallback();
+					// Disable mouse
+					Engine::removeObjectPickedCallback();
 
-				// Move camera
-				Engine::setActiveCamera(1);
-				Engine::refreshAndSwapBuffers();
+					// Move camera
+					Engine::setActiveCamera(1);
+					Engine::refreshAndSwapBuffers();
 
-				// Start animation
-				Engine::startTimer(moveWinningCar, 10);
+					// Start animation
+					Engine::startTimer(moveWinningCar, 10);
 
-			} else if (!positioningMatrix[i + carSize][j]) {
-				currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
-				matrix[i][j].second = 0;
-				matrix[i + 1][j].first = matrix[i][j].first;
-				matrix[i + 1][j].second = pickedObject->getId();
-				matrix[i][j].first = 0;
-				// Move position matrix elements
-				positioningMatrix[i + carSize][j] = true;
-				positioningMatrix[i][j] = false;
-				numberOfMoves++;
+				}
+				else if (!positioningMatrix[i + carSize][j]) {
+					currentTransform = glm::translate(currentTransform, glm::vec3(-BLOCK_SIZE, 0.0f, 0.0f));
+					matrix[i][j].second = 0;
+					matrix[i + 1][j].first = matrix[i][j].first;
+					matrix[i + 1][j].second = pickedObject->getId();
+					matrix[i][j].first = 0;
+					// Move position matrix elements
+					positioningMatrix[i + carSize][j] = true;
+					positioningMatrix[i][j] = false;
+					numberOfMoves++;
+				}
 			}
+			break;
 		}
-		break;
+
+		pickedObject->setTransform(currentTransform);
+		Engine::postWindowRedisplay();
 	}
-
-	pickedObject->setTransform(currentTransform);
-	Engine::postWindowRedisplay();
 }
 
 void getPickedObject(Node* n, bool mousePressed) {
@@ -247,6 +251,7 @@ void keyboardCallback(unsigned char key, int x, int y) {
 	case 'n':
 		if (gameFinished) {
 			// Start new game
+			canMove = true;
 			gameFinished = false;
 
 			// Reenable mouse
@@ -255,6 +260,9 @@ void keyboardCallback(unsigned char key, int x, int y) {
 			// Reset variables
 			numberOfMoves = 0;
 			winningAnimationCounter = 0;
+			for (int i = 0; i < numberOfCars; i++)
+				Engine::getList()->popEntry();
+			numberOfCars = 0;
 
 			// Refill matrixes and other elements
 			for (int i = 0; i < PLAYGROUND_SIZE + 2; i++) {
@@ -402,6 +410,7 @@ void moveWinningCar(int value) {
 
 	// Recall function
 	if (winningAnimationCounter < 200) {
+		canMove = false;
 		Engine::startTimer(moveWinningCar, 10);
 		winningAnimationCounter++;
 	}
@@ -422,6 +431,7 @@ void loadCars() {
 			if (initialMatrix[i][j] >= 1 && initialMatrix[i][j] <= 5) {
 				// Cell contains car
 				std::string carName;
+				numberOfCars++;
 
 				switch (initialMatrix[i][j]) {
 				case 1: case 2:
