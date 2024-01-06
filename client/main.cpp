@@ -36,9 +36,9 @@ int gameDifficulty = -1;
 Camera* cameras[3];
 
 // Fps calculation
-int fc; 
-int fps; 
-int numberOfMoves = 0; 
+int fc;
+int fps;
+int numberOfMoves = 0;
 
 // Object blinking vars
 Node* pickedObject = nullptr;
@@ -75,9 +75,9 @@ void fillInitialPositioningMatrix() {
 	}
 }
 
-int* getCarDataFromId(unsigned int id) {
+std::vector<int> getCarDataFromId(unsigned int id) {
 
-	int results[3];
+    std::vector<int> results(3, 0);
 
 	for (int i = 1; i < PLAYGROUND_SIZE + 1; i++) {
 		for (int j = 1; j < PLAYGROUND_SIZE + 1; j++) {
@@ -93,7 +93,7 @@ int* getCarDataFromId(unsigned int id) {
 		}
 	}
 
-	return nullptr;
+	return {};
 }
 
 ///////////////
@@ -107,10 +107,17 @@ int* getCarDataFromId(unsigned int id) {
  * @param y mouse y position relative to the window when the key gets pressed
  */
 void specialCallback(int key, int x, int y) {
+
+    std::cout << "Inside of specialCallback: " << key << std::endl;
+
 	// Retrieve data from selected car
 	if (pickedObject == nullptr) return;
-	int* carData = getCarDataFromId(pickedObject->getId());
-	if (carData == nullptr) return;
+
+	std::cout << "Picked object ID: " << pickedObject->getId() << std::endl;
+
+
+	std::vector<int> carData = getCarDataFromId(pickedObject->getId());
+	if (carData.empty()) return;
 
 	//convert to int array
 	int i = carData[0];
@@ -124,7 +131,10 @@ void specialCallback(int key, int x, int y) {
 
 	glm::mat4 currentTransform = pickedObject->getTransform();
 
+	std::cout << "Pressed key: " << key << std::endl;
+
 	switch (key) {
+
 	case 100:	// Left
 		if (canMoveHorizontal) {
 			// Check if cells on the left are empty
@@ -215,6 +225,7 @@ void getPickedObject(Node* n, bool mousePressed) {
 		}
 		lastObjectEmission = ((Mesh*)n)->getMaterial()->getEmission();
 		pickedObject = n;
+
 		// Start blinker timer if it isn't already running
 		if (!blinkerTimerStarted) {
 			Engine::startTimer(updateBlinking, 10);
