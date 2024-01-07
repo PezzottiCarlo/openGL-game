@@ -39,7 +39,6 @@
 		</Compiler>
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
-		<Unit filename="rush-hour-test-runner.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
