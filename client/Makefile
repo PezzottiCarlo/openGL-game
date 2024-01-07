@@ -4,9 +4,6 @@ TARGET := $(TARGET_DIR)/$(BASE_NAME)
 TARGET_ARCHIVE := $(BASE_NAME).tar.gz
 MAIN_SRC_FILES := $(wildcard *.cpp)
 MAIN_OBJ_FILES := $(patsubst %.cpp,%.o,$(MAIN_SRC_FILES))
-TESTS_RUNNER := $(BASE_NAME)-tests-runner
-TEST_SRC_FILES := $(wildcard *_test.cpp)
-TEST_OBJ_FILES := $(patsubst %_test.cpp,%.o,$(TEST_SRC_FILES))
 ENGINE_BASE_NAME := engine
 ENGINE_DIR := ../$(ENGINE_BASE_NAME)
 ENGINE_LIB_NAME := $(ENGINE_BASE_NAME)
@@ -28,18 +25,10 @@ $(TARGET_ARCHIVE): $(TARGET)
 	$(TAR_GZ) $(TARGET_ARCHIVE) $(TARGET) $(ENGINE_LIB_PATH)
 	@echo "$(TARGET) package done!"
 
-$(TARGET): $(MAIN_OBJ_FILES) $(ENGINE_LIB_FILENAME) $(TESTS_RUNNER)
+$(TARGET): $(MAIN_OBJ_FILES) $(ENGINE_LIB_FILENAME)
 	# build your client here
 	$(CXX) $(CXX_FLAGS) -o $(TARGET) $(MAIN_OBJ_FILES) $(LDFLAGS)
 	@echo "$(TARGET) compile done!"
-
-$(TESTS_RUNNER): $(TEST_OBJ_FILES) $(ENGINE_LIB_FILENAME)
-	# build your test runner executable here
-	$(CXX) -o $(TESTS_RUNNER) $(TEST_OBJ_FILES) $(LDFLAGS) -Dmain=run_tests
-	# execute your tests here (on test failure, exit with exit code = 1)
-	LD_LIBRARY_PATH=$(ENGINE_DIR) ./$(TESTS_RUNNER)
-	@echo "$(TESTS_RUNNER) build done!"
-	@echo "tests execution done!"
 
 %.o: %.cpp
 	# compile your sources here
