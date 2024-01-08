@@ -14,7 +14,7 @@ DEPENDENCIES_DIR := dependencies
 CXX = g++
 CXX_FLAGS = -std=c++11 -O2
 CXX_FLAGS += -I$(ENGINE_DIR)
-LDFLAGS = -L$(ENGINE_DIR) -Wl,-rpath=$(ENGINE_DIR) -l$(ENGINE_LIB_NAME)
+LDFLAGS = -L$(ENGINE_DIR) -Wl,-rpath=./$(ENGINE_BASE_NAME) -l$(ENGINE_LIB_NAME)
 TAR_GZ = tar zcvf
 
 package: $(TARGET_ARCHIVE)
@@ -39,10 +39,10 @@ $(ENGINE_LIB_FILENAME):
 	$(MAKE) -C $(ENGINE_DIR)
 
 clean:
-	@rm -f $(TESTS_RUNNER)
-	@rm -f $(TEST_OBJ_FILES)
+	@rm -f $(TARGET_ARCHIVE)
 	@rm -f $(TARGET)
 	@rm -f $(MAIN_OBJ_FILES)
 	$(MAKE) -C $(ENGINE_DIR) clean
 
 .PHONY: clean package debug
+
